@@ -1,0 +1,42 @@
+---
+title: "Introduction to Resource projects"
+output: 
+  html_notebook:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    theme: cosmo
+    highlight: kate
+    smart: true
+    code_folding: hide
+date: '`r Sys.Date()`'
+---
+
+## Summary
+This R notebook generates all the files and analysis used for the Introduction to RP presentation.
+
+```{r, message=FALSE}
+library(tidyverse);
+
+allSources <- read_csv("../../resource-project-data/Data Cleaning/Payment Data Pipeline/data/Current website data/allSource.csv")
+allProjects <- read_csv("../../resource-project-data/Data Cleaning/Payment Data Pipeline/data/Current website data/allProject.csv")
+allEntities <- read_csv("../../resource-project-data/Data Cleaning/Payment Data Pipeline/data/Current website data/allEntity.csv")
+```
+
+First lets gather some basic summary information.
+
+Number of reporting jurisdictions
+```{r}
+print(paste("The total payment reported is ", round(sum(allProjects$projectPayment, na.rm = T)/1e9, 1), "billion USD"))
+print(paste("The number of reporting reports are ", n_distinct(allSources$sourceID)))
+print(paste("The number of reporting jurisdictions are ", n_distinct(allSources$reportingCountry)))
+print(paste("The number of reporting companies are ", n_distinct(allSources$reportingCompany)))
+print(paste("For the years", min(allSources$reportYear), "to", max(allSources$reportYear)))
+
+```
+Number of reporting companies.
+```{r}
+n_distinct()
+```
+
+

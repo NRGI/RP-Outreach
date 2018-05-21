@@ -1,6 +1,4 @@
-### Intro to Resource Projects
-
-# Hello, Wrold!
+### Introduction to Resource Projects
 
 ### Hari Subhash
 
@@ -8,23 +6,36 @@ _Data Scientist_, **[Natural Resource Governance Institute](https://resourcegove
 
 ---
 
-## Objectives
+## Objective
 
-* Give an overview of [resourceprojects.org](https://resourceprojects.org/) and mandatory disclosure data
+* Give an overview of [resourceprojects.org](https://resourceprojects.org/) and mandatory disclosure data.
 
 ---
 
 ## Agenda
 
 > 1.  What is [resourceprojects.org](https://resourceprojects.org/)?
-> 2.  What data does it showcase?
-> 3.  How did this data become available?
-> 4.  Summary of the data
-> 5.  Accessing the data on resourceprojects.org
+>
+> * What data does it showcase?
+> * How did this data become available?
+>
+> 2.  Summary of the data
+> 3.  Accessing the data on resourceprojects.org
 
 ---
 
-## Goals
+## ResourceProjects.org
+
+_Data on payments to governments from extractive sector companies on a project by project basis_
+
+* **The data**: 371.3 billion USD in payments from 709 reports by 584 companies disclosed in 17 reporting jurisdictions over 4 years (2014 to 2017)
+
+  > * Most of this data are from tables in pdfs that are not machine readeable
+  > * These reports are scattered across different websites and repositories
+  > * All 17 reporting jurisdictions have differing (or no) standards for how these payment tables should be structured
+  > * The reported data often is messy and uses non-standard names for projects and government agencies
+
+* ResourceProjects cleans and standaridizes data from all these reports and provides them on an easy to use data portal.
 
 👇👇👇
 
