@@ -12,13 +12,13 @@ _Data Scientist_, **[Natural Resource Governance Institute](https://resourcegove
 
 ---
 
-## Agenda <!-- .slide: data-background-video="https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.mp4,https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.webm" data-background-video-loop data-background-video-muted>-->
+## Agenda <!-- .slide: data-background-video="https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.mp4,https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.webm" data-background-video-loop data-background-video-muted> -->
 
 * What is [resourceprojects.org](https://resourceprojects.org/)? <!-- .element: class="fragment" -->
-  * What data does it showcase?
-  * How did this data become available?
-* Summary of the data
-* Accessing the data on resourceprojects.org
+  * What data does it showcase?<!-- .element: class="fragment" -->
+  * How did this data become available?<!-- .element: class="fragment" -->
+* Summary of the data<!-- .element: class="fragment" -->
+* Accessing the data on resourceprojects.org<!-- .element: class="fragment" -->
 
 ---
 
