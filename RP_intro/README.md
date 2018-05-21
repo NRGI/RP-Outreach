@@ -6,7 +6,7 @@ _Data Scientist_, **[Natural Resource Governance Institute](https://resourcegove
 
 ---
 
-## Objective Test<!-- .slide: data-background="#ff0000" -->
+## Objective Test <!-- .slide: data-background="green" -->
 
 * Give an overview of [resourceprojects.org](https://resourceprojects.org/) and mandatory disclosure data.
 
