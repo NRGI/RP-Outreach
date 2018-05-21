@@ -1,16 +1,17 @@
 ---
 title: "Introduction to Resource projects"
-output: 
-  html_notebook:
-    toc: true
-    toc_depth: 3
-    toc_float: true
-    theme: cosmo
-    highlight: kate
-    smart: true
-    code_folding: hide
 date: '`r Sys.Date()`'
+output:
+  revealjs::revealjs_presentation:
+    fig_width: 7
+    fig_height: 6
+    fig_caption: true
+    theme: "sky"
+    highlight: "haddock"
+    self_contained: false
+    reveal_plugins: ["notes", "search", "zoom"]
 ---
+## Introduction to Resource Projects
 
 ## Summary
 This R notebook generates all the files and analysis used for the Introduction to RP presentation.
@@ -35,8 +36,5 @@ print(paste("For the years", min(allSources$reportYear), "to", max(allSources$re
 
 ```
 Number of reporting companies.
-```{r}
-n_distinct()
-```
 
 
