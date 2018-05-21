@@ -2,3 +2,7 @@ body {
   font-family: "Roboto", sans-serif;
   font-family: "Open Sans", sans-serif;
 }
+
+.element {
+  font-size: 0.8em !important;
+}
