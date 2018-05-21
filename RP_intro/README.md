@@ -24,7 +24,7 @@ _Data Scientist_, **[Natural Resource Governance Institute](https://resourcegove
 
 ## ResourceProjects.org
 
-_Data on payments to governments from extractive sector companies on a project by project basis_
+_Data on payments to governments from extractive sector companies on a project by project basis_<!-- .element: class="testRed"-->
 
 * **The data**: 371.3 billion USD in payments from 709 reports by 584 companies disclosed in 17 reporting jurisdictions over 4 years (2014 to 2017)
 

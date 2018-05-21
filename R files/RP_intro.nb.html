@@ -322,11 +322,35 @@ allEntities &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span
 <p>Number of reporting jurisdictions</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucHJpbnQocGFzdGUoXCJUaGUgbnVtYmVyIG9mIHJlcG9ydGluZyB5ZWFycyBcIiwgbWluKGFsbFNvdXJjZXMkcmVwb3J0WWVhciksIG1heChhbGxTb3VyY2VzJHJlcG9ydFllYXIpKSlcblxuYGBgIn0= -->
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&quot;The number of reporting years &quot;</span>, <span class="kw">min</span>(allSources<span class="op">$</span>reportYear), <span class="kw">max</span>(allSources<span class="op">$</span>reportYear)))</code></pre></div>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucHJpbnQocGFzdGUoXCJUaGUgdG90YWwgcGF5bWVudCByZXBvcnRlZCBpcyBcIiwgcm91bmQoc3VtKGFsbFByb2plY3RzJHByb2plY3RQYXltZW50LCBuYS5ybSA9IFQpLzFlOSwgMSksIFwiYmlsbGlvbiBVU0RcIikpXG5gYGAifQ== -->
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&quot;The total payment reported is &quot;</span>, <span class="kw">round</span>(<span class="kw">sum</span>(allProjects<span class="op">$</span>projectPayment, <span class="dt">na.rm =</span> T)<span class="op">/</span><span class="fl">1e9</span>, <span class="dv">1</span>), <span class="st">&quot;billion USD&quot;</span>))</code></pre></div>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiVGhlIG51bWJlciBvZiByZXBvcnRpbmcgeWVhcnMgIDIwMTQgMjAxN1wiXG4ifQ== -->
-<pre><code>[1] &quot;The number of reporting years  2014 2017&quot;</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiVGhlIHRvdGFsIHBheW1lbnQgcmVwb3J0ZWQgaXMgIDM3MS4zIGJpbGxpb24gVVNEXCJcbiJ9 -->
+<pre><code>[1] &quot;The total payment reported is  371.3 billion USD&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucHJpbnQocGFzdGUoXCJUaGUgbnVtYmVyIG9mIHJlcG9ydGluZyByZXBvcnRzIGFyZSBcIiwgbl9kaXN0aW5jdChhbGxTb3VyY2VzJHNvdXJjZUlEKSkpXG5gYGAifQ== -->
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&quot;The number of reporting reports are &quot;</span>, <span class="kw">n_distinct</span>(allSources<span class="op">$</span>sourceID)))</code></pre></div>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiVGhlIG51bWJlciBvZiByZXBvcnRpbmcgcmVwb3J0cyBhcmUgIDcwOVwiXG4ifQ== -->
+<pre><code>[1] &quot;The number of reporting reports are  709&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucHJpbnQocGFzdGUoXCJUaGUgbnVtYmVyIG9mIHJlcG9ydGluZyBqdXJpc2RpY3Rpb25zIGFyZSBcIiwgbl9kaXN0aW5jdChhbGxTb3VyY2VzJHJlcG9ydGluZ0NvdW50cnkpKSlcbmBgYCJ9 -->
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&quot;The number of reporting jurisdictions are &quot;</span>, <span class="kw">n_distinct</span>(allSources<span class="op">$</span>reportingCountry)))</code></pre></div>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiVGhlIG51bWJlciBvZiByZXBvcnRpbmcganVyaXNkaWN0aW9ucyBhcmUgIDE3XCJcbiJ9 -->
+<pre><code>[1] &quot;The number of reporting jurisdictions are  17&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucHJpbnQocGFzdGUoXCJUaGUgbnVtYmVyIG9mIHJlcG9ydGluZyBjb21wYW5pZXMgYXJlIFwiLCBuX2Rpc3RpbmN0KGFsbFNvdXJjZXMkcmVwb3J0aW5nQ29tcGFueSkpKVxuYGBgIn0= -->
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&quot;The number of reporting companies are &quot;</span>, <span class="kw">n_distinct</span>(allSources<span class="op">$</span>reportingCompany)))</code></pre></div>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiVGhlIG51bWJlciBvZiByZXBvcnRpbmcgY29tcGFuaWVzIGFyZSAgNTg0XCJcbiJ9 -->
+<pre><code>[1] &quot;The number of reporting companies are  584&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucHJpbnQocGFzdGUoXCJGb3IgdGhlIHllYXJzXCIsIG1pbihhbGxTb3VyY2VzJHJlcG9ydFllYXIpLCBcInRvXCIsIG1heChhbGxTb3VyY2VzJHJlcG9ydFllYXIpKSlcbmBgYCJ9 -->
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&quot;For the years&quot;</span>, <span class="kw">min</span>(allSources<span class="op">$</span>reportYear), <span class="st">&quot;to&quot;</span>, <span class="kw">max</span>(allSources<span class="op">$</span>reportYear)))</code></pre></div>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiRm9yIHRoZSB5ZWFycyAyMDE0IHRvIDIwMTdcIlxuIn0= -->
+<pre><code>[1] &quot;For the years 2014 to 2017&quot;</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
