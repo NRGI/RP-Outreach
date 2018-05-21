@@ -14,13 +14,13 @@ _Data Scientist_, **[Natural Resource Governance Institute](https://resourcegove
 
 ## Agenda
 
-> 1.  What is [resourceprojects.org](https://resourceprojects.org/)?
+> * What is [resourceprojects.org](https://resourceprojects.org/)?
 >
-> * What data does it showcase?
-> * How did this data become available?
+> - What data does it showcase?
+> - How did this data become available?
 >
-> 2.  Summary of the data
-> 3.  Accessing the data on resourceprojects.org
+> * Summary of the data
+> * Accessing the data on resourceprojects.org
 
 ---
 
