@@ -12,7 +12,7 @@ _Data Scientist_, **[Natural Resource Governance Institute](https://resourcegove
 
 ---
 
-## Agenda <!-- .slide: data-background-video="https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.mp4,https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.webm" data-background-video-loop data-background-video-muted> -->
+## Agenda
 
 * What is [resourceprojects.org](https://resourceprojects.org/)? <!-- .element: class="fragment" -->
   * What data does it showcase?<!-- .element: class="fragment" -->
