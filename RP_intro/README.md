@@ -1,4 +1,4 @@
-### Introduction to Resource Projects
+### Introduction to Resource Projects<!-- .slide: data-background-image="assets/resource-projects-mining-bg.jpg" -->
 
 ##### Hari Subhash
 
@@ -6,7 +6,7 @@ _Data Scientist_, **[Natural Resource Governance Institute](https://resourcegove
 
 ---
 
-## Objective Test <!-- .slide: data-background="green" -->
+## Objective <!-- .slide: data-background-image="assets/resource-projects-mining-bg.jpg" -->
 
 * Give an overview of [resourceprojects.org](https://resourceprojects.org/) and mandatory disclosure data.
 
