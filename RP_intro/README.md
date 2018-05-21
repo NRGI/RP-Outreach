@@ -14,11 +14,11 @@ _Data Scientist_, **[Natural Resource Governance Institute](https://resourcegove
 
 ## Agenda
 
-* What is [resourceprojects.org](https://resourceprojects.org/)? <!-- .element: class="fragment" -->
-  * What data does it showcase?<!-- .element: class="fragment" -->
-  * How did this data become available?<!-- .element: class="fragment" -->
-* Summary of the data<!-- .element: class="fragment" -->
-* Accessing the data on resourceprojects.org<!-- .element: class="fragment" -->
+* What is [resourceprojects.org](https://resourceprojects.org/)?
+  * What data does it showcase?
+  * How did this data become available?
+* Summary of the data
+* Accessing the data on resourceprojects.org
 
 ---
 
@@ -28,10 +28,10 @@ _Data on payments to governments from extractive sector companies on a project b
 
 * **The data**: 371.3 billion USD in payments from 709 reports by 584 companies disclosed in 17 reporting jurisdictions over 4 years (2014 to 2017)
 
-  > * Most of this data are from tables in pdfs that are not machine readeable
-  > * These reports are scattered across different websites and repositories
-  > * All 17 reporting jurisdictions have differing (or no) standards for how these payment tables should be structured
-  > * The reported data often is messy and uses non-standard names for projects and government agencies
+  * Most of this data are from tables in pdfs that are not machine readeable<!-- .element: class="fragment" -->
+  * These reports are scattered across different websites and repositories<!-- .element: class="fragment" -->
+  * All 17 reporting jurisdictions have differing (or no) standards for how these payment tables should be structured<!-- .element: class="fragment" -->
+  * The reported data often is messy and uses non-standard names for projects and government agencies<!-- .element: class="fragment" -->
 
 * ResourceProjects cleans and standaridizes data from all these reports and provides them on an easy to use data portal.
 
