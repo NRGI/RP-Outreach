@@ -1,12 +1,12 @@
 ### Introduction to Resource Projects
 
-### Hari Subhash
+##### Hari Subhash
 
 _Data Scientist_, **[Natural Resource Governance Institute](https://resourcegovernance.org/)**
 
 ---
 
-## Objective
+## Objective Test<!-- .slide: data-background="#ff0000" -->
 
 * Give an overview of [resourceprojects.org](https://resourceprojects.org/) and mandatory disclosure data.
 
