@@ -16,10 +16,7 @@ output:
     reveal_plugins: ["notes", "search", "zoom"]
 ---
 ```{r, message=FALSE, echo=FALSE}
-library(tidyverse);
-fileConn <- file("myheader.html")
-writeLines('<link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto" rel="stylesheet">', fileConn)
-close(fileConn)
+library(tidyverse); library(emo)
 
 ##load current website data
 allSources <- read_csv("../../resource-project-data/Data Cleaning/Payment Data Pipeline/data/Current website data/allSource.csv")
@@ -33,7 +30,7 @@ img <- htmltools::img(src = knitr::image_uri(file.path("/Users/hsubhash/Document
 
 htmlhead <- paste0('<link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto" rel="stylesheet">', '
 <script>
-document.write(\'<div class="logos">',img,'</div>\')
+    document.write(\'<div class="logos">',img,'</div>\')
 </script>
 ')
 
@@ -41,7 +38,7 @@ readr::write_lines(htmlhead, path = "header.html")
 
 ```
 
-##{data-background="./assets/images/home_page.png"}
+##{data-background-image="https://cdn.rawgit.com/NRGI/RP-Outreach/f2da482a/assets/images/home_page.png"}
 
 ## Objective
 
@@ -64,11 +61,11 @@ First lets gather some basic summary information.
 
 Number of reporting jurisdictions
 ```{r}
-print(paste("The total payment reported is ", round(sum(allProjects$projectPayment, na.rm = T)/1e9, 1), "billion USD"))
-print(paste("The number of reporting reports are ", n_distinct(allSources$sourceID)))
-print(paste("The number of reporting jurisdictions are ", n_distinct(allSources$reportingCountry)))
-print(paste("The number of reporting companies are ", n_distinct(allSources$reportingCompany)))
-print(paste("For the years", min(allSources$reportYear), "to", max(allSources$reportYear)))
+# print(paste("The total payment reported is ", round(sum(allProjects$projectPayment, na.rm = T)/1e9, 1), "billion USD"))
+# print(paste("The number of reporting reports are ", n_distinct(allSources$sourceID)))
+# print(paste("The number of reporting jurisdictions are ", n_distinct(allSources$reportingCountry)))
+# print(paste("The number of reporting companies are ", n_distinct(allSources$reportingCompany)))
+# print(paste("For the years", min(allSources$reportYear), "to", max(allSources$reportYear)))
 
 ```
 Number of reporting companies.
