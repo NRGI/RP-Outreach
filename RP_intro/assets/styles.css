@@ -37,14 +37,15 @@
   /* color: white; */
 }
 
-#test p {
-  color: red;
+.slides em {
+  font-size: 0.8em;
+  margin: 3%;
 }
 
 .slides li {
   font-size: 0.75em;
   margin-top: 3%;
 }
-#section-2 p {
+#section-1 p {
   margin-top: 20%;
 }

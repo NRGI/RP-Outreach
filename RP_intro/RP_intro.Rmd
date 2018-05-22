@@ -1,7 +1,6 @@
 ---
 title: "Introduction to Resource projects"
 date: '`r Sys.Date()`'
-author: "Hari Subhash"
 output:
   revealjs::revealjs_presentation:
     includes:
@@ -10,15 +9,14 @@ output:
     fig_width: 7
     fig_height: 6
     fig_caption: true
-    theme: "sky"
+    theme: "night"
     highlight: "haddock"
     self_contained: false
-    reveal_plugins: ["notes", "search", "zoom"]
+    reveal_plugins: ["notes", "zoom"]
 ---
 
 ```{r, message=FALSE, echo=FALSE}
-library(tidyverse); library(emo)
-
+library(tidyverse)
 ##load current website data
 allSources <- read_csv("../../resource-project-data/Data Cleaning/Payment Data Pipeline/data/Current website data/allSource.csv")
 allProjects <- read_csv("../../resource-project-data/Data Cleaning/Payment Data Pipeline/data/Current website data/allProject.csv")
@@ -37,31 +35,108 @@ htmlhead <- paste0('<link href="https://fonts.googleapis.com/css?family=Open+San
 
 readr::write_lines(htmlhead, path = "header.html")
 ```
+##How to use this slide deck
 
+- This 2 dimensional slide deck is built using [RMarkdown and RevealJS](https://rmarkdown.rstudio.com/revealjs_presentation_format.html).
+- Use the arrow keys to navigate through slides. You can either click on them (bottom right corner), or use your keyboard.
+- Hit the `Esc` key to see the layout of the slides (try this now!)
 
 #👇Overview👇🏾
 
-##
+##Timeline
 > - **Before 2013**: Citizens had limited information on revenues from extractive sector projects in their country. This made it difficult for them to hold governments and companies accountable.
 > - **2013 to Present**: Mandatory disclosure laws passed in the [EU](http://www.publishwhatyoupay.org/wp-content/uploads/2013/11/PWYP-fact-sheet-on-EU-Accounting-and-Transparency-Directives.pdf), [Canada](http://www.publishwhatyoupay.org/wp-content/uploads/2015/04/Factsheet_for_Canadian_mandatory_reporting_legislation.pdf), UK and Norway require extractive sector companies to disclose payments to government on a project by project basis.
 > - **This data are however, difficult to use**: Payment data are predominantly available as tables in PDF reports that are scattered across different websites without a standard structure or reporting format. They also use inconsistent standards for different terms, for instance, the same government agency might be called several different names in different reports. As a result, collecting and using this data is incredibly hard.
-> - **2017 to present**: NRGI sets up a semi-automated data pipeline that scrapes, cleans and standardize payment data from reports that are in a wide variety of formats scattered across different portals and websites.      👇🏾👇🏾👇🏾👇🏾👇🏾👇🏾👇🏾👇🏾👇🏾👇🏾
+> - **2017 to present**: NRGI sets up a semi-automated data pipeline that scrapes, cleans and standardize payment data from reports that are in a wide variety of formats scattered across different portals and websites.      
+
+👇🏾👇
 
 ##{data-background-image="https://cdn.rawgit.com/NRGI/RP-Outreach/60d64ac9/assets/images/home_page.png"}
 
 ##
-**`r round(sum(allProjects$projectPayment, na.rm = T)/1e9, 1)` billion USD** in payments from **`r n_distinct(allSources$sourceID)`** reports filed by **`r n_distinct(allSources$reportingCompany)`** companies in **`r n_distinct(allSources$reportingCompany)`** reporting jurisdictions from **`r min(allSources$reportYear)`** to **`r max(allSources$reportYear)`** available on [resourceprojects.org](https://resourceprojects.org/).
+**`r round(sum(allProjects$projectPayment, na.rm = T)/1e9, 1)` billion USD** in payments from **`r n_distinct(allSources$sourceID)`** reports filed by **`r n_distinct(allSources$reportingCompany)`** companies in **`r n_distinct(allSources$reportingCountry)`** reporting jurisdictions from **`r min(allSources$reportYear)`** to **`r max(allSources$reportYear)`** available on [resourceprojects.org](https://resourceprojects.org/).
+
+👇🏾👇
 
 ##
-Access cleaned and consolidated data
+Cleaned and consolidated data that can be filtered based on criteria of interest, all in a few clicks.
 
-<video width="320" height="240" controls>
-    <source src="https://cdn.rawgit.com/NRGI/RP-Outreach/015367ce/assets/videos/RP_screen.mp4" type="video/mp4">
-</video>
+<img src="https://media.giphy.com/media/9xcxTE8LrbP3Mch5g2/giphy.gif" width="600" height="350" />
+  
+👇🏾👇
 
+##
+View the spread of payments across different countries and by their type (Taxes, Royalties, Production entitlements etc.)
 
-##Test 2
+<img src="https://media.giphy.com/media/DNvVPnZfmIkAqGMGkG/giphy.gif" width="600" height="350" />
 
+👇🏾👇
 
-#Normal
+##
+Access country pages
+
+<img src="https://media.giphy.com/media/wpzoSlmg1V1Ti701nh/giphy.gif" width="600" height="350" />
+
+👉👉👉👉👉👉👉👉👉
+
+#👇Work Completed (June - 2017 to June 2018)👇🏾
+
+##Data Pipeline
+
+*Moved from a manual data entry process to a semi-automated scalable pipeline that is 10 X faster, easier to maintain and less error prone*
+
+> - [PDF Scraper](http://shiny.resourcedata.org/ptg-scraper/) that allows users to upload and scrape PDF tables easily.
+> - API scripts to access data from online repositories like [Company House](https://www.gov.uk/government/organisations/companies-house)
+> - Automated cleaning pipeline that converts payments to USD, cleans and consolidates all data values (projects, govt. agencies, companies etc.)
+
+👇🏾👇
+
+##Lookup tables for cleaning data values
+
+*Lookup tables map raw data values to clean publicly identifiable names. Values that are mapped once are remembered forever thereby avoiding the need to repeat work*
+
+- Cleaning script adds new data values for countries, payment types, currency codes, projects, government agencies, and companies are added to a lookup pipeline.
+- New data values that have not been mapped yet are manually mapped to publicly recognizable values
+
+👇🏾👇
+
+##Secondary Data
+
+*Contextual information on projects, company names govt. agencies etc., allow us to extract insight from payment data in disclosure reports*
+
+- Once a new data value is identified in the lookup we collect additional information for that data value.
+- For instance, we identify the location of projects and the commodities that it produces, and the government agencies are classified as national, local or regional.
+
+👇🏾👇
+
+##Website
+
+*A modern user friendly website that provides both data and analysis*
+
+- Users can access cleaned and consolidated data, filter records of interest and download all tables
+- Data visualizations provide an overall summary view of payment data from disclosure reports
+- Country pages summarise payment data relevant for each country and allow comparisons within and across countries
+
+👉👉👉👉👉👉👉👉👉
+
+#👇Work Plan (June - 2018 to Dec 2018)👇🏾
+
+##Data Pipeline
+
+- scrape everything
+- Backup all incoming reports to S3 before scrape and generate hash ids
+- Aggregate data to company owners
+- Data quality reports
+
+##Website
+- An integrated data use/analysis section for RP
+- Source management on RP
+- Company Pages
+- Data viz for RP
+
+#👇Pies in the sky (June - 2018 to July 2019)👇🏾
+
+##
+- Machine learning algoithm for lookups
+- Companies report directly on RP
 
