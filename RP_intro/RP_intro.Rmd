@@ -52,9 +52,13 @@ readr::write_lines(htmlhead, path = "header.html")
 ##
 **`r round(sum(allProjects$projectPayment, na.rm = T)/1e9, 1)` billion USD** in payments from **`r n_distinct(allSources$sourceID)`** reports filed by **`r n_distinct(allSources$reportingCompany)`** companies in **`r n_distinct(allSources$reportingCompany)`** reporting jurisdictions from **`r min(allSources$reportYear)`** to **`r max(allSources$reportYear)`** available on [resourceprojects.org](https://resourceprojects.org/).
 
-##Test
+##
+Access cleaned and consolidated data
 
-just some random text {class = "center"}
+<video width="320" height="240" controls>
+    <source src="https://cdn.rawgit.com/NRGI/RP-Outreach/015367ce/assets/videos/RP_screen.mp4" type="video/mp4">
+</video>
+
 
 ##Test 2
 
