@@ -1,8 +1,12 @@
 ---
 title: "Introduction to Resource projects"
 date: '`r Sys.Date()`'
+author: "Hari Subhash"
 output:
   revealjs::revealjs_presentation:
+    includes:
+       in_header: header.html
+    css: assets/styles.css
     fig_width: 7
     fig_height: 6
     fig_caption: true
@@ -11,18 +15,50 @@ output:
     self_contained: false
     reveal_plugins: ["notes", "search", "zoom"]
 ---
-## Introduction to Resource Projects
-
-## Summary
-This R notebook generates all the files and analysis used for the Introduction to RP presentation.
-
-```{r, message=FALSE}
+```{r, message=FALSE, echo=FALSE}
 library(tidyverse);
+fileConn <- file("myheader.html")
+writeLines('<link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto" rel="stylesheet">', fileConn)
+close(fileConn)
 
+##load current website data
 allSources <- read_csv("../../resource-project-data/Data Cleaning/Payment Data Pipeline/data/Current website data/allSource.csv")
 allProjects <- read_csv("../../resource-project-data/Data Cleaning/Payment Data Pipeline/data/Current website data/allProject.csv")
 allEntities <- read_csv("../../resource-project-data/Data Cleaning/Payment Data Pipeline/data/Current website data/allEntity.csv")
+
+# Create the external file
+img <- htmltools::img(src = knitr::image_uri(file.path("/Users/hsubhash/Documents/GitHub/RP Outreach/assets/images/RP_logo.png")), 
+               alt = 'logo', 
+               style = 'position:absolute; top:20px; right:1%; padding:10px;z-index:200; width:100px')
+
+htmlhead <- paste0('<link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto" rel="stylesheet">', '
+<script>
+document.write(\'<div class="logos">',img,'</div>\')
+</script>
+')
+
+readr::write_lines(htmlhead, path = "header.html")
+
 ```
+
+##{data-background="./assets/images/home_page.png"}
+
+## Objective
+
+- Give an overview of [resourceprojects.org](https://resourceprojects.org/) and mandatory disclosure data.
+
+
+
+## Agenda
+
+> - What is [resourceprojects.org](https://resourceprojects.org/)?
+> - Summary of the data
+> - Accessing the data on resourceprojects.org
+
+
+# Summary
+This R notebook generates all the files and analysis used for the Introduction to RP presentation.
+
 
 First lets gather some basic summary information.
 
@@ -37,4 +73,12 @@ print(paste("For the years", min(allSources$reportYear), "to", max(allSources$re
 ```
 Number of reporting companies.
 
+
+##Test
+
+
+##Test 2
+
+
+##Normal
 
