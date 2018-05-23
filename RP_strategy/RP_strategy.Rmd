@@ -1,0 +1,104 @@
+---
+title: "Resource Projects Strategy"
+date: '`r Sys.Date()`'
+output:
+  revealjs::revealjs_presentation:
+    incremental: true
+    includes:
+       in_header: header.html
+    css: RP_strategy_files/strategyStyles.css
+    theme: "night"
+    highlight: "haddock"
+    self_contained: false
+    reveal_plugins: ["notes", "zoom"]
+---
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+# Create the external file
+img <- htmltools::img(src = knitr::image_uri(file.path("/Users/hsubhash/Documents/GitHub/RP Outreach/assets/images/RP_logo.png")), 
+               alt = 'logo', 
+               style = 'position:absolute; top:20px; right:1%; padding:10px;z-index:200; width:100px')
+
+htmlhead <- paste0('<link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto" rel="stylesheet">', '
+<script>
+    document.write(\'<div class="logos">',img,'</div>\')
+    
+</script>
+')
+
+readr::write_lines(htmlhead, path = "header.html")
+
+```
+
+##How to use this slide deck
+
+- This 2 dimensional slide deck is built using [RMarkdown and RevealJS](https://rmarkdown.rstudio.com/revealjs_presentation_format.html).
+- Use the arrow keys to navigate through slides. You can either click on them (bottom right corner), or use your keyboard.
+- Hit the `Esc` key to see the layout of the slides (try this now!)
+
+##Contents
+
+1. The good and the not so good
+2. Work Completed (June - 2017 to June 2018)
+3. Work Plan (June - 2018 to Dec 2018)
+4. Long term milestones
+
+#{data-background="https://media.giphy.com/media/l378pEh3YesyThsg8/giphy.gif"}
+
+##The good
+
+- Moved from manual scraping and cleaning to a semi-automated system
+    - Absolutely critical. ResourceProjects would have been impossible to sustaine over the long-term without this.
+    - Improved data quality. Better error tracing, and reproducibility.
+- User friendly, data rich website
+    - Moved from a data and UI poor website to a more user friendly data rich website
+- Potential for several data product spin-offs
+    - Cleaning files allow us to link different data sources together
+    - Secondary data on different variables like projects, govt. agencies and companies enrich analytical possibilities
+- Potential for ramping up data use
+
+##The not so good
+
+- Data Use
+    - Almost non-existent at this point. We need to spend time generating some early use cases for the data.
+- Poor internal mainstreaming
+    - We have barely done anything to mainstream ResourceProjects within NRGI
+- Poor external marketing
+    - We haven't done a single analytical piece or blog that uses ResourceProjects data
+- Website has scope for improvement
+    - The website is still low on use
+    - Performance in terms of speed, design and content can be improved
+
+#{data-background="https://media.giphy.com/media/AJXcQO4xjb8FW/giphy.gif"}
+
+##Building on the good
+
+- **Data-Pipeline**: 
+    - Complete the few missing pieces in the data pipeline
+    - [Package](http://r-pkgs.had.co.nz/) all the R code
+- **Website**: 
+    - Get an external vendor to provide UI and content improvements to make the website more user friendly
+    - A company page
+    - A source page that allows users to manage reports better
+- **Product spin-offs**: 
+    - Setup the data workflow such that anyone can use our cleaning files
+
+##Fixing the not so good
+
+- **Data Use**: 
+    - Create a laundry list of [data use ideas](https://docs.google.com/document/d/1Irfuz_kfmcU4RGjGKWxuFDIeY2_Ud6wuuk9Qiuwj9fY/edit?usp=sharing) and prioritize them. Start executing ideas from the top.
+    - Identify a list of potential collaborators.
+- **Internal mainstreaming**: 
+    - A webinar on ResourceProjects will also help. 
+    - What type of data use ideas can help us increase internal visibility?
+- **External marketing:**: 
+    - Start a social media campaign to plug the website. 
+    - What type of data use ideas can help us increase external marketing?
+
+
+##Challenges
+
+- Inadequate staff resources
+- Funding
+- Lack of inherent data value
+

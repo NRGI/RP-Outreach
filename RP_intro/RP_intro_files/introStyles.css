@@ -1,3 +1,5 @@
+/* Common CSS */
+
 .reveal {
   font-family: "Roboto", sans-serif;
   font-family: "Open Sans", sans-serif;
@@ -9,22 +11,15 @@
 .reveal h4,
 .reveal h5,
 .reveal h6 {
-  /* margin: 0 0 20px 0; */
-  /* font-weight: 900; */
-  /* font-family: "Roboto", sans-serif; */
+  font-family: "Roboto", sans-serif;
   line-height: 0.9em;
   letter-spacing: 0.02em;
-  /* text-transform: uppercase; */
-  /* text-shadow: none; */
 }
+
 .reveal h1 {
   font-weight: 900;
   font-size: 32px;
   margin-top: 20% !important;
-}
-
-.author {
-  font-size: 0.8em !important;
 }
 
 .date {
@@ -32,20 +27,26 @@
   font-size: 0.8em !important;
 }
 
-#objectives {
-  margin-top: 20%;
-  /* color: white; */
+.slides em {
+  font-family: "Roboto", sans-serif;
+  font-size: 1em;
+  color: rgb(181, 236, 235);
+  margin: 3%;
 }
 
-.slides em {
+.slides p {
+  font-family: "Roboto", sans-serif;
   font-size: 0.8em;
   margin: 3%;
 }
 
 .slides li {
+  font-family: "Open Sans", sans-serif;
   font-size: 0.75em;
   margin-top: 3%;
 }
+
+/* Targeted CSS */
 #section-1 p {
-  margin-top: 20%;
+  margin-top: 25%;
 }
