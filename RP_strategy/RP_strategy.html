@@ -525,28 +525,40 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <section><section id="section-1" class="titleslide slide level1" data-background="https://media.giphy.com/media/AJXcQO4xjb8FW/giphy.gif"><h1></h1></section><section id="building-on-the-good" class="slide level2">
 <h2>Building on the good</h2>
 <ul>
-<li><strong>Data-Pipeline</strong>:</li>
-<li>Complete the few missing pieces in the data pipeline</li>
-<li>Package all the R code</li>
-<li><strong>Website</strong>:</li>
-<li>Get an external vendor to provide UI and content improvements to make the website more user friendly</li>
-<li>A company page</li>
-<li>A source page that allows users to manage reports better</li>
-<li><strong>Product spin-offs</strong>:</li>
-<li>Setup the data workflow such that anyone can use our cleaning files</li>
+<li class="fragment"><strong>Data-Pipeline</strong>:
+<ul>
+<li class="fragment">Complete the few missing pieces in the data pipeline</li>
+<li class="fragment"><a href="http://r-pkgs.had.co.nz/">Package</a> all the R code</li>
+</ul></li>
+<li class="fragment"><strong>Website</strong>:
+<ul>
+<li class="fragment">Get an external vendor to provide UI and content improvements to make the website more user friendly</li>
+<li class="fragment">A company page</li>
+<li class="fragment">A source page that allows users to manage reports better</li>
+</ul></li>
+<li class="fragment"><strong>Product spin-offs</strong>:
+<ul>
+<li class="fragment">Setup the data workflow such that anyone can use our cleaning files</li>
+</ul></li>
 </ul>
 </section><section id="fixing-the-not-so-good" class="slide level2">
 <h2>Fixing the not so good</h2>
 <ul>
-<li><strong>Data Use</strong>:</li>
-<li>Create a laundry list of <a href="https://docs.google.com/document/d/1Irfuz_kfmcU4RGjGKWxuFDIeY2_Ud6wuuk9Qiuwj9fY/edit?usp=sharing">data use ideas</a> and prioritize them. Start executing ideas from the top.</li>
-<li>Identify a list of potential collaborators.</li>
-<li><strong>Internal mainstreaming</strong>:</li>
-<li>A webinar on ResourceProjects will also help.</li>
-<li>What type of data use ideas can help us increase internal visibility?</li>
-<li><strong>External marketing:</strong>:</li>
-<li>Start a social media campaign to plug the website.</li>
-<li>What type of data use ideas can help us increase external marketing?</li>
+<li class="fragment"><strong>Data Use</strong>:
+<ul>
+<li class="fragment">Create a laundry list of <a href="https://docs.google.com/document/d/1Irfuz_kfmcU4RGjGKWxuFDIeY2_Ud6wuuk9Qiuwj9fY/edit?usp=sharing">data use ideas</a> and prioritize them. Start executing ideas from the top.</li>
+<li class="fragment">Identify a list of potential collaborators.</li>
+</ul></li>
+<li class="fragment"><strong>Internal mainstreaming</strong>:
+<ul>
+<li class="fragment">A webinar on ResourceProjects will also help.</li>
+<li class="fragment">What type of data use ideas can help us increase internal visibility?</li>
+</ul></li>
+<li class="fragment"><strong>External marketing:</strong>:
+<ul>
+<li class="fragment">Start a social media campaign to plug the website.</li>
+<li class="fragment">What type of data use ideas can help us increase external marketing?</li>
+</ul></li>
 </ul>
 </section><section id="challenges" class="slide level2">
 <h2>Challenges</h2>
@@ -554,65 +566,6 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <li class="fragment">Inadequate staff resources</li>
 <li class="fragment">Funding</li>
 <li class="fragment">Lack of inherent data value</li>
-</ul>
-</section></section>
-<section><section id="work-completed-june---2017-to-june-2018" class="titleslide slide level1"><h1>👇Work Completed (June - 2017 to June 2018)👇🏾</h1></section><section id="data-pipeline" class="slide level2">
-<h2>Data Pipeline</h2>
-<p><em>Moved from a manual data entry process to a semi-automated scalable pipeline that is 10 X faster, easier to maintain and less error prone</em></p>
-<ul>
-<li><a href="http://shiny.resourcedata.org/ptg-scraper/">PDF Scraper</a> that allows users to upload and scrape PDF tables easily.</li>
-<li>API scripts to access data from online repositories like <a href="https://www.gov.uk/government/organisations/companies-house">Company House</a></li>
-<li>Automated cleaning pipeline that converts payments to USD, cleans and consolidates all data values (projects, govt. agencies, companies etc.)</li>
-</ul>
-<p>👇🏾👇</p>
-</section><section id="lookup-tables-for-cleaning-data-values" class="slide level2">
-<h2>Lookup tables for cleaning data values</h2>
-<p><em>Lookup tables map raw data values to clean publicly identifiable names. Values that are mapped once are remembered forever thereby avoiding the need to repeat work</em></p>
-<ul>
-<li class="fragment">Cleaning script adds new data values for countries, payment types, currency codes, projects, government agencies, and companies are added to a lookup pipeline.</li>
-<li class="fragment">New data values that have not been mapped yet are manually mapped to publicly recognizable values</li>
-</ul>
-<p>👇🏾👇</p>
-</section><section id="secondary-data" class="slide level2">
-<h2>Secondary Data</h2>
-<p><em>Contextual information on projects, company names govt. agencies etc., allow us to extract insight from payment data in disclosure reports</em></p>
-<ul>
-<li class="fragment">Once a new data value is identified in the lookup we collect additional information for that data value.</li>
-<li class="fragment">For instance, we identify the location of projects and the commodities that it produces, and the government agencies are classified as national, local or regional.</li>
-</ul>
-<p>👇🏾👇</p>
-</section><section id="website" class="slide level2">
-<h2>Website</h2>
-<p><em>A modern user friendly website that provides both data and analysis</em></p>
-<ul>
-<li class="fragment">Users can access cleaned and consolidated data, filter records of interest and download all tables</li>
-<li class="fragment">Data visualizations provide an overall summary view of payment data from disclosure reports</li>
-<li class="fragment">Country pages summarise payment data relevant for each country and allow comparisons within and across countries</li>
-</ul>
-<p>👉👉👉👉👉👉👉👉👉</p>
-</section></section>
-<section><section id="work-plan-june---2018-to-dec-2018" class="titleslide slide level1"><h1>👇Work Plan (June - 2018 to Dec 2018)👇🏾</h1></section><section id="data-pipeline-1" class="slide level2">
-<h2>Data Pipeline</h2>
-<ul>
-<li class="fragment">scrape everything</li>
-<li class="fragment">Backup all incoming reports to S3 before scrape and generate hash ids</li>
-<li class="fragment">Aggregate data to company owners</li>
-<li class="fragment">Data quality reports</li>
-</ul>
-</section><section id="website-1" class="slide level2">
-<h2>Website</h2>
-<ul>
-<li class="fragment">An integrated data use/analysis section for RP</li>
-<li class="fragment">Source management on RP</li>
-<li class="fragment">Company Pages</li>
-<li class="fragment">Data viz for RP</li>
-</ul>
-</section></section>
-<section><section id="pies-in-the-sky-june---2018-to-july-2019" class="titleslide slide level1"><h1>👇Pies in the sky (June - 2018 to July 2019)👇🏾</h1></section><section id="section-2" class="slide level2">
-<h2></h2>
-<ul>
-<li class="fragment">Machine learning algoithm for lookups</li>
-<li class="fragment">Companies report directly on RP</li>
 </ul>
 </section></section>
     </div>
