@@ -73,14 +73,14 @@ readr::write_lines(htmlhead, path = "header.html")
 
 ##Building on the good
 
-- **Data-Pipeline**: 
+- Data-Pipeline: 
     - Complete the few missing pieces in the data pipeline
     - [Package](http://r-pkgs.had.co.nz/) all the R code
-- **Website**: 
+- Website: 
     - Get an external vendor to provide UI and content improvements to make the website more user friendly
     - A company page
     - A source page that allows users to manage reports better
-- **Product spin-offs**: 
+- Product spin-offs: 
     - Setup the data workflow such that anyone can use our cleaning files
 
 ##Fixing the not so good
