@@ -40,9 +40,7 @@ readr::write_lines(htmlhead, path = "header.html")
 
 
 
-# downloadProject <- read_csv("/Users/hsubhash/Downloads/data(1)/Project.csv")
-# str(downloadProject)
-# unique(year(mdy(downloadProject$endDate)))
+outList[17]
 ```
 ##How to use this slide deck
 
