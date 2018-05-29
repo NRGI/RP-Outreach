@@ -50,10 +50,11 @@ readr::write_lines(htmlhead, path = "header.html")
     - We have a moderately satisfactory website that is data rich and user friendly
     - Great potential for data use: There are several spokes for new product ideas (secondary data, lookup tables, data visualizations etc) that can come out as outputs from the current data pipeline.
     - Resources outside the team: There are staff members who are interested in this data and can help leverage its potential (DMi, Alex, Joe etc.)
+    
 - **Weaknesses**
     - Inadequate time and resources: All data pipeline tasks and feature additions (like company pages) requires either Tommy or Hari to write code
     - Poor internal mainstreaming and awareness about RP
-    - Staff turnover: Either Tommy or Hari leave
+    - Key staff turnover
     - The data might not yield anything particularly interesting
 
 ##Opportunities and Threats (External)
@@ -74,15 +75,18 @@ readr::write_lines(htmlhead, path = "header.html")
     - Managing staff time and resources
     - Identifying partners who have technical skills to generate high impact
     - Transferring code knowledge to the institution i.e. managing staff turnover
+    
 - **Things we should do**
-    - Identify a compelling story that can be informed by mandatory disclosure data and produce a high impact new article
+    - Identify a compelling story that can be informed by mandatory disclosure data and produce a high impact article for publication
     - Make sure the website serves the needs of all key stakeholders in the mandatory disclosure space
     - Generate templates for data use in countries. Identify one interesting country and develop a scalable and easy to replicate data report/analysis (see [Nigeria Breifing](https://resourcegovernance.org/sites/default/files/documents/nigeria-oil-revenue.pdf))
     - Continue to automate tasks
     - [Package](http://r-pkgs.had.co.nz/) the entire code base on CRAN so that new data team members can easily manage the data pipeline
     - Work with internal staff who have technical skills and exposure to mandatory disclosure data.
+    
 - **Things we should not do**
-    - Spend time on low impact and boring blogs
+    - Spend time on low impact or boring blog pieces
+    - Custom data use cases that do not scale or replicate well
     
 ##Things we should do
 - **Identifying a compelling story**
@@ -90,13 +94,15 @@ readr::write_lines(htmlhead, path = "header.html")
     - Spend time exploring the data to identify interesting story leads
     - Pitch story ideas to interested journalists at big news organizations
 - **Keep stakeholders happy**
-    - ~Identify all the stakeholders~
+    - ~~Identify all the stakeholders~~
     - Identify key use cases (for instance, managing disclosure reports, viewing company reports etc)
     - Build functionality on the website to serve these use cases
     - Engage a new design and UI expert to give UI feedback
 - **Country Data Use**
     - Generate reports and analytical pieces that are easy to replicate and scale for different countries
     - This can be an easy to customize R notebook reports (or [Javascript](https://beta.observablehq.com/))
+    
+##Things we should do (contd..)
 - **Task automation and packaging code**
     - Build a pipeline for managing sources
     - Refactor current code to work with the sourcelist code
@@ -105,4 +111,5 @@ readr::write_lines(htmlhead, path = "header.html")
     - Identify all the staff members who might be interested in this data and are able to contribute to its use meaningfully
     - Engage them on key tasks discussed above
 
-    
+
+#The END
