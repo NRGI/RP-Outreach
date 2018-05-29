@@ -1,5 +1,5 @@
 ---
-title: "Introduction to Resource projects"
+title: "Introduction to Resource Projects"
 date: '`r Sys.Date()`'
 output:
   revealjs::revealjs_presentation:
@@ -14,9 +14,6 @@ output:
         loop: true
     reveal_plugins: ["notes", "zoom"]
 ---
-<!-- autoSlide: 3000 -->
-<!--         autoSlideStoppable: true -->
-<!--         autoSlideMethod: Reveal.navigateNext -->
 
 ```{r, message=FALSE, echo=FALSE}
 library(tidyverse); library(lubridate)
@@ -37,16 +34,12 @@ htmlhead <- paste0('<link href="https://fonts.googleapis.com/css?family=Open+San
 ')
 
 readr::write_lines(htmlhead, path = "header.html")
-
-
-
-outList[17]
 ```
-##How to use this slide deck
+<!-- ##How to use this slide deck -->
 
-- This 2 dimensional slide deck is built using [RMarkdown and RevealJS](https://rmarkdown.rstudio.com/revealjs_presentation_format.html).
-- Use the arrow keys to navigate through slides. You can either click on them (bottom right corner), or use your keyboard.
-- Hit the `Esc` key to see the layout of the slides (try this now!)
+<!-- - This 2 dimensional slide deck is built using [RMarkdown and RevealJS](https://rmarkdown.rstudio.com/revealjs_presentation_format.html). -->
+<!-- - Use the arrow keys to navigate through slides. You can either click on them (bottom right corner), or use your keyboard. -->
+<!-- - Hit the `Esc` key to see the layout of the slides (try this now!) -->
 
 ##Timeline
 > - **Before 2013**: Citizens had limited information on revenues from extractive sector projects in their country. This made it difficult for them to hold governments and companies accountable.

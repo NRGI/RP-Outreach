@@ -43,12 +43,16 @@ readr::write_lines(htmlhead, path = "header.html")
 3. Work Plan (June - 2018 to Dec 2018)
 4. Long term milestones
 
+##Our Mission
+
+***Mission**: ResourceProjects.org is the Google of mandatory disclosure data*
+
 #{data-background="https://media.giphy.com/media/l378pEh3YesyThsg8/giphy.gif"}
 
 ##The good
 
 - Moved from manual scraping and cleaning to a semi-automated system
-    - Absolutely critical. ResourceProjects would have been impossible to sustaine over the long-term without this.
+    - Absolutely critical. ResourceProjects would have been impossible to sustain without this.
     - Improved data quality. Better error tracing, and reproducibility.
 - User friendly, data rich website
     - Moved from a data and UI poor website to a more user friendly data rich website
@@ -68,37 +72,72 @@ readr::write_lines(htmlhead, path = "header.html")
 - Website has scope for improvement
     - The website is still low on use
     - Performance in terms of speed, design and content can be improved
+    - It has a few bugs
+
+
+
+#SWOT SWOT SWOT SWOT SWOT SWOT SWOT SWOT SWOT SWOT SWOT{data-background="https://media.giphy.com/media/eunBs6utarJvCl7TaM/giphy.gif"}
+
+##Strengths and Weaknesses (Internal)
+
+- **Strengths**
+    - We are over the hard part: we can process large quantities of non-machine friendly data in an efficient and effective manner
+    - We have a moderately satisfactory website that is data rich and user friendly
+    - Great potential for data use: There are several spokes for new product ideas (secondary data, lookup tables, data visualizations etc) that can come out as outputs from the current data pipeline.
+    - Resources outside the team: There are staff members who are interested in this data and can help leverage its potential (DMi, Alex, Joe etc.)
+- **Weaknesses**
+    - Inadequate time and resources: All data pipeline tasks and feature additions (like company pages) requires either Tommy or Hari to write code
+    - Poor internal mainstreaming and awareness about RP
+    - Staff turnover: Either Tommy or Hari leave
+    - The data might not yield anything particularly interesting
+
+##Opportunities and Threats (External)
+
+- **Opportunities**
+    - A well identified group of partners and journalists who can help leverage the data
+    - A single high impact journalism piece can work wonders in terms of raising awareness about this data and driving use.
+
+- **Threats**
+    - Funding: The secondary data collection and continued improvement for the website requires money
+    - Lack of technical skills amongst partners
+    - Current vendors fail
 
 #{data-background="https://media.giphy.com/media/AJXcQO4xjb8FW/giphy.gif"}
 
-##Building on the good
+##Main points
+- **Key Challenges**
+    - Managing staff time and resources
+    - Identifying partners who have technical skills to generate high impact
+    - Transferring code knowledge to the institution i.e. managing staff turnover
+- **Things we should do**
+    - Identify a compelling story that can be informed by mandatory disclosure data and produce a high impact new article
+    - Make sure the website serves the needs of all key stakeholders in the mandatory disclosure space
+    - Generate templates for data use in countries. Identify one interesting country and develop a scalable and easy to replicate data report/analysis (see [Nigeria Breifing](https://resourcegovernance.org/sites/default/files/documents/nigeria-oil-revenue.pdf))
+    - Continue to automate tasks
+    - [Package](http://r-pkgs.had.co.nz/) the entire code base on CRAN so that new data team members can easily manage the data pipeline
+    - Work with internal staff who have technical skills and exposure to mandatory disclosure data.
+- **Things we should not do**
+    - Spend time on low impact and boring blogs
+    
+##Things we should do
+- **Identifying a compelling story**
+    - Talk to experts
+    - Spend time exploring the data to identify interesting story leads
+    - Pitch story ideas to interested journalists at big news organizations
+- **Keep stakeholders happy**
+    - ~Identify all the stakeholders~
+    - Identify key use cases (for instance, managing disclosure reports, viewing company reports etc)
+    - Build functionality on the website to serve these use cases
+    - Engage a new design and UI expert to give UI feedback
+- **Country Data Use**
+    - Generate reports and analytical pieces that are easy to replicate and scale for different countries
+    - This can be an easy to customize R notebook reports (or [Javascript](https://beta.observablehq.com/))
+- **Task automation and packaging code**
+    - Build a pipeline for managing sources
+    - Refactor current code to work with the sourcelist code
+    - Create a well documented and test R package that is easy to use for new employees
+- **Leverage NRGI staff**
+    - Identify all the staff members who might be interested in this data and are able to contribute to its use meaningfully
+    - Engage them on key tasks discussed above
 
-- Data-Pipeline: 
-    - Complete the few missing pieces in the data pipeline
-    - [Package](http://r-pkgs.had.co.nz/) all the R code
-- Website: 
-    - Get an external vendor to provide UI and content improvements to make the website more user friendly
-    - A company page
-    - A source page that allows users to manage reports better
-- Product spin-offs: 
-    - Setup the data workflow such that anyone can use our cleaning files
-
-##Fixing the not so good
-
-- **Data Use**: 
-    - Create a laundry list of [data use ideas](https://docs.google.com/document/d/1Irfuz_kfmcU4RGjGKWxuFDIeY2_Ud6wuuk9Qiuwj9fY/edit?usp=sharing) and prioritize them. Start executing ideas from the top.
-    - Identify a list of potential collaborators.
-- **Internal mainstreaming**: 
-    - A webinar on ResourceProjects will also help. 
-    - What type of data use ideas can help us increase internal visibility?
-- **External marketing:**: 
-    - Start a social media campaign to plug the website. 
-    - What type of data use ideas can help us increase external marketing?
-
-
-##Challenges
-
-- Inadequate staff resources
-- Funding
-- Lack of inherent data value
-
+    

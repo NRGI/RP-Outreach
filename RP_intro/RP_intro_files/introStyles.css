@@ -42,11 +42,11 @@
 
 .slides li {
   font-family: "Open Sans", sans-serif;
-  font-size: 0.75em;
+  font-size: 0.8em !important;
   margin-top: 3%;
 }
 
-/* Targeted CSS */
-#section-1 p {
-  margin-top: 25%;
+.slides li li {
+  font-size: 0.8em !important;
+  margin-top: 1% !important;
 }
