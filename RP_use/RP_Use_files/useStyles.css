@@ -50,24 +50,5 @@
   font-size: 0.8em !important;
   margin-top: 1% !important;
 }
-.slides li ul li {
-  font-size: 0.8em !important;
-  margin-top: 1% !important;
-}
 
 /* Targeted CSS */
-#swot-swot-swot-swot-swot-swot-swot-swot-swot-swot-swot h1 {
-  color: black !important;
-  font-size: 3em !important;
-  animation: 5s ease-out 0s 1 slideInFromLeft;
-}
-
-#our-mission {
-  margin-top: 25%;
-}
-#our-mission h2 {
-  font-size: 2em !important;
-}
-#our-mission p em {
-  font-size: 1.5em !important;
-}

@@ -105,7 +105,7 @@ readr::write_lines(htmlhead, path = "header.html")
 ##Things we should do (contd..)
 - **Task automation and packaging code**
     - Build a pipeline for managing sources
-    - Refactor current code to work with the sourcelist code
+    - Refactor current code to work with the sourcelist code (including API scripts)
     - Create a well documented and test R package that is easy to use for new employees
 - **Leverage NRGI staff**
     - Identify all the staff members who might be interested in this data and are able to contribute to its use meaningfully

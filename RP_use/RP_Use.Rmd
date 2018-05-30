@@ -1,0 +1,51 @@
+---
+title: "Resource Projects Uses"
+date: '`r Sys.Date()`'
+output:
+  revealjs::revealjs_presentation:
+    incremental: false
+    includes:
+       in_header: header.html
+    css: RP_Use_files/useStyles.css
+    theme: "night"
+    highlight: "haddock"
+    self_contained: false
+    reveal_plugins: ["notes", "zoom"]
+---
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+# Create the external file
+img <- htmltools::img(src = knitr::image_uri(file.path("/Users/hsubhash/Documents/GitHub/RP Outreach/assets/images/RP_logo.png")), 
+               alt = 'logo', 
+               style = 'position:absolute; top:20px; right:1%; padding:10px;z-index:200; width:100px')
+
+htmlhead <- paste0('<link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto" rel="stylesheet">', '
+<script>
+    document.write(\'<div class="logos">',img,'</div>\')
+    
+</script>
+')
+
+readr::write_lines(htmlhead, path = "header.html")
+
+```
+
+##Introduction
+
+This presentation lists all the different instances of use of mandatory disclosure data.
+
+##Nigeria Briefing
+
+**Author**: Alex Malden
+
+**[Link](https://resourcegovernance.org/sites/default/files/documents/nigeria-oil-revenue.pdf)**
+
+**Summary of recommendations**
+
+- NEITI should increase the speed of its report releases.
+- All companies operating in Nigeria should report voluntarily.
+- NNPC should commit to commodities trading transparency.
+- Governments of countries home to commodity trading hubs should include commodities trading transparency in mandatory disclosure legislation.
+- NNPC should improve the level of detail and format of the data disclosed in its monthly financial and operations report.
+
+##
