@@ -34,6 +34,15 @@ htmlhead <- paste0('<link href="https://fonts.googleapis.com/css?family=Open+San
 ')
 
 readr::write_lines(htmlhead, path = "header.html")
+str(allProjects)
+n_distinct(allProjects$projectCountry)
+unique(allSources$reportingCountry)
+
+ukIDs <- allSources %>% 
+    filter(reportingCountry == "United Kingdom of Great Britain and Northern Ireland") %>% 
+    select(sourceID) %>% 
+    unlist(use.names = F)
+n_distinct(allProjects[allProjects$sourceID %in% ukIDs, ]$projectCountry)
 ```
 <!-- ##How to use this slide deck -->
 

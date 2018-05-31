@@ -36,6 +36,7 @@ readr::write_lines(htmlhead, path = "header.html")
 - Use the arrow keys to navigate through slides. You can either click on them (bottom right corner), or use your keyboard.
 - Hit the `Esc` key to see the layout of the slides (try this now!)
 
+
 ##Our Mission
 
 > "*ResourceProjects is the Google of mandatory disclosure data*"
