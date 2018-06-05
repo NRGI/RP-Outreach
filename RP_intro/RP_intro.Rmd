@@ -36,6 +36,16 @@ htmlhead <- paste0('<link href="https://fonts.googleapis.com/css?family=Open+San
 readr::write_lines(htmlhead, path = "header.html")
 
 ```
+
+<!-- ```{r} -->
+<!-- source("../../resource-project-data/Functions/Convert to JSON.R") -->
+<!-- jsonData <- convertToJSON(sourceData = allSources, projectData = allProjects, entityData = allEntities)  -->
+
+<!-- jsonData %>% -->
+<!--     write_lines("../RP_data/RP_data.json") -->
+<!-- ``` -->
+
+
 <!-- ##How to use this slide deck -->
 
 <!-- - This 2 dimensional slide deck is built using [RMarkdown and RevealJS](https://rmarkdown.rstudio.com/revealjs_presentation_format.html). -->
