@@ -1,5 +1,5 @@
 ---
-title: "Compare the RP data cost estimates"
+title: "Dramatic Reduction in cost and time for collecting disclosure report data"
 author: |
     | Hari Subhash
     | Data Scientist @NRGI
@@ -21,16 +21,17 @@ date: '`r Sys.Date()`'
 ---
 **To Dos**
 
-1. Add budget data from NetSuite
+1. Convert project level estimates to row estimates
+2. Add budget data from NetSuite
 
 
 **Purpose:** This file compares the costs for collecting Resource Projects data over time.
 
 
-```{r}
+```{r, message=FALSE}
 rm(list = ls())
 library(tidyverse)
 
-
+currentProjectData <- read_csv(url("https://raw.githubusercontent.com/NRGI/RP-Outreach/master/RP_data/allProject.csv"))
 ```
 
