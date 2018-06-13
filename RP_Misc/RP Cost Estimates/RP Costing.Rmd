@@ -1,0 +1,36 @@
+---
+title: "Compare the RP data cost estimates"
+author: |
+    | Hari Subhash
+    | Data Scientist @NRGI
+output:
+  html_notebook:
+    code_folding: hide
+    highlight: kate
+    number_sections: yes
+    smart: yes
+    theme: cosmo
+    toc: yes
+    toc_depth: 3
+    toc_float: yes
+  html_document:
+    df_print: paged
+    toc: yes
+    toc_depth: '3'
+date: '`r Sys.Date()`'
+---
+**To Dos**
+
+1. Add budget data from NetSuite
+
+
+**Purpose:** This file compares the costs for collecting Resource Projects data over time.
+
+
+```{r}
+rm(list = ls())
+library(tidyverse)
+
+
+```
+
