@@ -1,0 +1,155 @@
+---
+title: "A proposed typology for project names"
+author: |
+    | Hari Subhash
+    | Data Scientist @NRGI
+output:
+  html_notebook:
+    code_folding: hide
+    highlight: kate
+    smart: yes
+    theme: cosmo
+  html_document:
+    df_print: paged
+    toc: yes
+    toc_depth: '3'
+date: '`r Sys.Date()`'
+---
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+rm(list = ls())
+library(tidyverse); library(googlesheets); library(stringdist); library(ggthemes); library(scales)
+
+cleanProjects <- read_csv("../../RP_data/allProject.csv")
+
+nonReconciledProjects <- gs_title("Project Cleaning") %>% 
+    gs_read(ws = "Cannot be reconciled", verbose = F) %>% 
+    filter(!is.na(rawName))
+
+secondaryData <- gs_title("Final Secondary - Project") %>% 
+    gs_read(ws = "Data", verbose = F)
+
+projectVals <- nonReconciledProjects$rawName %>% str_replace_all(., " ", "") %>% str_to_lower()
+d <- stringdistmatrix(projectVals, method = "osa")
+
+hc <- hclust(as.dist(d))
+
+projClusters <- nonReconciledProjects %>% 
+    mutate(cluster = cutree(hc, h = 4)) %>% 
+    group_by(cluster) %>% 
+    mutate(nObs = n()) %>% 
+    arrange(desc(nObs), cluster)
+
+secondaryPaymentData <- left_join(secondaryData %>% select(1:3, 5, 6, 7), cleanProjects, by = c("projectCountry", "projectName"))
+```
+
+This piece summarises the different types of names used for projects by reporting companies in mandatory disclosures. I have proposed a loose typology that could be our starting point for how we want to categorize project names. The end goal is to narrow the number of projects that we cannot identify and expand the ones that we can collect data on.
+
+👉**A short case for secondary data collection:**👈 
+
+By "secondary", I mean any data that is beyond what is available in a mandatory disclosure report (payments made to govt. entities or projects). Secondary data collection currently includes data on projects, govt. entities and companies from mandatory disclosure reports that we are able to publicly identify. For instance, in the case of projects that we can identify we collect additional information such as type, commodity, location etc.
+
+This secondary data collection has downstream implications for the development of the resource projects website for insance project/company/govt. entity pages require information that needs to be presented. It also enhances our capacity to put payment data to better use by providing contextual information that can inform our analysis. For instance, the ability to see dependence on certain commodities, tie payments to sub-national jurisdiction, study tax avoidance/base-erosion etc. We are also improving the linkages with third party data sources such SNL and Rystad, which would help justify those subscriptions and add richness to our analysis. Finally cleaned projects/govt entities and companies can allow us to link different datasets like EITI, RC etc to mandatory disclosure payments. Over the next 6 months I am hoping to spend some time developing a few analytical pieces that hopefully will showcase these use cases better 🤞🤞🤞.
+
+#### ***A quick overview of the frequency of different types of project names in the data***
+
+The types discussed here are not currently being used, right now we have two categories, one that we collect data for and another for which we don't. This is an attempt to expand these categories so that we capture more "secondary" data on some of the projects that we currently don't cover.
+
+The chart below show the number of rows of payment data (for projects) for the new proposed typology. It should give a sense for the overall spread of the projects that we collect data on versus those we don't. I define the types in the next section (in case you want to jump ahead).
+
+```{r, fig.align='center', echo=FALSE}
+actualProject <- paste0(secondaryData[secondaryData$projectType != "Corporate", ]$projectCountry, secondaryData[secondaryData$projectType != "Corporate",] $projectName) %>% 
+    str_to_lower() %>% 
+    str_trim()
+indentifiableCorp <- paste0(secondaryData[secondaryData$projectType == "Corporate", ]$projectCountry, secondaryData[secondaryData$projectType == "Corporate",] $projectName) %>% 
+    str_to_lower() %>% 
+    str_trim()
+
+
+newProjects <- cleanProjects %>%
+    mutate(combo = paste0(projectCountry, projectName)%>% str_to_lower() %>% str_trim()) %>% 
+    mutate(nameType = case_when(
+        combo %in% actualProject ~ "Identifiable Mine or Oil-Gas Asset/Collection",
+        str_detect(str_to_lower(projectName), "alberta|saskatchewan|ab project|wyoming|dawson|daytona|new mexico") ~ "Generic Asset Collection",
+        combo %in% indentifiableCorp ~ "Identifiable Corporate Entity",
+        str_detect(str_to_lower(projectName), "corporate|head office|marketing|entity") ~ "Generic Corporate Entity",
+        str_detect(str_to_lower(projectName), "explor|licens|shore|generati|closed|noncontractual") ~ "Generic Industry Term",
+        str_detect(str_to_lower(projectName), "attribut|alloca|contract|other|no name|nonproject") ~ "Non Attributable",
+        TRUE ~ "Unidentified"
+    ))
+
+newProjects %>% 
+    group_by(nameType) %>% 
+    summarise(nObs = n()) %>% 
+    arrange(desc(nObs)) %>% 
+    select(nameType, nObs) %>% 
+    mutate(fillColor = case_when(
+        nameType %in% c("Identifiable Corporate Entity", "Identifiable Mine or Oil-Gas Asset/Collection") ~ "good",
+        TRUE ~ "not good"
+    )) %>% 
+    ggplot(., aes(x = reorder(nameType, -nObs), y = nObs, fill = fillColor)) +
+    geom_bar(stat = "identity", width = 0.8) +
+    scale_x_discrete(labels = function(x) str_wrap(x, width = 16)) +
+    scale_fill_manual(values = c("good" = "darkgreen", "not good" = "darkgrey")) +
+    coord_flip() +
+    labs(
+        x = "Project Type", 
+        y = 'No. of rows of payment data', 
+        title = "About half of payments rows are not associated with \na recognizable name (either corporate or actual project)"
+        ) +
+    theme_tufte() +
+    theme(
+        legend.position = "none",
+        plot.title = element_text(size = 14, family = "Palatino", color = "darkred"),
+        axis.title = element_text(size = 12),
+        axis.text = element_text(size = 11)
+        )
+    
+```
+
+
+The chart below uses payment totals instead of numbers of rows. This gives a sense for the proportion of payments that we can tie to contextual information such as commodity or location.
+
+```{r, width = 6, height = 4, fig.align='center', echo=FALSE}
+newProjects %>% 
+    group_by(nameType) %>% 
+    summarise(totPay = sum(projectPayment, na.rm = T)/1e9) %>% 
+    mutate(fillColour = if_else(str_detect(nameType, "Corporate"), "high", "normal")) %>% 
+    ggplot(., aes(x = reorder(nameType, -totPay), y = totPay, fill = fillColour)) +
+    geom_bar(stat = "identity", width = 0.6) +
+    scale_fill_manual(values = c("high" = "darkgreen", "normal" = "darkgrey")) +
+    scale_x_discrete(labels = function(x) str_wrap(x, width = 16)) +
+    scale_y_continuous(labels=dollar_format(prefix="$")) +
+    coord_flip() +
+    labs(x = "Project Type", y = 'Total Payment (in billion USD)', title = "The corporate category accounts for approx. 50% of the \nactual payments despite only accounting for about 15% \nof the payment rows") +
+    theme_tufte() +
+    theme(
+        legend.position = "none",
+        plot.title = element_text(size = 14, family = "Palatino", color = "darkblue"),
+        axis.title = element_text(size = 12),
+        axis.text = element_text(size = 11)
+        )
+```
+
+#### ***An explaination of the types***
+
+I have defined these categories as follows (<span style="background-color:lightgreen">highlighted</span> ones are the types of projects that we currently collect data for)
+
+1. <span style="background-color:lightgreen">Identifiable oil-gas or mining asset/collection</span>: By clearly identifiable we mean a project that can be identified solely based on the name of the country and the projects name. 
+    + The ideal case is when a project refers to a single asset. For instance, `Agua Rica Project Minera Agua Rica Llc`, Argentina is a name used by Yamana Incorporated to report Exploration Fees made through their interest in the Agua Rica mine. While the name contains the corporate entity that manages the mine we were still able to tag it to a meaningful project for which we collected additional information on commodities (copper, molybdenum, gold, silver and magnetite) and location (-27.370454, -66.281453). 
+    + The less ideal case is when the name refers to a collection of assets. For instance, `Thrace Basin`, Turkey reported by Valeura Energy Incorporated is a [clearly identified](https://en.wikipedia.org/wiki/Thrace_Basin) collection of oil and gas fields (400 wells). However, without the name of the specific block that they are referring to we won't be able to pinpoint the exact asset. As a result our secondary information for this collection is limited to an approximate location.
+2. <span style="background-color:lightgreen">Identifiable corporate entity</span>: In some cases, payments made by legal entities (often local subsidiaries paying taxes) cannot be attributed to specific projects (I am not sure why these payments cannot be attributed 👋 **@MANTRA** help!). For instance, `Statoil Nigeria Limited` is a clearly identifiable local subsidiary. We categorize these as corporate entities and collect additional information (location, country of registration etc.)
+3. Generic Industry Term: These include `exploration`, `license` etc. as references to projects. There are cases in which a company uses a reference to a specific project even when it is an exploration, for instance, Agua Rica (in case 1) is a exploration project, however, Yamana chose to use a specific name instead of a generic term such as `exploration`. This might be due to confidentiality reasons but I wonder if there is a better middle ground like using a collection name (👋**@MANTRA**).
+4. Generic Asset Collection: These are cases were companies report the names of large geographic areas. For instance, `Alberta` Canada is an oft used term for projects which refers to an entire province in Canada that covers approx. 661,848 square kilometers in area. There is no meaningful way in which these can be tagged to a specific area or project. However, we could potentially infer that they are referring to an oil and gas field since that happens to be the primary natural resource in Alberta Canada. These seem to be clear cases of loosely applied reporting standards.
+5. Generic Corporate Entity; Often instead of using the name of the specific legal entity that made a payment, companies use generic terms like `corporate`, `marketing offices`, `head office`, `entity level` etc. in reports (Do you know why this might be? 👋 **@MANTRA**). This again seems to be an area in which we could advocate for improvement.
+6. Non-attributable: Companies often use terms such as `non-attributable`, `non-allocable` etc to specify payments that could not be attributed to projects. These potentially fall under the "Generic Industry Term" or "Generic Corporate Term" categories. (👋 **@MANTRA**)
+7. Unidentified: These are cases were we have no clue what a company is referring to (without referring to their internal documents). These are cases were we couldn't find a public reference to an oil/gas or mining project that shares the name used by the company to report it.
+
+
+👉**A few points to discuss**👈
+
+1. There is some information in the categories that we are not currently collecting data on. For instance, a Generic industry term such as "Exploration" could be of value for a researcher if we are able to classify these accurately.
+2. There are some types such as the Generic Asset Collection (the case were companies use a province or a country name as the project) were there it might worthwhile to think about advocating for better disclosure standards.
+3. There is a tradeoff between collecting data and its capicity to provide meaningful insight. Where should we draw the line?
+4. The typology here was all done using code, which means that the results are not 100% accurate. While it might make sense to keep doing it with code, there might be some value in @MANTRA to provide some oversight on how these classifications are made.
+5. We are currently planning on a second round of matching identified assets to SNL IDs. This should open up a lot of interesting avenues for analysis of disclosure payments.

@@ -315,17 +315,27 @@ Data Scientist <span class="citation">@NRGI</span></div></em></h4>
 <p><strong>Purpose:</strong> This file compares the costs for collecting Resource Projects data over time.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucm0obGlzdCA9IGxzKCkpXG5saWJyYXJ5KHRpZHl2ZXJzZSlcblxuY3VycmVudFByb2plY3REYXRhIDwtIHJlYWRfY3N2KHVybChcImh0dHBzOi8vcmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbS9OUkdJL1JQLU91dHJlYWNoL21hc3Rlci9SUF9kYXRhL2FsbFByb2plY3QuY3N2XCIpKVxuYGBgIn0= -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucm0obGlzdCA9IGxzKCkpXG5saWJyYXJ5KHRpZHl2ZXJzZSlcbm9sZFByb2plY3RzIDwtIHJlYWRfY3N2KFwiZGF0YS9vbGQgUlAgZGF0YS5jc3ZcIilcbmN1cnJlbnRQcm9qZWN0RGF0YSA8LSByZWFkX2Nzdih1cmwoXCJodHRwczovL3Jhdy5naXRodWJ1c2VyY29udGVudC5jb20vTlJHSS9SUC1PdXRyZWFjaC9tYXN0ZXIvUlBfZGF0YS9hbGxQcm9qZWN0LmNzdlwiKSlcbmBgYCJ9 -->
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>(<span class="dt">list =</span> <span class="kw">ls</span>())
 <span class="kw">library</span>(tidyverse)
-
+oldProjects &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/old RP data.csv&quot;</span>)
 currentProjectData &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="kw">url</span>(<span class="st">&quot;https://raw.githubusercontent.com/NRGI/RP-Outreach/master/RP_data/allProject.csv&quot;</span>))</code></pre></div>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWVhbihwcm9qQ291bnQkblJvd3MpXG5cbmBgYCJ9 -->
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(projCount<span class="op">$</span>nRows)</code></pre></div>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDEuNTYxMDZcbiJ9 -->
+<pre><code>[1] 1.56106</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiRHJhbWF0aWMgUmVkdWN0aW9uIGluIGNvc3QgYW5kIHRpbWUgZm9yIGNvbGxlY3RpbmcgZGlzY2xvc3VyZSByZXBvcnQgZGF0YSIKYXV0aG9yOiB8CiAgICB8IEhhcmkgU3ViaGFzaAogICAgfCBEYXRhIFNjaWVudGlzdCBATlJHSQpvdXRwdXQ6CiAgaHRtbF9ub3RlYm9vazoKICAgIGNvZGVfZm9sZGluZzogaGlkZQogICAgaGlnaGxpZ2h0OiBrYXRlCiAgICBudW1iZXJfc2VjdGlvbnM6IHllcwogICAgc21hcnQ6IHllcwogICAgdGhlbWU6IGNvc21vCiAgICB0b2M6IHllcwogICAgdG9jX2RlcHRoOiAzCiAgICB0b2NfZmxvYXQ6IHllcwogIGh0bWxfZG9jdW1lbnQ6CiAgICBkZl9wcmludDogcGFnZWQKICAgIHRvYzogeWVzCiAgICB0b2NfZGVwdGg6ICczJwpkYXRlOiAnYHIgU3lzLkRhdGUoKWAnCi0tLQoqKlRvIERvcyoqCgoxLiBDb252ZXJ0IHByb2plY3QgbGV2ZWwgZXN0aW1hdGVzIHRvIHJvdyBlc3RpbWF0ZXMKMi4gQWRkIGJ1ZGdldCBkYXRhIGZyb20gTmV0U3VpdGUKCgoqKlB1cnBvc2U6KiogVGhpcyBmaWxlIGNvbXBhcmVzIHRoZSBjb3N0cyBmb3IgY29sbGVjdGluZyBSZXNvdXJjZSBQcm9qZWN0cyBkYXRhIG92ZXIgdGltZS4KCgpgYGB7ciwgbWVzc2FnZT1GQUxTRX0Kcm0obGlzdCA9IGxzKCkpCmxpYnJhcnkodGlkeXZlcnNlKQoKY3VycmVudFByb2plY3REYXRhIDwtIHJlYWRfY3N2KHVybCgiaHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL05SR0kvUlAtT3V0cmVhY2gvbWFzdGVyL1JQX2RhdGEvYWxsUHJvamVjdC5jc3YiKSkKYGBgCgo=</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiRHJhbWF0aWMgUmVkdWN0aW9uIGluIGNvc3QgYW5kIHRpbWUgZm9yIGNvbGxlY3RpbmcgZGlzY2xvc3VyZSByZXBvcnQgZGF0YSIKYXV0aG9yOiB8CiAgICB8IEhhcmkgU3ViaGFzaAogICAgfCBEYXRhIFNjaWVudGlzdCBATlJHSQpvdXRwdXQ6CiAgaHRtbF9ub3RlYm9vazoKICAgIGNvZGVfZm9sZGluZzogaGlkZQogICAgaGlnaGxpZ2h0OiBrYXRlCiAgICBudW1iZXJfc2VjdGlvbnM6IHllcwogICAgc21hcnQ6IHllcwogICAgdGhlbWU6IGNvc21vCiAgICB0b2M6IHllcwogICAgdG9jX2RlcHRoOiAzCiAgICB0b2NfZmxvYXQ6IHllcwogIGh0bWxfZG9jdW1lbnQ6CiAgICBkZl9wcmludDogcGFnZWQKICAgIHRvYzogeWVzCiAgICB0b2NfZGVwdGg6ICczJwpkYXRlOiAnYHIgU3lzLkRhdGUoKWAnCi0tLQoqKlRvIERvcyoqCgoxLiBDb252ZXJ0IHByb2plY3QgbGV2ZWwgZXN0aW1hdGVzIHRvIHJvdyBlc3RpbWF0ZXMKMi4gQWRkIGJ1ZGdldCBkYXRhIGZyb20gTmV0U3VpdGUKCgoqKlB1cnBvc2U6KiogVGhpcyBmaWxlIGNvbXBhcmVzIHRoZSBjb3N0cyBmb3IgY29sbGVjdGluZyBSZXNvdXJjZSBQcm9qZWN0cyBkYXRhIG92ZXIgdGltZS4KCgpgYGB7ciwgbWVzc2FnZT1GQUxTRSwgd2FybmluZz1GQUxTRX0Kcm0obGlzdCA9IGxzKCkpCmxpYnJhcnkodGlkeXZlcnNlKQpvbGRQcm9qZWN0cyA8LSByZWFkX2NzdigiZGF0YS9vbGQgUlAgZGF0YS5jc3YiKQpjdXJyZW50UHJvamVjdERhdGEgPC0gcmVhZF9jc3YodXJsKCJodHRwczovL3Jhdy5naXRodWJ1c2VyY29udGVudC5jb20vTlJHSS9SUC1PdXRyZWFjaC9tYXN0ZXIvUlBfZGF0YS9hbGxQcm9qZWN0LmNzdiIpKQpgYGAKCgpgYGB7cn0KcHJvakNvdW50IDwtIG9sZFByb2plY3RzICU+JSAKICAgIGdyb3VwX2J5KENvdW50cnksIFByb2plY3QpICU+JSAKICAgIHN1bW1hcmlzZShuUm93cyA9IG4oKSkKCm1lYW4ocHJvakNvdW50JG5Sb3dzKQpgYGAKCg==</div>
 
 
 </div>

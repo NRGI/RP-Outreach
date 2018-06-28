@@ -28,10 +28,19 @@ date: '`r Sys.Date()`'
 **Purpose:** This file compares the costs for collecting Resource Projects data over time.
 
 
-```{r, message=FALSE}
+```{r, message=FALSE, warning=FALSE}
 rm(list = ls())
 library(tidyverse)
-
+oldProjects <- read_csv("data/old RP data.csv")
 currentProjectData <- read_csv(url("https://raw.githubusercontent.com/NRGI/RP-Outreach/master/RP_data/allProject.csv"))
+```
+
+
+```{r}
+projCount <- oldProjects %>% 
+    group_by(Country, Project) %>% 
+    summarise(nRows = n())
+
+mean(projCount$nRows)
 ```
 
