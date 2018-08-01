@@ -1,0 +1,15 @@
+entityCountry,entityName,entityType,typeCertainty,entityLevel,levelCertainty,lat,lon,locationType,sources
+Nigeria,Central Bank; Nigeria,Unclear,3,National,3,9.050883,7.492388,Exact,https://www.cbn.gov.ng/; http://www.cbn.gov.ng/redenomination/newpolicy.asp
+Nigeria,Content Development and Monitoring Board; Nigeria,Administrative,3,National,3,4.913906,6.30208,Exact,http://ncdmb.gov.ng/
+Nigeria,Delta Development Commission; Ministry of Niger Delta Affairs; Nigeria,SOE,3,National,3,6.328745,5.643928,Exact,http://nddc.gov.ng/
+Nigeria,Department of Petroleum Resources; Federal Ministry of Petroleum Resources; Nigeria,SOE,3,Regional,3,9.060646,7.491071,Exact,https://dpr.gov.ng/index/history-of-dpr/
+Nigeria,Export Supervision Scheme; Federal Ministry of Finance; Nigeria,Administrative,3,National,3,9.073418,7.477503,Exact,http://www.nerolitech.com/nigeriaexportsupervisionscheme/
+Nigeria,Federal Government of Nigeria,Administrative,3,National,3,40.75119,-73.9708,Exact,http://www.nigeria.gov.ng/
+Nigeria,Federal Inland Revenue Service; Federal Ministry of Finance; Nigeria,Administrative,3,National,3,9.065756,7.454433,Exact,http://www.firs.gov.ng/Pages/Default.aspx
+Nigeria,Maritime Administration and Safety Agency; Federal Ministry of Transportation; Nigeria,Administrative,3,National,3,7.800432,6.748045,Exact,http://nimasa.gov.ng/
+Nigeria,Mines Inspectorate Departments; Ministry of Mines and Steel Development; Nigeria,Administrative,3,National,3,9.07471,7.49031,Exact,http://www.minesandsteel.gov.ng/departments-units/
+Nigeria,Mining Cadastre Office; Ministry of Mines and Steel Development; Nigeria,Administrative,3,National,3,9.07471,7.49031,Exact,http://www.minesandsteel.gov.ng/agencies/mining-cadastre-office/
+Nigeria,Nigerian National Petroleum Corporation,SOE,3,National,3,5.014442,8.32403,Exact,http://nnpcgroup.com/
+Nigeria,Nigerian Petroleum Development Company Ltd,SOE,3,National,3,4.827344,7.029682,Exact,http://npdc.nnpcgroup.com/
+Nigeria,Petroleum Exchange; National Petroleum Investment Management Services; Nigeria,Administrative,3,National,3,6.439845,3.447874,Exact,http://www.nipexnig.com/
+Nigeria,"Federal Ministry of Industry, Trade and Investment; Nigeria",Administrative,3,National,3,9.024879,7.470995,Exact,https://www.facebook.com/FMITINigeria/

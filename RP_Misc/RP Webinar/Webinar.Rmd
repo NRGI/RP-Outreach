@@ -1,0 +1,141 @@
+---
+title: "Update the schema of current scraped data"
+author: |
+    | Hari Subhash
+    | Data Scientist @NRGI
+output:
+  html_notebook:
+    number_sections: yes
+    code_folding: hide
+    highlight: kate
+    smart: yes
+    theme: cosmo
+  html_document:
+    df_print: paged
+    toc: yes
+    toc_depth: '3'
+date: '`r Sys.Date()`'
+---
+
+
+```{r, message=FALSE}
+library(tidyverse); library(ggthemes); library(viridis); library(scales)
+rm(list = ls())
+allSources <- read_csv("/Users/hsubhash/Documents/GitHub/resource-project-data/Data Cleaning/Payment Data Pipeline/data/Current website data/allSource.csv")
+allProject <- read_csv("/Users/hsubhash/Documents/GitHub/resource-project-data/Data Cleaning/Payment Data Pipeline/data/Current website data/allProject.csv")
+allEntities <- read_csv("/Users/hsubhash/Documents/GitHub/resource-project-data/Data Cleaning/Payment Data Pipeline/data/Current website data/allEntity.csv")
+```
+
+```{r}
+ptCategories <- c("Fees", "Bonuses", "Payments for infrastructure improvements", "Taxes", "Other", "Production entitlements", "Royalties", "Dividends")
+currCountry <- "Tunisia"
+ptPath <- paste0('charts/', projectCountry, "_PT.png")
+png(file = ptPath, height = 900, width = 1600, res = 100)
+allProject %>% 
+    filter(projectCountry == currCountry & paymentType %in% ptCategories) %>% 
+    group_by(paymentType) %>% 
+    summarise(totalPayment = sum(projectPayment, na.rm = T)/1e6) %>% 
+    ggplot(., aes(x = reorder(paymentType, -totalPayment), y = totalPayment)) +
+    geom_bar(stat = "identity", width = 0.8) +
+    theme_tufte() +
+    scale_y_continuous(labels=dollar_format(prefix = "$")) +
+    scale_x_discrete(labels = function(x) str_wrap(x, width = 16)) +
+    labs(
+        x = "Payment Type", 
+        y = 'Total payment in millions of USD', 
+        title = "Payments by type"
+        ) +
+    coord_flip() +
+        theme(
+        legend.position = "none",
+        plot.title = element_text(size = 48),
+        axis.title = element_text(size = 36),
+        axis.text = element_text(size = 24)
+        )
+dev.off()
+```
+
+```{r}
+companyPath <- paste0('charts/', projectCountry, "_company.png")
+png(file = companyPath, height = 900, width = 1600, res = 100)
+allProject %>% 
+    filter(projectCountry == currCountry) %>%
+    group_by(reportingCompany) %>% 
+    summarise(totalPayment = sum(projectPayment)/1e6) %>% 
+    ggplot(., aes(x = reorder(reportingCompany, -totalPayment), y = totalPayment)) +
+    geom_bar(stat = "identity", width = 0.8) +
+    theme_tufte() +
+    scale_y_continuous(labels = dollar_format(prefix = "$")) +
+    scale_x_discrete(labels = function(x) str_wrap(x, width = 16)) +
+    labs(
+        x = "Reporting Company", 
+        y = 'Total payment in millions of USD', 
+        title = "Payments by company"
+        ) +
+    coord_flip() +
+        theme(
+        legend.position = "none",
+        plot.title = element_text(size = 48),
+        axis.title = element_text(size = 36),
+        axis.text = element_text(size = 24)
+        )
+dev.off()
+```
+
+```{r}
+projectPath <- paste0('charts/', currCountry, "_project.png")
+png(file = projectPath, height = 900, width = 1600, res = 100)
+allProject %>% 
+    filter(projectCountry == currCountry) %>%
+    group_by(projectName) %>% 
+    filter(sum(projectPayment) > 10e6) %>% 
+    summarise(totalPayment = round(sum(projectPayment)/1e6)) %>% 
+    ggplot(., aes(x = reorder(projectName, -totalPayment), y = totalPayment)) +
+    geom_bar(stat = "identity", width = 0.8) +
+    theme_tufte() +
+    scale_y_continuous(labels = dollar_format(prefix = "$")) +
+    scale_x_discrete(labels = function(x) str_wrap(x, width = 24)) +
+    labs(
+        x = "Project", 
+        y = 'Total payment in millions of USD', 
+        title = "Payments by project (> 10 mill.)"
+        ) +
+    coord_flip() +
+    theme(
+        legend.position = "none",
+        plot.title = element_text(size = 48),
+        axis.title = element_text(size = 36),
+        axis.text = element_text(size = 24)
+    )
+dev.off()
+```
+
+
+```{r}
+entityPath <- paste0('charts/', currCountry, "_entity.png")
+png(file = entityPath, height = 900, width = 1600, res = 100)
+allEntities %>% 
+    filter(entityCountry == currCountry) %>%
+    mutate(entityName = str_replace(entityName, paste0("; ", currCountry), "")) %>% 
+    group_by(entityName) %>% 
+    filter(sum(entityPayment) > 2e6) %>% 
+    summarise(totalPayment = sum(entityPayment)/1e6) %>% 
+    ggplot(., aes(x = reorder(entityName, -totalPayment), y = totalPayment)) +
+    geom_bar(stat = "identity", width = 0.8) +
+    theme_tufte() +
+    scale_y_continuous(labels = dollar_format(prefix = "$")) +
+    scale_x_discrete(labels = function(x) str_wrap(x, width = 24)) +
+    labs(
+        x = "Govt. Agency", 
+        y = 'Total payment in millions of USD', 
+        title = "Payments by govt. agency (> 10 mill.)"
+        ) +
+    coord_flip() +
+    theme(
+        legend.position = "none",
+        plot.title = element_text(size = 48),
+        axis.title = element_text(size = 36),
+        axis.text = element_text(size = 24)
+    )
+dev.off()
+```

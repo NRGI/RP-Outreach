@@ -1,0 +1,20 @@
+projectCountry,projectName,projectType,commodity,lat,lon,locationType,sources,notes
+Nigeria,Agbami,Oil & Gas,"oil, gas",3.605332,4.55536,Estimate,https://www.statoil.com/no/where-we-are/nigeria.html,Field
+Nigeria,OML 100,Oil & Gas,"oil, gas",3.795965,7.663861,Estimate,http://www.total.com/sites/default/files/atoms/files/fiche-itie-nigeria-en-2013_0.pdf,NA
+Nigeria,OML 102,Oil & Gas,"oil, gas",3.8365299999999998,7.73935,Estimate,"http://www.total.com/en/nigeria , http://www.total.com/sites/default/files/atoms/-06-20130621-Total-lance-le-dveloppement-dEGINA-sur-le-bloc-OML-130-Nigeria-Zoom",NA
+Nigeria,OML 116,Oil & Gas,"oil, gas",6.4003890000000006,3.396405,Estimate,https://www.eni.com/en_NG/eni-in-nigeria/eni-profile/eni-profile.shtml,NA
+Nigeria,OML 118,Oil & Gas,"oil, gas",4.466076,4.646721,Estimate,http://www.total.com/sites/default/files/atoms/files/fiche-itie-nigeria-en-2013_0.pdf,NA
+Nigeria,OML 125,Oil & Gas,"oil, gas",6.031634,3.376798,Estimate,http://www.oandoenergyresources.com/projects/abo-field-oml-125/,NA
+Nigeria,OML 130,Oil & Gas,"oil, gas",3.44715,6.806388,Estimate,http://www.total.com/sites/default/files/atoms/files/fiche-itie-nigeria-en-2013_0.pdf,NA
+Nigeria,OML 55,Oil & Gas,"oil, gas",5.907508,5.687636,Estimate,https://seplatpetroleum.com/operations/oml-55/,NA
+Nigeria,OML 58,Oil & Gas,"oil, gas",4.962911999999999,7.05075,Estimate,http://www.total.com/sites/default/files/atoms/-06-20130621-Total-lance-le-dveloppement-dEGINA-sur-le-bloc-OML-130-Nigeria-Zoom,NA
+Nigeria,OML 99,Oil & Gas,"oil, gas",4.291113,7.67334,Estimate,http://www.total.com/sites/default/files/atoms/-06-20130621-Total-lance-le-dveloppement-dEGINA-sur-le-bloc-OML-130-Nigeria-Zoom,NA
+Nigeria,"OML4, OML38, OML41",Oil & Gas,"oil, gas",5.918942,5.823477,Exact,https://seplatpetroleum.com/operations/omls-4-38-41/,NA
+Nigeria,OPL 209,Oil & Gas,"oil, gas",4.958177,4.607011,Estimate,http://corporate.exxonmobil.com/en/company/worldwide-operations/locations/nigeria/about/eepnl-overview,NA
+Nigeria,OPL 223,Oil & Gas,"oil, gas",3.3123049999999994,7.81251,Estimate,http://www.total.com/sites/default/files/atoms/-06-20130621-Total-lance-le-dveloppement-dEGINA-sur-le-bloc-OML-130-Nigeria-Zoom,NA
+Nigeria,OPL 285,Oil & Gas,"oil, gas",4.491770000000001,4.881974,Estimate,http://www.total.com/sites/default/files/atoms/-06-20130621-Total-lance-le-dveloppement-dEGINA-sur-le-bloc-OML-130-Nigeria-Zoom,NA
+Nigeria,OML 138,Oil & Gas,oil,3.530223,7.885775,Estimate,http://www.offshore-technology.com/projects/usan/,estimated from map
+Nigeria,Spdc JV,Corporate,"oil, gas",6.45,3.392844,Exact,https://www.bloomberg.com/research/stocks/private/snapshot.asp?privcapId=7939505,"""The Shell Petroleum Development Company of Nigeria Limited produces and supplies gas to domestic customers through pipelines. It has strategic with Nigerian National Petroleum Corporation. """
+Nigeria,Statoil Nigeria AS,Corporate,NA,NA,NA,NA,NA,in company lookup
+Nigeria,Statoil Nigeria Limited,Corporate,NA,NA,NA,NA,NA,in company lookup
+Nigeria,The Shell Petroleum Development Company of Nigeria Limited,Corporate,NA,NA,NA,NA,NA,in company lookup
