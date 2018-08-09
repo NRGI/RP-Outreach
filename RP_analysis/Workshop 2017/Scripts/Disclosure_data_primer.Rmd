@@ -1,0 +1,384 @@
+---
+title: "A Primer on Mandatory disclosure data"
+author: "Hari Subhash"
+output: 
+  html_notebook:
+    number_sections: yes
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    theme: cosmo
+    highlight: kate
+    smart: true
+    code_folding: hide
+date: '`r Sys.Date()`'
+---
+*This is a live document that will be updated regularly with new data and analysis*
+
+##tl;dr
+This page summarises payment data from mandatory disclosure reports that have been processed by the Research and Data (R-D) team at [NRGI](https://resourcegovernance.org/). The summary findings are listed below -
+
+<div style="border: 5px solid rgb(255,215,0); margin: 25px; background-color: rgb(245,215, 160); border-radius: 5px;">
+1. The majority of disclosures happen in Canada
+2. Corporate taxes consitute a significant proportion of project payments
+3. The majority of project names used in mandatory disclosures refer to corporate entities.
+</div>
+
+<!-- ##Setup -->
+<!-- This report uses the following data sources -->
+
+<!-- 1. Mandatory disclosure data from resourceprojects.org -->
+<!-- 2. Proprietary data from SNL (only for mining projects) -->
+<!-- 3. Secondary data on project collected for the R-D team -->
+
+```{r, error=FALSE, message=FALSE, results='hide'}
+rm(list = setdiff(ls(), c("sourceData", "projectData", "entityData", "currentLookup", "currentSecondary", "snlData")))
+library(tidyverse); library(readxl); library(ggthemes); library(googlesheets); library(leaflet)
+
+sourceData <- read_csv("../../Data Cleaning/Payment Data Pipeline/data/Current website data/allSource.csv")
+projectData <- read_csv("../../Data Cleaning/Payment Data Pipeline/data/Current website data/allProject.csv")
+entityData <- read_csv("../../Data Cleaning/Payment Data Pipeline/data/Current website data/allEntity.csv") %>% 
+        mutate(entityPayment = as.numeric(entityPayment))
+
+##load the snl data
+snlData <- read_csv("../../Data Cleaning/Secondary Data/Projects/Data/Secondary data sources/snlCompiled.csv")
+
+##load the lookup table for projects
+if(!exists("currentLookup")){
+    gs_auth("/Users/hsubhash/Documents/GitHub/resource-project-data/token.rds")
+    currentLookup <- gs_title("Current Lookup - Projects") %>% 
+        gs_read(ws = "Current Matched Lookup", verbose = F)
+    currentSecondary <- gs_title("Current Secondary - Projects") %>% 
+        gs_read(ws = "Secondary Data", verbose = F)
+    currentSecondaryMissing <- gs_title("Current Secondary - Projects") %>% 
+        gs_read(ws = "Add to Secondary", verbose = F)
+    currentSecondary <- bind_rows(currentSecondary, currentSecondaryMissing %>% filter(!is.na(projectType)))
+    rm(currentSecondaryMissing)
+}
+
+projectSecondary <- projectData %>%
+    select(-notes, -nrgiNotes) %>% 
+    left_join(., currentLookup %>% 
+                  select(1:3), by = c("projectCountry", "projectName" = "rawName")) %>% 
+    mutate(projectName = ifelse(is.na(finalName), projectName, finalName)) %>% 
+    select(-finalName) %>% 
+    left_join(., currentSecondary, by = c("projectCountry", "projectName" = "finalName")) %>% 
+    select(-sources, -notes) %>% 
+    mutate(projectType = if_else(is.na(projectType) | projectType == "Other", "Unidentified", projectType))
+
+```
+
+##Mandatory Disclosures by Year
+The first mandatory disclosure report was released by Statoil in 2014. Since then there has been a dramatic increase in the number of disclosures, starting with UK in 2015 and ESTMA filings in 2016.
+
+```{r, fig.width=6, fig.align='center'}
+coverPlot <- sourceData %>% 
+    group_by(reportYear) %>% 
+    summarise(nSources = n_distinct(sourceID)) %>% 
+    ggplot(., aes(x = reportYear, y = nSources)) +
+    geom_bar(stat = "identity") +
+    geom_text(aes(label = nSources), vjust = -0.1, position = position_dodge(width = 0.9), size = 12) +
+    # labs(x = "Reporting Year") +
+    theme_tufte() +
+    theme(
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        axis.title.y = element_blank(),
+        # title = element_text(size = 24),
+        axis.text.x = element_text(size = 28),
+        axis.title.x = element_blank()
+    )
+
+
+coverPlot
+
+```
+```{r, echo=FALSE, results='hide'}
+png(file = "../Plots/Workshop/Presentation/coverage.png", height = 900, width = 1600, res = 100)
+coverPlot
+dev.off()
+rm(coverPlot)
+```
+
+The chart below breaks disclosures down by the reporting jurisdictions. As can be seen the spike  spike of reports in 2016 are because of the mandatory disclosures through the Extractive Sector Transparency Measures Act ([ESTMA](http://laws-lois.justice.gc.ca/eng/acts/E-22.7/page-1.html)). For a more specific information on sources disclosed in different jurisdictions, please visit this [page](http://resourceprojects.org/sources?projectQuery=&entityQuery=&sourceQuery=&projectCountries=&entityCountries=&projectReportingCompanies=&entityReportingCompanies=&projectPaymentTypes=&entityPaymentTypes=&reportingJurisdiction=) on [resourceproject.org](http://resourceprojects.org/). 
+
+```{r, fig.width=12}
+coverByCountry <- sourceData %>% 
+    group_by(reportYear, reportingCountry) %>% 
+    summarise(nSources = n_distinct(sourceID)) %>% 
+    ungroup() %>% 
+    mutate(reportingCountry = if_else(reportingCountry == "United Kingdom of Great Britain and Northern Ireland", "UK", reportingCountry)) %>% 
+    ggplot(., aes(x = reportYear, y = nSources, fill = reportingCountry)) +
+    geom_bar(stat = "identity", position = "dodge") +
+    geom_text(aes(label = nSources), vjust = -0.1, position = position_dodge(width = 0.9), size = 10) +
+    # labs(title = "Fig 2: Number of disclosures by reporting jurisdiction") +
+    theme_tufte() +
+    theme(
+        legend.position = "top",
+        legend.title = element_blank(),
+        axis.text.y = element_blank(),
+        axis.ticks = element_blank(),
+        axis.title = element_blank(),
+        legend.text = element_text(size = 28),
+        # title = element_text(size = 28),
+        axis.text.x = element_text(size = 28)
+    )
+coverByCountry
+```
+
+```{r, echo=FALSE, results='hide'}
+png(file = "../Plots/Workshop/Presentation/coverByCountry.png", height = 900, width = 1600, res = 100)
+coverByCountry
+dev.off()
+rm(coverByCountry)
+```
+##Analysis of payments
+The next set of charts explore the amounts of payments that were made over the different years.
+
+###By Payment type
+Across the years, taxes constitute the biggest payment type.
+
+**Note :** The large payouts from 2014 are from a single [Statoil disclosure from that year](https://www.statoil.com/content/dam/statoil/documents/annual-reports/2014/statoil-payments-to-governments-2014.pdf)
+```{r, fig.width=9, fig.align='center'}
+projectData %>% 
+    group_by(reportYear, paymentType) %>% 
+    summarise(totPay = sum(projectPayment, na.rm = T), nSources = n_distinct(sourceID)) %>% 
+    ggplot(., aes(x = reportYear, y = totPay, fill = paymentType)) +
+    geom_bar(stat = "identity", position = "dodge") +
+    scale_y_continuous(expand = c(0.055, 0)) +
+    geom_text(aes(label = if_else(totPay < 1e9, format(round(totPay / 1e6, 0), trim = TRUE), format(round(totPay / 1e9, 1), trim = TRUE))), vjust = -1.25, position = position_dodge(width = 0.9), size = 6) +
+    geom_text(aes(label = if_else(totPay < 1e9, "M", "B")), vjust = -.15, position = position_dodge(width = 0.9), size = 5) +
+    labs(title = "Fig 3: Amount of money disclosed by payment type (in USD)") +
+    theme_tufte() +
+    theme(
+        axis.text.y = element_blank(),
+        axis.ticks = element_blank(),
+        axis.title = element_blank(),
+        title = element_text(size = 20),
+        legend.position = "top",
+        legend.text = element_text(size = 20),
+        legend.title = element_blank(),
+        axis.text.x = element_text(size = 14)
+    )
+```
+
+###By reporting companies
+The chart below shows the companies that paid more than 5 billion USD each year through mandatory disclosures. Interestingly there a few companies that seem to have a great deal of fluctuations in total amounts paid across different years. For instance, the total payments made by Statoil goes down from 21.7 Billion USD in 2014 to 6.5 Billion USD in 2016. This might be partly explained by the drop in oil prices across these years, however, the Russian companies don't seem to have been affected by this as much in comparison.
+
+```{r, fig.width=12}
+bigCompany <- projectData %>% 
+    group_by(reportingCompany, reportYear) %>% 
+    filter(sum(projectPayment, na.rm = T) > 5e9) %>% #3filter if total payment for that year was greater than 10 billion
+    summarise(totPay = sum(projectPayment)) %>% 
+    ggplot(., aes(x = reportingCompany, y = totPay)) +
+    geom_bar(stat = "identity", position = "dodge", alpha = 0.8, width = 0.8) +
+    scale_y_continuous(expand = c(0.06, 0)) +
+    geom_text(aes(label = if_else(totPay < 1e9, format(round(totPay / 1e6, 0), trim = TRUE), format(round(totPay / 1e9, 1), trim = TRUE))), vjust = -1.25, position = position_dodge(width = 0.9), size = 10) +
+    geom_text(aes(label = if_else(totPay < 1e9, "M", "B")), vjust = -.15, position = position_dodge(width = 0.9), size = 8) +
+    scale_x_discrete(labels = function (paymentType) str_wrap(paymentType, width = 10)) +
+    facet_grid(~reportYear, space = "free_x", scales = "free_x") +
+    labs(title = "Fig 4: Companies that paid more the 5 billion USD") +
+    theme_bw() +
+    theme(
+        strip.text.x = element_text(size = 28),
+        axis.text.y = element_blank(),
+        axis.line = element_blank(),
+        axis.ticks = element_blank(),
+        axis.title = element_blank(),
+        title = element_text(size = 30),
+        legend.position = "top",
+        legend.title = element_blank(),
+        axis.text.x = element_text(size = 28),
+        panel.grid = element_blank(),
+        panel.border=element_blank(),
+        panel.spacing.x = unit(6, "lines"),
+        strip.background = element_rect(fill = "lightgrey", linetype = 0)
+    )
+bigCompany
+```
+
+```{r, echo=FALSE, results='hide'}
+png(file = "../Plots/Workshop/Presentation/bigCompany.png", height = 1400, width = 2400, res = 100)
+bigCompany
+dev.off()
+rm(bigCompany)
+```
+
+The chart below compares the payouts by companies that made more than 5 billion in payments against those that were lower. As is evident, the few big companies constitute the overwhelming proportion of payouts.
+```{r}
+topCompanies <- projectData %>% 
+    group_by(reportingCompany, reportYear) %>% 
+    filter(sum(projectPayment, na.rm = T) > 5e9) %>% #3filter if total payment for that year was greater than 10 billion
+    distinct(reportingCompany)
+
+biggieSmalls <- projectData %>% 
+    mutate(top = if_else(reportingCompany %in% topCompanies$reportingCompany, "Big", "Not Big"))%>% 
+    group_by(top, reportYear) %>% 
+    summarise(totPay = sum(projectPayment, na.rm = T)) %>% 
+    ggplot(., aes(x = reportYear, y = totPay, fill = top)) +
+    geom_bar(stat = "identity", position = "dodge") +
+    scale_y_continuous(expand = c(0.1, 0)) +
+    geom_text(aes(label = if_else(totPay < 1e9, format(round(totPay / 1e6, 0), trim = TRUE), format(round(totPay / 1e9, 1), trim = TRUE))), vjust = -1.25, position = position_dodge(width = 0.9), size = 9) +
+    geom_text(aes(label = if_else(totPay < 1e9, "M", "B")), vjust = -.15, position = position_dodge(width = 0.9), size = 6) +
+    # labs(title = "Fig 5 : Amount of money disclosed by big vs small companies",
+         # x = "Reporting Year") +
+    theme_tufte() +
+    theme(
+        axis.text.y = element_blank(),
+        axis.ticks = element_blank(),
+        axis.title = element_blank(),
+        # title = element_text(size = 24),
+        legend.position = "top",
+        legend.title = element_blank(),
+        legend.text = element_text(size = 28),
+        axis.text.x = element_blank()
+    )
+biggieSmalls
+```
+
+```{r, echo=FALSE, results='hide'}
+png(file = "../Plots/Workshop/Presentation/bigVsSmall.png", height = 900, width = 1600, res = 100)
+biggieSmalls
+dev.off()
+rm(biggieSmalls)
+```
+
+###By recipients countries
+The clustering of large payouts is also true for countries. The chart below shows the total payments recieved by different countries. Russia dominates this chart, with amounts that are greater than the next 7 biggest recipients.
+
+```{r, fig.width=12}
+projectData %>% 
+    group_by(projectCountry, reportYear) %>% 
+    filter(sum(projectPayment, na.rm = T) > 5e9) %>% #3filter if total payment for that year was greater than 10 billion
+    summarise(totPay = sum(projectPayment)) %>% 
+    ggplot(., aes(x = projectCountry, y = totPay)) +
+    geom_bar(stat = "identity", position = "dodge", alpha = 0.8, width = 0.8) +
+    scale_y_continuous(expand = c(0.04, 0)) +
+    geom_text(aes(label = if_else(totPay < 1e9, format(round(totPay / 1e6, 0), trim = TRUE), format(round(totPay / 1e9, 1), trim = TRUE))), vjust = -1.25, position = position_dodge(width = 0.9), size = 8) +
+    geom_text(aes(label = if_else(totPay < 1e9, "M", "B")), vjust = -.15, position = position_dodge(width = 0.9), size = 6) +
+    scale_x_discrete(labels = function (paymentType) str_wrap(paymentType, width = 9)) +
+    facet_grid(~reportYear, space = "free_x", scales = "free_x") +
+    labs(title = "Fig 6 : Countries that received more the 5 billion USD") +
+    theme_bw() +
+    theme(
+        strip.text.x = element_text(size = 28),
+        axis.text.y = element_blank(),
+        axis.line = element_blank(),
+        axis.ticks = element_blank(),
+        axis.title = element_blank(),
+        axis.text.x = element_text(size = 24),
+        title = element_text(size = 28),
+        legend.position = "top",
+        legend.title = element_blank(),
+        panel.grid = element_blank(),
+        panel.border=element_blank(),
+        panel.spacing.x = unit(1.5, "lines"),
+        strip.background = element_rect(fill = "lightgrey", linetype = 0)
+    )
+    
+```
+
+
+###By project types
+The R-D team has collected additional secondary information on the project names that were used by reporting companies. This includes information on project types, commodites, and location. The map below shows all the projects that were succesfully identified.
+
+```{r, fig.height = 6, fig.width = 6, fig.align="center"}
+mapData <- projectSecondary %>% 
+    group_by(projectCountry, projectName) %>% 
+    summarise(totPay = sum(projectPayment, na.rm = T), lat = unique(lat), lon = unique(lon), projectType = unique(projectType)) %>% 
+    filter(!is.na(lat) & !is.na(lon))
+
+pal <- colorQuantile(
+  palette = "RdYlBu",
+  domain = mapData$totPay,
+  n = 5,
+  reverse = T)
+
+
+leaflet(mapData, options = leafletOptions(minZoom = 1, maxZoom = 5, scrollWheelZoom = F)) %>%
+    fitBounds(-120, -60, 120, 60) %>% 
+    addCircleMarkers(lng = ~lon, lat = ~lat, radius = 4, stroke = T, color = NULL, weight = 2,popup = ~projectName, fillColor = ~pal(totPay), fillOpacity = .5) %>%
+    addProviderTiles(providers$Esri.WorldShadedRelief) %>% 
+    addLegend("topleft", pal = pal, values = ~totPay,
+    title = "Payment percentile",
+    opacity = 0.8
+  )
+        
+```
+
+This was however a significantly challenging task since the term `project` is pretty loosely defined. Reporting companies use it for :
+
+1. actual oil and gas fields or mine sites, 
+2. collections of individual mines and oil & gas fields and finally for 
+3. corporate entities that are associated with extractive sector projects. 
+
+In addition, there are no guarantees that different companies use the same names to refer to the same extractive projects. Moreover, the same company might use different names to refer to the same project across different years. Finally, the data also contains errors and spelling mistakes for all variables including project names that are a consqequence of scraping information from difficult sources like pdf tables.
+
+A significant amount of time and resources therefore needed to be spent to reconcile these names so that they are consistent across reporting years and companies. Each project name was manually reviewed and tagged as an `Oil&Gas`, `Mining`, `Corporate` project. Some of the projects where however, unidentifiable because the team could not find any public reference to these names and these are marked as `Unidentified`.
+
+The chart below shows that a significant proportion of the disclosure data flows to corporate entities and to oil and gas projects. Mining projects on the other hand are a significantly smaller proportion of the total amounts that are disclosed.
+```{r, fig.width=8, fig.align="center"}
+projectTypeChart <- projectSecondary %>% 
+    group_by(reportYear, projectType) %>% 
+    summarise(totPay = sum(projectPayment, na.rm = T), nSources = n_distinct(sourceID)) %>% 
+    ggplot(., aes(x = reportYear, y = totPay, fill = projectType)) +
+    geom_bar(stat = "identity", position = "dodge") +
+    scale_y_continuous(expand = c(0.07, 0)) +
+    geom_text(aes(label = if_else(totPay < 1e9, format(round(totPay / 1e6, 0), trim = TRUE), format(round(totPay / 1e9, 1), trim = TRUE))), vjust = -1.25, position = position_dodge(width = 0.9), size = 8) +
+    geom_text(aes(label = if_else(totPay < 1e9, "M", "B")), vjust = -.15, position = position_dodge(width = 0.9), size = 6) +
+    # labs(title = "Fig 6 : Amount of money disclosed by project type (in USD)") +
+    theme_tufte() +
+    theme(
+        axis.text.y = element_blank(),
+        axis.ticks = element_blank(),
+        axis.title = element_blank(),
+        # title = element_text(size = 28),
+        legend.position = "top",
+        legend.title = element_blank(),
+        legend.text = element_text(size = 28),
+        axis.text.x = element_text(size = 28)
+    )
+
+projectTypeChart    
+```
+
+```{r, echo=FALSE, results='hide'}
+png(file = "../Plots/Workshop/Presentation/projectTypeChart.png", height = 1000, width = 1800, res = 100)
+projectTypeChart
+dev.off()
+rm(projectTypeChart)
+```
+
+
+Most of the payments that are categorized as Corporate seem to be through taxes. Within 
+```{r, fig.width=12}
+projectTypePayType <- projectSecondary %>% 
+    group_by(projectType, paymentType) %>% 
+    filter(projectType != "Unidentified") %>% 
+    summarise(totPay = sum(projectPayment, na.rm = T)) %>% 
+    ggplot(., aes(x = projectType, y = totPay, fill = paymentType)) +
+    geom_bar(stat = "identity", position = "dodge") +
+    scale_y_continuous(expand = c(0.085, 0)) +
+    geom_text(aes(label = if_else(totPay < 1e9, format(round(totPay / 1e6, 0), trim = TRUE), format(round(totPay / 1e9, 1), trim = TRUE))), vjust = -1.25, position = position_dodge(width = 0.9), size = 12) +
+    geom_text(aes(label = if_else(totPay < 1e9, "M", "B")), vjust = -.15, position = position_dodge(width = 0.9), size = 9) +
+    # labs(title = "Fig 7 : Amount of money disclosed by payment type (in USD)") +
+    theme_tufte() +
+    theme(
+        axis.text.y = element_blank(),
+        axis.ticks = element_blank(),
+        axis.title = element_blank(),
+        # title = element_text(size = 32),
+        legend.position = "top",
+        legend.text = element_text(size = 38),
+        legend.title = element_blank(),
+        axis.text.x = element_text(size = 48)
+    )
+projectTypePayType   
+```
+
+```{r, echo=FALSE, results='hide'}
+png(file = "../Plots/Workshop/Presentation/projectTypePayType.png", height = 1200, width = 2400, res = 100)
+projectTypePayType
+dev.off()
+rm(projectTypePayType)
+```

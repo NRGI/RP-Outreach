@@ -1,0 +1,116 @@
+---
+title: "Exploratory charts linking WB data and payments"
+output: 
+  html_notebook:
+    number_sections: yes
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    theme: cosmo
+    highlight: kate
+    smart: true
+    code_folding: hide
+date: '`r Sys.Date()`'
+---
+
+##Summary
+This file combines wb data with country names.
+
+```{r, message=FALSE}
+rm(list = ls())
+library(tidyverse); library(stringr); library(wbstats); library(ggthemes); library(viridis); library(lubridate)
+
+##load functions
+source("../../Functions/Cleaning Functions/Clean Chars.R") ## Function to clean character vectors
+source("../../Functions/Cleaning Functions/Reconcile Values Using Lookups.R") ## Function to reconcile values using the lookup tables
+
+source("../../Functions/Pipeline Functions/Add Raw Vals to Reconcile Sheet.R")
+source("../../Functions/Pipeline Functions/Update Lookup using Reconcile Sheet.R")
+
+```
+
+
+##Create the data
+First lets load all the WB data.
+
+```{r, message=FALSE}
+wbCountryData <- wbcountries(lang = "en") %>% 
+    filter(region != "Aggregates") %>%  ##Aggregates are not countries
+    select(country, iso3Code = iso3c, iso2Code = iso2c, regionID, region, incomeID, incomeClass = income)
+
+indicatorData <- wb(country = "all", indicator = c("SP.POP.TOTL", "SP.URB.TOTL", "SP.RUR.TOTL"), mrv = 10) %>% 
+    filter(!is.na(value)) %>% 
+    group_by(indicatorID) %>% 
+    filter(date == max(date)) %>% 
+    ungroup() %>% 
+    as_tibble() %>% 
+    select(country, indicatorID, value) %>% 
+    mutate(indicatorID = str_replace(indicatorID, "^.*?\\.", "") %>% 
+               str_replace_all(., "\\.", "_")) %>% 
+    spread(indicatorID, value)
+
+wbCountryData <- left_join(wbCountryData, indicatorData, by = "country") %>% 
+    mutate(country = cleanValues(country, "Country")) %>% 
+    filter(!is.na(country))
+```
+
+Now lets get the payment data. I am using just the project data and not entity payments since these charts are for illustrative purposes.
+
+```{r, message=FALSE}
+sourceData <- read_csv("../../Data Cleaning/Payment Data Pipeline 2.0/data/Current website data/allSource.csv") %>% 
+    select(sourceID, reportStartDate) %>% 
+    mutate(sourceYear = year(reportStartDate))
+
+projectData <- read_csv("../../Data Cleaning/Payment Data Pipeline 2.0/data/Current website data/allProject.csv") %>% 
+    left_join(., wbCountryData, by = c("projectCountry" = "country")) %>% 
+    left_join(., sourceData, by = "sourceID")
+```
+
+
+##Exploratory charts
+Compare with region
+
+```{r, fig.width= 12}
+png(file = "../Plots/samplePlot2.png", height = 1000, width = 1200, res = 100)
+projectData %>% 
+    group_by(region, paymentType) %>% 
+    mutate(totPayRegion = sum(projectPayment, na.rm = T), avgPayRegion = mean(projectPayment, na.rm = T)) %>% 
+    ungroup() %>% 
+    filter(projectCountry == "Argentina") %>% 
+    group_by(paymentType) %>% 
+    summarise(totPayCountry = sum(projectPayment), totPayRegion = unique(totPayRegion), avgPayCountry = mean(projectPayment), avgPayRegion = unique(avgPayRegion)) %>% 
+    gather(key = "variable", value = "value", 2:5) %>% 
+    filter(str_detect(variable, "avg")) %>% 
+    ggplot(., aes(x = paymentType, y = value, fill = variable)) +
+    geom_bar(stat = "identity", position = "dodge") +
+    scale_x_discrete(labels = function (paymentType) str_wrap(paymentType, width = 16)) +
+    theme_tufte() +
+    coord_flip()
+
+dev.off()
+```
+
+
+
+```{r}
+chartData <- projectData %>%
+    filter(projectPayment < quantile(projectPayment, 0.95) & projectPayment > 0) %>% 
+    group_by(projectCountry, paymentType) %>% 
+    summarise(region = unique(region), totPayCountry = sum(projectPayment), avgPayCountry = mean(projectPayment)) %>% 
+    ungroup() %>% 
+    arrange(projectCountry, paymentType)
+
+#png(file = "../Plots/samplePlot.png", height = 1000, width = 1200, res = 100)
+ggplot() +
+    geom_jitter(data = chartData, aes(x = paymentType, y = projectPayment), alpha = 0.2) +
+    geom_point(data = chartData %>% 
+                   filter(projectCountry == "Argentina"), aes(x = paymentType, y = projectPayment), colour = "red", size = 3, alpha = 0.7) +
+    scale_x_discrete(labels = function (paymentType) str_wrap(paymentType, width = 16)) +
+    coord_flip() +
+    theme_tufte()
+#dev.off()
+```
+
+
+
+

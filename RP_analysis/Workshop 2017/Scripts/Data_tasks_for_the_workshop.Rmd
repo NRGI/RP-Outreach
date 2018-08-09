@@ -1,0 +1,568 @@
+---
+title: "Data stuff for the workshop"
+output: 
+  html_notebook:
+    number_sections: yes
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    theme: cosmo
+    highlight: kate
+    smart: true
+    code_folding: hide
+date: '`r Sys.Date()`'
+---
+##Summary
+This file creates the following datasets
+
+1. ~~Data for exploratory analysis~~
+2. Beneficial ownership
+    + ~~How many companies pay taxes to countries that are not the project country or reporting country?~~
+    + ~~Compare ownership on SNL against whether they are filing on RP~~
+3. ~~Data for Joint Ventures~~
+4. ~~Single asset companies list~~
+5. ~~Data for gold mines~~
+6. ~~Isolate production data for goldcorp and compare with mandatory disclosures~~
+7. Link Africa mining data to mandatory disclosures
+8. ~~Older projects that have not paid taxes~~
+9. ~~List of non ESTMA projects~~
+    + ~~List of non UK projects~~
+    + ~~List of non EITI projects~~
+    + ~~List of EITI projects~~
+10. ~~Make charts for David~~
+11. ~~Get Tunisia Data for Charles~~
+
+```{r, error=FALSE, message=FALSE, results='hide'}
+rm(list = setdiff(ls(), c("sourceData", "projectData", "entityData", "currentLookup", "currentSecondary", "snlData", "treatyCountries")))
+source("../../Functions/Cleaning Functions/Clean Chars.R")
+source("../../Functions/Cleaning Functions/Reconcile Values Using Lookups.R")
+
+source("../../Functions/Pipeline Functions/Add Raw Vals to Reconcile Sheet.R")
+source("../../Functions/Pipeline Functions/Update Lookup using Reconcile Sheet.R")
+
+library(tidyverse); library(ggthemes); library(kableExtra); library(knitr); library(viridis); library(readxl); library(stringr); library(googlesheets); library(writexl)
+
+if(!exists("sourceData")){ ##so that we only run on first load
+    sourceData <- read_csv("../../Data Cleaning/Payment Data Pipeline/data/Current website data/allSource.csv")
+    projectData <- read_csv("../../Data Cleaning/Payment Data Pipeline/data/Current website data/allProject.csv") %>% 
+        mutate(projectPayment = as.numeric(projectPayment))
+    
+    entityData <- read_csv("../../Data Cleaning/Payment Data Pipeline/data/Current website data/allEntity.csv") %>% 
+        mutate(entityPayment = as.numeric(entityPayment))
+}
+
+##load snl data
+snlData <- read_csv("../Data/SNL Data/Clean Data/snlCompiled.csv")
+```
+
+Load the lookup tables and secondary data
+```{r, error=FALSE, message=FALSE, results='hide'}
+if(!exists("currentLookup")){
+    gs_auth("/Users/hsubhash/Documents/GitHub/resource-project-data/token.rds")
+    currentLookup <- gs_title("Current Lookup - Projects") %>% 
+        gs_read(ws = "Current Matched Lookup", verbose = F)
+    currentSecondary <- gs_title("Current Secondary - Projects") %>% 
+        gs_read(ws = "Secondary Data", verbose = F)
+    currentSecondaryMissing <- gs_title("Current Secondary - Projects") %>% 
+        gs_read(ws = "Add to Secondary", verbose = F)
+    currentSecondary <- bind_rows(currentSecondary, currentSecondaryMissing %>% filter(!is.na(projectType)))
+    rm(currentSecondaryMissing)
+}
+```
+
+First lets setup the project data using the lookup table
+
+```{r}
+projectDataUpdated <- projectData %>% 
+    left_join(., currentLookup %>% 
+                  select(1:3), by = c("projectCountry", "projectName" = "rawName")) %>% 
+    mutate(projectName = ifelse(is.na(finalName), projectName, finalName)) %>% 
+    select(-finalName)
+```
+
+
+## Joint Ventures
+These are projects that are reported by multiple companies
+```{r, error=FALSE, message=FALSE, results='hide'}
+##identify the list of projects with multiple reporting companies
+jvList <- projectDataUpdated %>% 
+    group_by(projectCountry, reportingCompany, projectName, reportYear) %>% 
+    summarise(totPay = sum(projectPayment, na.rm = T)) %>% 
+    ungroup() %>% 
+    filter(!is.na(totPay) & totPay != 0 & !str_detect(str_to_lower(projectName), "alberta|columbia|other|general|gulf of mexico|attribu|operated|entity|exploration|united states of")) %>% 
+    group_by(projectCountry, projectName, reportYear) %>% 
+    filter(n_distinct(reportingCompany) > 1) %>% ##identify the JVs
+    ungroup() %>% 
+    left_join(., currentSecondary %>% select(projectCountry, finalName, projectType), by = c("projectCountry", "projectName" = "finalName")) %>% 
+    filter(projectType != "Corporate" & projectName != "x" & projectName != "Bc")
+    
+jvProjects <- projectDataUpdated %>%
+    filter(paste0(projectCountry, projectName, reportYear) %in% unique(paste0(jvList$projectCountry, jvList$projectName, jvList$reportYear))) %>% 
+    group_by(projectCountry, reportingCompany, projectName, paymentType, reportYear) %>% 
+    summarise(sourceID = unique(sourceID), projectPayment = sum(projectPayment, na.rm = T)) %>% 
+    ungroup() %>%
+    group_by(projectCountry, reportingCompany, projectName, reportYear) %>% 
+    mutate(totPay = sum((projectPayment), na.rm = T)) %>% 
+    ungroup() %>% 
+    mutate(proportionPay = projectPayment/totPay) %>% 
+    left_join(., sourceData %>% select(sourceID, sourceURL, reportingCountry)) %>% 
+    select(sourceID,1:5, 7:11) %>% 
+    write_csv(., "Workshop Data/JV Data/jv.csv")
+
+rm(jvProjects, jvList)
+```
+
+
+##Gold Data
+Lets create the gold data. There are two versions of this data. The first has those that has only gold as the primary commodity, while the second filter is it if its even a secondary commodity
+```{r, message=FALSE}
+snlDataGold <- read_csv("../../Data Cleaning/Secondary Data/Projects/Data/Secondary data sources/SNLgoldmines_David.csv") %>% 
+    select(-lat, -lon, -primaryCommodity, -primaryCommodity_1, -commodityList_1, -commodityList, `totalProdCost_ oz_2015_1`)
+names(snlDataGold) <- camelCase(names(snlDataGold))
+names(snlDataGold)
+goldProjects <- projectDataUpdated %>% ##if there is a final name then replace
+    select(-notes, -nrgiNotes) %>% 
+    left_join(., currentSecondary %>% select(projectCountry, finalName, snlPropID), by = c("projectCountry", "projectName" = "finalName")) %>% 
+    left_join(., snlData, by = c("snlPropID" = "propertyId")) %>% 
+    filter(!is.na(snlPropID) & str_detect(str_to_lower(primaryCommodity), "gold")) %>% 
+    left_join(., snlDataGold, by = c("snlPropID" = "id")) %>% 
+    select(-snlPropID)
+
+write_xlsx(list(goldSources = sourceData %>% filter(sourceID %in% goldProjects$sourceID), 
+           goldProjects = goldProjects, 
+           goldEntityPayments = entityData %>% filter(sourceID %in% goldProjects$sourceID)),
+           "Workshop Data/Gold Data/gold as primary commodity.xlsx")
+rm(goldProjects)
+```
+
+```{r}
+goldProjects <- projectDataUpdated %>% ##if there is a final name then replace
+    select(-notes, -nrgiNotes) %>% 
+    left_join(., currentSecondary, by = c("projectCountry", "projectName" = "finalName")) %>% 
+    select(-projectType, -sources, -notes) %>% 
+    left_join(., snlData, by = c("snlPropID" = "propertyId")) %>% 
+    filter(!is.na(snlPropID) & str_detect(str_to_lower(commodity), "gold")) %>% ##identify gold projects with snl ids
+    left_join(., snlDataGold, by = c("snlPropID" = "id")) %>% 
+    select(-snlPropID)
+
+write_xlsx(list(goldSources = sourceData %>% filter(sourceID %in% goldProjects$sourceID), 
+           goldProjects = goldProjects, 
+           goldEntityPayments = entityData %>% filter(sourceID %in% goldProjects$sourceID)), 
+           "Workshop Data/Gold Data/gold as primary and secondary commodity.xlsx")
+
+rm(goldProjects, snlDataGold)
+```
+
+<!-- ##Data for exploratory analysis -->
+<!-- This data is similar to the gold mines data but includes all projects -->
+
+<!-- ```{r} -->
+<!-- allProjects <- projectDataUpdated %>% ##if there is a final name then replace -->
+<!--     select(-notes, -nrgiNotes) %>%  -->
+<!--     left_join(., currentSecondary, by = c("projectCountry", "projectName" = "finalName")) %>%  -->
+<!--     select(-projectType, -sources, -notes) %>%  -->
+<!--     left_join(., snlData, by = c("snlPropID" = "Property ID")) %>% -->
+<!--     select(-snlPropID) -->
+
+<!-- write_xlsx(list(sourceData = sourceData,  -->
+<!--            projectData = allProjects,  -->
+<!--            entityData = entityData),  -->
+<!--            "Workshop Data/explore.xlsx") -->
+
+<!-- rm(allProjects) -->
+<!-- ``` -->
+
+
+##Company Datasets
+
+###Beneficial ownership
+There are three types of data that we need to setup.
+
+1. List of sources where payments were made to a project that we have identified as "corporate" in a country in which there were no actual payments made to mines or oil and gas projects (that we have identified).
+2. List of sources where payments were made to a govt entity in a country were there were no actual mine or oil and gas project payments.
+3. List of sources where payments were made to a govt entity in a country were there were no project payments (corporate, mine or oil and gas)
+
+Known Issues :
+
+1. Companies are recorded in the mandatory disclosures as being located in a project country but are actually located elsewhere.
+2. Vague project names that make it hard to identify whether a payment was made to an actual mine or oil & gas field.
+
+First lets setup the project data so that it has information on project type by merging in secondary data. We also some additional data on tax treaties to this data.
+
+```{r, message=FALSE}
+# if(!exists("treatyCountries")){
+#     treatyCountries <- read_csv("../../Data Cleaning/Secondary Data/Countries/Data/Tax treaties/Tax Countries.csv") %>% 
+#         mutate(country1 = cleanValues(rawVals = country1, "Country"), country2 = cleanValues(country2, "Country")) %>% 
+#     distinct()
+# }
+
+# treatyRecipient <- treatyCountries %>% 
+#     group_by(country2) %>% 
+#     summarise(mineCountry = paste(country1, collapse = "; "))
+
+sourceListCompany <- projectDataUpdated %>% ##if there is a final name then replace
+    select(-notes, -nrgiNotes) %>% 
+    filter(projectCountry != "Could not be identified") %>% 
+    left_join(., currentSecondary, by = c("projectCountry", "projectName" = "finalName")) %>% 
+    left_join(., sourceData %>% select(sourceID, reportingCountry), by = "sourceID") 
+
+# %>% 
+#     left_join(., treatyRecipient, by = c("projectCountry" = "country2"))
+
+```
+
+Now lets look at the first type.
+```{r}
+type1 <- sourceListCompany %>% 
+    filter(!is.na(projectType)) %>% 
+    group_by(sourceID) %>% 
+    mutate(nonCorporateCountries = paste(sort(unique(c(projectCountry[projectType %in% c("Oil & Gas", "Mining")], reportingCountry))), collapse = ", ")) %>%
+    ungroup() %>% 
+    filter(!str_detect(nonCorporateCountries, projectCountry) & projectType == "Corporate") %>% 
+    select(1:5, projectType, nonCorporateCountries, 6:7)
+```
+
+Now lets to type 2.
+```{r}
+##list of sources that are not corporate (or missing) and collate the country names.
+type2List <- sourceListCompany %>% 
+    filter(projectType != "Corporate" | is.na(projectType)) %>% 
+    group_by(sourceID) %>% 
+    summarise(projectCountryList = paste(sort(unique(c(projectCountry, reportingCountry))), collapse = ", "))
+
+type2 <- entityData %>% 
+    filter(entityCountry != "Could not be identified") %>% 
+    left_join(., type2List, by = "sourceID") %>% 
+    filter(!str_detect(projectCountryList, entityCountry)) %>% 
+    distinct() %>% 
+    select(1:5, projectCountryList, 6:7) 
+```
+
+type 3.
+```{r}
+type3List <- sourceListCompany %>%
+    group_by(sourceID) %>% 
+    summarise(projectCountryList = paste(sort(unique(c(projectCountry, reportingCountry))), collapse = ", "))
+
+type3 <- entityData %>% 
+    filter(entityCountry != "Could not be identified") %>% 
+    left_join(., type3List, by = "sourceID") %>% 
+    filter(!str_detect(projectCountryList, entityCountry)) %>% 
+    distinct() %>% 
+    select(1:5, projectCountryList, 6:7) 
+```
+
+
+save the files along with the source project and entity data.
+```{r}
+sourceIDList <- unique(c(type1$sourceID, type2$sourceID, type3$sourceID))
+
+write_xlsx(list(allTypesSources = sourceData %>% filter(sourceID %in% sourceIDList), 
+                type1 = type1, 
+                type2 = type2, 
+                type3 = type3, 
+                allTypesProject = projectData %>% filter(sourceID %in% sourceIDList),
+                allTypesEntityData = entityData %>% filter(sourceID %in% sourceIDList)), 
+           "Workshop Data/Company Data/Potential Companies to Investigate.xlsx")
+
+rm(type1, type2List, type2, type3List, type3, sourceListCompany, sourceIDList)
+```
+
+###Single Asset
+The next type of company data that we are interested in are those that report payments to a single project within a country in a disclosure
+
+```{r}
+singleAssetList <- projectDataUpdated %>%
+    left_join(., currentSecondary %>% select(projectCountry, finalName, projectType), by = c("projectCountry", "projectName" = "finalName")) %>% 
+    filter(projectType != "Corporate" & !is.na(projectType)) %>% 
+    group_by(sourceID, projectCountry, projectName) %>% 
+    summarise(reportingCompany = unique(reportingCompany),totPay = sum(projectPayment, na.rm = T)) %>% 
+    ungroup() %>% 
+    filter(totPay != 0 & !is.na(totPay)) %>% 
+    group_by(sourceID, projectCountry) %>% 
+    filter(n() == 1)
+
+write_xlsx(list(singleAssetSources = sourceData %>% filter(sourceID %in% singleAssetList$sourceID),
+                singleAssetList = singleAssetList,
+                singleAssetProject = projectData %>% filter(sourceID %in% singleAssetList$sourceID),
+                singleAssetEntityData = entityData %>% filter(sourceID %in% singleAssetList$sourceID)), 
+           "Workshop Data/Company Data/Single Asset Companies to Investigate.xlsx")
+```
+
+###Mines that don't pay taxes
+
+```{r, message=FALSE}
+lowTaxMines <- projectDataUpdated %>% 
+    select(-nrgiNotes) %>% 
+    left_join(., currentSecondary %>% select(projectCountry, finalName, projectType, snlPropID), by = c("projectCountry", "projectName" = "finalName")) %>% 
+    filter(!is.na(snlPropID)) %>% 
+    left_join(., snlData %>% select(propertyId, actualStartUpYear, developmentStage, primaryCommodity), by = c("snlPropID" = "propertyId")) %>% 
+    mutate(age = (2018 - as.numeric(actualStartUpYear))) %>% 
+    filter(!is.na(age) & developmentStage == "Operating") %>% 
+    group_by(snlPropID) %>% 
+    filter(sum(projectPayment[paymentType == "Taxes"], na.rm = T) < 1e6) %>% 
+    select(1:5, 11, 14, 13, 12, 6, 7, notes)
+    
+write_xlsx(list(lowTaxSources = sourceData %>% filter(sourceID %in% lowTaxMines$sourceID),
+                lowTaxProjectsPayments = lowTaxMines,
+                lowTaxMinesEntityData = entityData %>% filter(sourceID %in% lowTaxMines$sourceID)), 
+           "Workshop Data/Mine Data/Low Tax Mines.xlsx")
+
+rm(lowTaxMines)
+```
+
+###Link mandatory disclosures to the Goldcorp productions data
+
+```{r, message=FALSE}
+goldCorp <- read_csv("Workshop Data/Mine Data/goldcorp-clean-data.csv") %>% 
+    filter(!project %in% c("Total")) %>% 
+    mutate(value = case_when(
+        multiplier == "Million" ~ value * 1e6,
+        multiplier == "Thousand" ~ value * 1e3,
+        TRUE ~ value
+    )) %>% 
+    group_by(project, measure, year) %>% 
+    mutate(valueSum = sum(value, na.rm = T), valueMean = mean(value, na.rm = T)) %>% 
+    select(project, measure, year, multiplier, valueSum, valueMean, Unit) %>% 
+    arrange(project, measure, year) %>% 
+    distinct() %>% 
+    ungroup() %>% 
+    mutate(value = if_else(str_detect(str_to_lower(measure), "average"), valueMean, valueSum)) %>% 
+    mutate(measure = str_replace_all(measure, "\\(|\\)", "") %>% 
+               camelCase(.) %>% paste(., year, sep = "_"))
+
+goldSecondary <- tibble(projectCountry = c("Argentina", "Argentina", "Mexico", "Canada", "Mexico", "United States of America", "Guatemala", "Canada", "Mexico", "Mexico", "Canada", "Dominican Republic", "Canada","United States of America"),rawGoldNames = unique(goldCorp$project) %>% sort()) %>% 
+    left_join(., currentSecondary, c("projectCountry", "rawGoldNames" = "finalName"))
+
+goldCorp <- left_join(goldCorp, goldSecondary, by = c("project" = "rawGoldNames")) %>%
+    filter(project != "Penasquito Sulphide" & value != 0 & !is.na(value)) %>%
+    group_by(measure) %>% 
+    filter(year == max(year, na.rm = T)) %>% 
+    spread(key = measure, value = value) %>% 
+    left_join(., projectDataUpdated, by = c("projectCountry", "project" = "projectName"))
+
+rm(goldSecondary)
+```
+
+##Tunisia data for Charles
+These are the projects that are in RP and in Tunisia.
+```{r}
+projectDataTunisia <- projectDataUpdated %>% 
+    filter(projectCountry == "Tunisia")
+
+entityDataTunisia <- entityData %>% 
+    filter(entityCountry == "Tunisia")
+
+sourceDataTunisia <- sourceData %>%
+    filter(sourceID %in% c(projectDataTunisia$sourceID, entityDataTunisia$sourceID))
+
+write_xlsx(list(sourceTunisia = sourceDataTunisia,
+                projectsTunisia = projectDataTunisia,
+                entitiesTunisia = entityDataTunisia,
+                projectNames = tibble(projects = projectDataTunisia$projectName) %>% unique()), 
+           "Workshop Data/Mine Data/Tunisia Mines.xlsx")
+rm(sourceDataTunisia, projectDataTunisia, entityDataTunisia)
+```
+
+
+
+###Charts for scaling project level analysis
+
+```{r}
+projectDataUpdatedSNL <- left_join(projectDataUpdated, currentSecondary, by = c("projectCountry", "projectName" = "finalName")) %>% 
+    filter(!is.na(snlPropID)) %>% 
+    left_join(., snlData %>% select(propertyId, avgproduction), by = c("snlPropID" = "propertyId")) %>% 
+    filter(avgproduction > quantile(avgproduction, 0.6, na.rm = T)) %>% 
+    select(sourceID, reportingCompany, projectCountry, projectName, snlPropID, avgproduction, paymentType, projectPayment) %>% 
+    filter(paymentType == "Royalties") %>% 
+    group_by(snlPropID, paymentType) %>% 
+    summarise(totRoyaltyPay = sum(projectPayment, na.rm = T), avgproduction = unique(avgproduction)) %>% 
+    ggplot(., aes(x = avgproduction, y = totRoyaltyPay)) +
+    geom_point()
+
+projectDataUpdatedSNL
+```
+
+
+##Charts for workshop presentation for david
+
+```{r, message=FALSE}
+corpProfits <- read_excel("Workshop Data/Gold Data/CorpProfts.xlsx", sheet = 1)
+
+projectDataSNL <- projectDataUpdated %>% 
+    left_join(., currentSecondary, by = c("projectCountry", "projectName" = "finalName"))
+
+corpProfits <- corpProfits %>% 
+    filter(!is.na(SNLId)) %>% 
+    left_join(., projectDataSNL, by = c("SNLId" = "snlPropID"))
+names(corpProfits)
+```
+
+
+```{r}
+corpProfits %>% 
+    filter(paymentType == "Taxes") %>% 
+    group_by(SNLId) %>% 
+    summarise(totPay = sum(projectPayment, na.rm = T), pL = unique((as.numeric(`Net Income before Taxes (Reported)`)))) %>% 
+    filter(!is.na(pL) & abs(pL) < 1e6) %>% 
+    mutate(logPL = log(pL)) %>% 
+    ggplot(., aes(x = pL, y = totPay)) + geom_point() + geom_smooth(method = 'lm')
+```
+
+```{r, message=FALSE, error=TRUE}
+library(ggthemes); library(viridis)
+plChart <- corpProfits %>%
+    mutate(pL = as.numeric(`Net Income before Taxes (Reported)`)) %>% 
+    filter(!is.na(pL)) %>% 
+    mutate(pLCat = case_when(
+        pL <= 0 ~ "Loss",
+        pL > 0 ~ "Profit"
+    )) %>% 
+    group_by(pLCat, paymentType) %>% 
+    summarise(totPay = mean(projectPayment, na.rm = T)) %>% 
+    filter(!is.na(paymentType) & paymentType != "Could not be identified") %>% 
+    ggplot(., aes(x = pLCat, y = totPay, fill = paymentType)) + 
+    geom_bar(stat = "identity", position = "dodge") +
+    scale_y_continuous(expand = c(0.065, 0)) +
+    geom_text(aes(label = if_else(totPay < 1e9, format(round(totPay / 1e6, 1), trim = TRUE), format(round(totPay / 1e9, 1), trim = TRUE))), vjust = -1.25, position = position_dodge(width = 0.9), size = 6) +
+    geom_text(aes(label = if_else(totPay < 1e9, "M", "B")), vjust = -.15, position = position_dodge(width = 0.9), size = 5) +
+    theme_tufte() +
+    theme(
+        legend.position = "top",
+        legend.title = element_blank(),
+        axis.text.y = element_blank(),
+        axis.line = element_blank(),
+        axis.ticks = element_blank(),
+        axis.title = element_blank(),
+        axis.text.x = element_text(size = 18),
+        legend.text = element_text(size = 14)
+    )
+plChart    
+```
+
+```{r}
+png(file = "../Plots/Workshop/Presentation/profitLoss.png", height = 800, width = 1200, res = 100)
+plChart
+dev.off()
+```
+
+
+<!-- ###Link Africa mining data from world bank -->
+<!-- Lets first clean up the names. -->
+<!-- ```{r, message=FALSE} -->
+<!-- africaMining <- read_csv("Workshop Data/Mine Data/africapowerminingprojectsdatabase.csv") -->
+
+<!-- names(africaMining) <- names(africaMining) %>%  -->
+<!--     str_replace_all(., "\\(|\\)", "") %>%  -->
+<!--     camelCase(.) -->
+<!-- ``` -->
+
+<!-- There are non-unique project names. These need to be reconciled manually. -->
+<!-- ```{r} -->
+<!-- ##generate ids to map to secondary projects -->
+<!-- africaMiningDuplicates <- africaMining %>%  -->
+<!--     group_by(country, propertyName) %>%  -->
+<!--     filter(n() > 1) %>%  -->
+<!--     arrange(country, propertyName) %>%  -->
+<!--     write_csv("Workshop Data/Mine Data/reconcileDuplicates.csv") -->
+
+<!-- africaMining %>%  -->
+<!--     filter(!paste0(country, propertyName) %in% paste0(africaMiningDuplicates$country, africaMiningDuplicates$propertyName)) -->
+<!-- ``` -->
+
+
+<!-- ##NON ESTMA data -->
+
+<!-- ```{r} -->
+<!-- nonESTMAIDs <- sourceData %>%  -->
+<!--     filter(reportingCountry != "Canada") %>%  -->
+<!--     select(sourceID) %>%  -->
+<!--     unlist(use.names = F) -->
+
+<!-- projectDataNonEstma <- projectDataUpdated %>%  -->
+<!--     filter(sourceID %in% nonESTMAIDs) %>%  -->
+<!--     select(-nrgiNotes) %>%  -->
+<!--     left_join(., currentSecondary, by = c("projectCountry", "projectName" = "finalName")) %>%  -->
+<!--     select(-snlPropID) -->
+
+<!-- write_xlsx(list(nonESTMASources = sourceData %>% filter(sourceID %in% nonESTMAIDs), -->
+<!--                 projectDataNonEstma = projectDataNonEstma, -->
+<!--                 entityDataNonEstma = entityData %>% filter(sourceID %in% nonESTMAIDs)),  -->
+<!--            "Workshop Data/Don Data/nonESTMA.xlsx") -->
+
+<!-- unique(sourceData$reportingCountry) -->
+<!-- ``` -->
+
+<!-- ```{r} -->
+<!-- nonESTMAIDs <- sourceData %>%  -->
+<!--     filter(!reportingCountry %in% c("Canada", "United Kingdom of Great Britain and Northern Ireland")) %>%  -->
+<!--     select(sourceID) %>%  -->
+<!--     unlist(use.names = F) -->
+
+<!-- projectDataNonEstma <- projectDataUpdated %>%  -->
+<!--     filter(sourceID %in% nonESTMAIDs) %>%  -->
+<!--     select(-nrgiNotes) %>%  -->
+<!--     left_join(., currentSecondary, by = c("projectCountry", "projectName" = "finalName")) %>%  -->
+<!--     select(-snlPropID) -->
+
+<!-- write_xlsx(list(nonESTMANonUKSources = sourceData %>% filter(sourceID %in% nonESTMAIDs), -->
+<!--                 projectDatanonESTMANonUK = projectDataNonEstma, -->
+<!--                 entityDatanonESTMANonUK = entityData %>% filter(sourceID %in% nonESTMAIDs)),  -->
+<!--            "Workshop Data/Don Data/nonESTMAnonUK.xlsx") -->
+
+<!-- ``` -->
+
+<!-- ```{r, message=FALSE} -->
+<!-- eitiData <- read_csv(url("https://www.resourcedata.org/dataset/7dd3c8b6-9256-4e34-9360-1519efd87407/resource/4e4462a5-6029-4ae3-a4cc-66ad6ccc6d70/download/revenues-received-by-government-agencies.csv")) -->
+
+<!-- eitiCountryList <- eitiData %>%  -->
+<!--     select(country) %>%  -->
+<!--     unique() %>%  -->
+<!--     mutate(country = cleanValues(country, "Country")) %>%  -->
+<!--     unlist(use.names = F) -->
+
+<!-- nonESTMAIDs <- sourceData %>%  -->
+<!--     filter(!reportingCountry %in% c("Canada")) %>%  -->
+<!--     select(sourceID) %>%  -->
+<!--     unlist(use.names = F) -->
+
+<!-- projectDataNonEstma <- projectDataUpdated %>%  -->
+<!--     filter(sourceID %in% nonESTMAIDs) %>%  -->
+<!--     filter(!projectCountry %in% eitiCountryList) %>%  -->
+<!--     select(-nrgiNotes) %>%  -->
+<!--     left_join(., currentSecondary, by = c("projectCountry", "projectName" = "finalName")) %>%  -->
+<!--     select(-snlPropID) -->
+
+<!-- write_xlsx(list(NonEstmaNonEitiSources = sourceData %>% filter(sourceID %in% projectDataNonEstma$sourceID), -->
+<!--                 projectDataNonEstmaNonEiti = projectDataNonEstma, -->
+<!--                 entityDataNonEstmaNonEiti = entityData %>% filter(sourceID %in% projectDataNonEstma$sourceID)),  -->
+<!--            "Workshop Data/Don Data/nonESTMAnonEITI.xlsx") -->
+<!-- ``` -->
+
+<!-- ```{r} -->
+<!-- eitiData <- read_csv(url("https://www.resourcedata.org/dataset/7dd3c8b6-9256-4e34-9360-1519efd87407/resource/4e4462a5-6029-4ae3-a4cc-66ad6ccc6d70/download/revenues-received-by-government-agencies.csv")) -->
+
+<!-- eitiCountryList <- eitiData %>%  -->
+<!--     select(country) %>%  -->
+<!--     unique() %>%  -->
+<!--     mutate(country = cleanValues(country, "Country")) %>%  -->
+<!--     unlist(use.names = F) -->
+
+<!-- nonESTMAIDs <- sourceData %>%  -->
+<!--     filter(!reportingCountry %in% c("Canada")) %>%  -->
+<!--     select(sourceID) %>%  -->
+<!--     unlist(use.names = F) -->
+
+<!-- projectDataNonEstma <- projectDataUpdated %>%  -->
+<!--     filter(sourceID %in% nonESTMAIDs) %>%  -->
+<!--     filter(projectCountry %in% eitiCountryList) %>%  -->
+<!--     select(-nrgiNotes) %>%  -->
+<!--     left_join(., currentSecondary, by = c("projectCountry", "projectName" = "finalName")) %>%  -->
+<!--     select(-snlPropID) -->
+
+<!-- write_xlsx(list(NonEstmaEitiSources = sourceData %>% filter(sourceID %in% projectDataNonEstma$sourceID), -->
+<!--                 projectDataNonEstmaEiti = projectDataNonEstma, -->
+<!--                 entityDataNonEstmaEiti = entityData %>% filter(sourceID %in% projectDataNonEstma$sourceID)),  -->
+<!--            "Workshop Data/Don Data/nonESTMAEITI.xlsx") -->
+<!-- ``` -->
+

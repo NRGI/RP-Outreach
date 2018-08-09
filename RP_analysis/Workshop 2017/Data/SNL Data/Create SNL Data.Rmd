@@ -1,0 +1,80 @@
+---
+title: "Generate SNL Data"
+output: 
+  html_notebook:
+    number_sections: yes
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    theme: cosmo
+    highlight: kate
+    smart: true
+    code_folding: hide
+date: '`r Sys.Date()`'
+---
+This file generates the SNL data. The data from SNL was downloaded in chunks (active + inactive) for different topics, since there was a limit on the number of rows of data that can be downloaded. This file combines these different data into a single file and saves it.
+
+```{r, error=FALSE, message=FALSE, results='hide'}
+library(tidyverse); library(readxl)
+camelCase = function(sv, upper=FALSE, capIsNew=FALSE, alreadyTrimmed=FALSE) {
+  if (!is.character(sv)) stop("'sv' must be a string vector")
+  if (!alreadyTrimmed) sv = gsub("[[:space:]]*$", "", gsub("^[[:space:]]*", "", sv))
+  if (capIsNew) {
+    sv = gsub("([A-Z])", " \\1", sv)
+    sv = gsub("^[[:space:]]", "", sv)
+    sv = tolower(sv)
+  }
+  apart = strsplit(sv, split="[[:space:][:punct:]]")
+  apart = lapply(apart, tolower)
+  capitalize = function(x) paste0(toupper(substring(x,1,1)), substring(x,2))
+  if (upper) {
+    apart = lapply(apart, capitalize)
+  } else {
+    apart = lapply(apart, function(x) c(x[1], capitalize(x[-1])))
+  }
+  return(sapply(apart, paste, collapse=""))
+}
+snlCmdtyLocData <- read_excel("SNL Downloads/snl_all_comdty_location.xls", sheet = 1) %>% 
+    mutate_at(16:17, as.character) %>% 
+    bind_rows(., read_excel("SNL Downloads/snl_all_comdty_location_inactive.xls", sheet = 1)) %>% 
+    select(1, 14:18, 2:13, 19:22)
+        #%>% 
+    #select(-(`Property Name`))
+
+snlOwnership <- read_excel("SNL Downloads/snl_ownership.xls", sheet = 1) %>% 
+    bind_rows(., read_excel("SNL Downloads/snl_ownership_inactive.xls", sheet = 1)) %>% 
+    select(-(`Property Name`))
+
+snlFinancing <- read_excel("SNL Downloads/snl_financing.xls", sheet = 1) %>% 
+    bind_rows(., read_excel("SNL Downloads/snl_financing_inactive.xls", sheet = 1)) %>% 
+    gather(key = "round", value = "amt", -(1:2)) %>% 
+    mutate(amt = as.numeric(amt)) %>% 
+    group_by(`Property ID`) %>% 
+    summarise(totalFinance = sum(amt, na.rm = T)) %>% 
+    mutate(totalFinance = ifelse(totalFinance == 0, NA, totalFinance))
+
+snlProduction <- read_excel("SNL Downloads/snl_production.xls", sheet = 1) %>% 
+    bind_rows(., read_excel("SNL Downloads/snl_production_inactive.xls", sheet = 1)) %>% 
+    gather(key = "name", value = "value", -(1:2)) %>%
+    mutate(value = as.numeric(value)) %>% 
+    filter(!is.na(value)) %>%
+    arrange(`Property ID`, desc(value)) %>% 
+    group_by(`Property ID`) %>% 
+    filter(row_number() < 3) %>% 
+    summarise(avgProduction = mean(value, na.rm = T))
+
+snlData <- left_join(snlCmdtyLocData, snlOwnership, by = "Property ID") %>% 
+    left_join(., snlFinancing, by = "Property ID") %>% 
+    left_join(., snlProduction, by = "Property ID")
+
+##remove escape chars from the names
+names(snlData) <- str_replace_all(names(snlData), "[[:cntrl:]]", " ") %>% 
+    str_replace(., "  ", " ") %>% 
+    str_replace_all(., " ", "_") %>% 
+    camelCase()
+
+##save the data for later use
+snlData <- snlData %>% 
+    arrange(countryName, propertyName, stateProvince)
+write_csv(snlData, "Clean Data/snlCompiled.csv")
+```

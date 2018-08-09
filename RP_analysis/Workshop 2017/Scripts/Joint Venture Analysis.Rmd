@@ -1,0 +1,65 @@
+---
+title: "Joint Ventures Starter Piece"
+author: "HS"
+output: 
+  html_notebook:
+    number_sections: yes
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    theme: cosmo
+    highlight: kate
+    smart: true
+    code_folding: hide
+date: '`r Sys.Date()`'
+---
+
+##Summary
+This file explores the payment proportions for joint ventures based on charts the Alex Malden made for Nigeria. The JVs were identified based on name matches (so only those that had matching names were identified). Several projects had general names like "Alberta" or "British Columbia" these were taken out from the JV file (however, some of these might still be non-specific project names that are not JVs). Note that the names in the dataset are often different from those in the actual filed reports because they were manually reconciled (thanks to Elliot Tan!).
+
+```{r, error=FALSE, message=FALSE, results='hide'}
+rm(list = ls())
+library(tidyverse); library(ggthemes); library(viridis)
+
+jvProjects <- read_csv("Temp Data/JV Data/jv.csv") %>% 
+    select(projectCountry, projectName, reportingCompany, paymentType, projectPayment, proportionPay) %>% 
+    gather(key = "valueType", value = "value", projectPayment, proportionPay) %>% 
+    mutate(valueType = factor(valueType, levels = c("proportionPay", "projectPayment"), labels = c("Payment Proportion", "Actual Payment (in USD)"))) %>% 
+    arrange(projectCountry, projectName, reportingCompany)
+
+```
+
+The charts below compare the payments made by joint venture partners. Ideally JV partners should have similar payment type profiles i.e the proportions by payment type should look the similar.
+```{r}
+jvNames <- jvProjects %>% 
+    distinct(projectCountry, projectName) %>% 
+    arrange(projectCountry, projectName)
+plotList <- vector("list", length(jvNames$projectName)) 
+
+for(i in 1:length(jvNames$projectName)){
+    chartData <- jvProjects %>% 
+      filter(projectName == jvNames$projectName[i])
+    
+    titleName <- paste0(jvNames$projectName[i], ", ", jvNames$projectCountry[i])
+    
+    plotList[[i]] <- ggplot(chartData, aes(y = value, x = reportingCompany, fill = factor(paymentType))) + 
+              geom_bar(stat = "identity", position = "stack") + 
+              coord_flip() +
+              facet_wrap(~valueType, scales = "free_x") +
+              theme_tufte() +
+              labs(title = titleName,
+                   x = "Reporting Company") +
+              scale_fill_viridis(discrete = T) +
+              theme(
+                  legend.position = "top",
+                  legend.title = element_blank(),
+                  axis.title.x = element_blank()
+                  )
+}
+
+for(i in 1:length(plotList)){
+    print(plotList[[i]])
+}
+
+```
+

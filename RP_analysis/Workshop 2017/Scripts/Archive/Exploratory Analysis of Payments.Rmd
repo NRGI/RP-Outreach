@@ -1,0 +1,414 @@
+---
+title: "Exploratory Payment Data Analysis"
+author: 
+- "Natural Resource Governance Institute"
+- "Hari Subhash"
+output:
+  html_notebook:
+    code_folding: hide
+    highlight: kate
+    number_sections: yes
+    smart: yes
+    theme: cosmo
+    toc: yes
+    toc_depth: 3
+    toc_float: yes
+  pdf_document:
+    toc: yes
+    toc_depth: '3'
+date: '`r Sys.Date()`'
+---
+
+##Summary
+This is a brief exploratory analysis of the current scraped payment data. The analysis uses the raw data, while I reconcile some of the variable values, it still likely contains some errors that are currently being resolved manually (separately). The payments are all in USD.
+
+**Potential Issues**
+
+1. Not clear if the payment rows in the data have been aggregated or whether they are actual individual payouts. From looking at the data, it seems that it might be a combination of the two. This makes estimates of the payment distribution and characteristics like the average size of individual payouts less accurate.
+2. Lack of adequate secondary data. For instance, we currently don't have the data that categorizes projects by their commodity types, this makes it harder to analyze payment types by commodity. For instance, some of the higher levels of production entitlement values might be linked to oil and gas projects and not mining, however, we don't have the data to confirm this (yet!). We are currently collecting and cleaning several sets of secondary data (companies, projects, govt. entities, commodities etc.), we will have these ready over the course of the next year.
+
+##Get the data ready
+ So far, we have processed a total of **573** sources, with **5998** project payments and **6101** entity payments, these are stored on [Google drive](https://docs.google.com/spreadsheets/d/1uDEnODEajMog0mPdem6OcOB-oTgKA4p1AKwJFWkEF64/edit?usp=sharing). This is the file that we use for this analysis. However, please note that this is a copy of the data as it entered our cleaning pipeline and is therefore not fully cleaned, while I reconcile some of the variables during this analysis, there are several cases in the data that are currently being manually reviewed and cleaned (mostly small errors). I have included these because the errors being manually reconciled are not of particular consequence for this exploratory piece.
+
+```{r, message=FALSE, echo=FALSE, error=FALSE}
+rm(list = ls())
+library(tidyverse); library(googlesheets); library(readxl); library(stringr); library(ggthemes); library(kableExtra); library(knitr); library(viridis)
+
+gs_auth("token.RDS", new_user = TRUE, cache = F)
+allSource <- gs_title("All data 2.0") %>% 
+    gs_read(ws = "Source")
+allProject <- gs_title("All data 2.0") %>% 
+    gs_read(ws = "Project")
+allEntity <- gs_title("All data 2.0") %>% 
+    gs_read(ws = "Entity")
+
+masterPath <- paste("../../Data/Payment Data Pipeline/Data/Pipeline/Review Files/Variable Review Files/master-", Sys.time(), ".xlsx", sep = "")
+lookupPath <- paste("../../Data/Payment Data Pipeline/Data/Pipeline/Review Files/Variable Review Files/lookUp-", Sys.time(), ".xlsx", sep = "")
+gs_title("Master Lists") %>% 
+        gs_download(to = masterPath, overwrite = T)
+
+gs_title("Lookup Tables") %>% 
+        gs_download(to = lookupPath, overwrite = T)
+
+cleanValues <- function(rawVector, lookupPath, variable){
+    lookupTable <- read_xlsx(lookupPath, sheet = variable) %>% 
+        filter(rawValue != "x")
+    
+    lapply(rawVector, function (x) {
+        if(x %in% lookupTable$rawValue){
+            lookupTable[lookupTable$rawValue == x, ]$matchedValue
+            } else {
+                x
+                }
+        }) %>% 
+        unlist()
+}
+masterCountry <- read_xlsx(masterPath, sheet = "Country")
+masterPayment <- read_xlsx(masterPath, sheet = "Payment Types")
+
+exchangeRates <- read_csv("../../Data/Payment Data Pipeline/Data/Misc/Exchange Rate/cleanExchangeRates.csv") %>% 
+    distinct(currCode, year, rate) %>% 
+    arrange(currCode, year)
+source("../../Data/Payment Data Pipeline/Scripts Data Pipeline/Functions/convertToUSD.R")
+sourceRates <- allSource %>% 
+    filter(sourceID != "x") %>% 
+    select(sourceID, reportStartDate, reportEndDate, reportCurrency) %>% 
+    rowwise() %>% 
+    mutate(finalRate = generateExchangeRate(reportStartDate, reportEndDate, reportCurrency),
+           exchangeRateNotes = ifelse(finalRate == 1, "Payments were reported in USD", paste("Final exchange rate used to convert to USD from ", reportCurrency, " : ",round(finalRate, 2), sep = ""))) %>% 
+    select(sourceID, reportCurrency, finalRate, exchangeRateNotes) %>% 
+    mutate(finalRate = ifelse(is.na(finalRate), 0.75448942, finalRate))
+
+priorityCountries <- c("Colombia", "Guinea", "Mongolia", "Tanzania, United Republic of", "Congo, the Democratic Republic of the", "Indonesia", "Myanmar", "Tunisia", "Ghana")
+```
+
+Before we start we need do some basic cleaning by reconciling the country names and payments type values and converting payments to USD. This is to make sure that the same country (or payment type) is not spelled in multiple ways. There are a few values that could not be reconciled (since they were manually corrected) (131 in project payments and 4 in entity payments). These are removed from the data.
+
+```{r, echo=FALSE}
+allProject <- allProject %>% 
+    mutate(projectCountry = cleanValues(projectCountry, lookupPath, "Country"), 
+           paymentType = cleanValues(paymentType, lookupPath, "Payment Types")) %>%
+    filter(projectCountry %in% masterCountry$master) %>% 
+    filter(paymentType %in% masterPayment$master)
+
+allEntity <- allEntity %>% 
+    mutate(entityCountry = cleanValues(entityCountry, lookupPath, "Country"),
+           paymentType = cleanValues(paymentType, lookupPath, "Payment Types")) %>% 
+    filter(entityCountry %in% masterCountry$master) %>% 
+    filter(paymentType %in% masterPayment$master)
+    
+```
+
+Each reported currency is also matched to its corresponding exchange rate, which is calculated using a weighted average of the number of months per year for each reporting period. For instance, if a reporting period is from Sept-2015 to June-2016, it uses `(4 * exchRate2015 + 6 * exchRate2016)/10`. Now the data is ready for analysis.
+```{r, echo=FALSE}
+allProject <- allProject %>% 
+    left_join(., sourceRates, by = "sourceID") %>% 
+    mutate(projectPayment = as.numeric(projectPayment) * finalRate) %>% 
+    select(-finalRate, -exchangeRateNotes, -reportCurrency)
+allEntity <- allEntity %>% 
+    left_join(., sourceRates, by = "sourceID") %>% 
+    mutate(entityPayment = as.numeric(entityPayment) * finalRate) %>% 
+    select(-finalRate, -exchangeRateNotes, -reportCurrency)
+```
+
+##Exploratory Analysis
+###Explore payments by type for all countries
+```{r, echo=FALSE}
+thresholds <- c(0.05, 0.95)
+projLim <- quantile(allProject$projectPayment, probs = thresholds, na.rm = T)
+entLim <- quantile(allEntity$entityPayment, probs = thresholds, na.rm = T)
+
+noOutProject <- allProject %>% 
+    ungroup() %>% 
+    filter(projectPayment > projLim[1] & projectPayment < projLim[2])
+noOutEntity <- allEntity %>% 
+    ungroup() %>% 
+    filter(entityPayment > entLim[1] & entityPayment < projLim[2])
+
+allPayments <- bind_rows(allProject %>%
+                             select(paymentType, payment = projectPayment) %>% 
+                             mutate(type = "Project Payments"), allEntity %>%
+                             select(paymentType, payment = entityPayment) %>% 
+                             mutate(type = "Entity Payments   ")) %>% 
+    group_by(paymentType, type) %>% 
+    summarise(totalPayments = sum(payment), nPayments = n())
+
+noOutPayments <- bind_rows(noOutProject %>%
+                             select(paymentType, payment = projectPayment) %>% 
+                             mutate(type = "Project Payments"), noOutEntity %>%
+                             select(paymentType, payment = entityPayment) %>% 
+                             mutate(type = "Entity Payments   ")) %>% 
+    group_by(paymentType, type) %>% 
+    summarise(totalPayments = sum(payment), nPayments = n())
+```
+
+The chart below shows the split by payment type for all countries. Taxes constitute a significant proportion of resource revenues, both in terms of number of payments and amounts. However, production entitlements contribute disproportionately to payment totals despite lower number of instances, while Fees are the opposite.
+
+**Note** : The numbers on top of each bar indicate the number of rows of that type in the data.
+
+**Note** : Its a bit tricky to read too much into the number of payments since its not clear whether companies are reporting each individual payment instance, moreover, there might be a bias towards aggregating certain types of payments like production entitlements while reporting compared to certain others like fees and taxes (particularly since entitlements often need to be converted to currency from physical goods like barrels of oil.)
+```{r, fig.show='hold',fig.align='center', fig.width=12}
+ggplot(allPayments, aes(y = totalPayments, x = paymentType, fill = type)) + 
+    geom_bar(stat = "identity", position = "dodge") +
+    geom_text(aes(label = nPayments), position = position_dodge(width = 0.75), vjust = -0.8, size = 4) +
+    scale_x_discrete(labels = function (paymentType) str_wrap(paymentType, width = 12)) +
+    theme_tufte() +
+    scale_fill_fivethirtyeight() +
+    labs(y = "Total Payments (in USD)", title = "Payment Totals (all Countries)") +
+    theme(
+                axis.text.x = element_text(size = 8),
+                axis.title.x = element_blank(),
+                axis.title.y = element_text(size = 12),
+                legend.text = element_text(size = 12),
+                legend.position = "top",
+                legend.title = element_blank(),
+                title = element_text(size = 16)
+        )
+```
+
+The table below illustrates this in greater detail. The table is sorted in descending order of mean payments and it is clear that the average payments for production entitlements are significantly higher than other payment types (more than 100 times the lowest category Fees).
+
+**Note** : All values are in millions USD
+```{r, message=FALSE, error=FALSE}
+allProject %>% 
+    group_by(paymentType) %>% 
+    summarise(nPayments = n(), meanPayments = mean(projectPayment)/1000000, totalPayments = sum(projectPayment)/1000000,  maxPayment = max(projectPayment)/1000000) %>% 
+    arrange(desc(meanPayments)) %>% 
+    kable(., digits = 2) %>% 
+    kable_styling(bootstrap_options = c("striped", "hover"))
+```
+
+The chart below combines a [boxplot](https://flowingdata.com/2008/02/15/how-to-read-and-use-a-box-and-whisker-plot/) with a [jitter plot](http://blogs.sas.com/content/iml/2011/07/05/jittering-to-prevent-overplotting-in-statistical-graphics.html) to show the spread and type of payments for values that are less than 50 million USD. The box-plot gives an indication of the spread of payment values, for instance, production entitlements are the most spread out while Fees seems to be the least (the bigger the box the more spread out the data). The jitter plot gives a sense for the level of payment values that dominate each payment type. The payment values are classified as high, medium-high, medium-small and small. Taxes and Royalties for instance, seem to have a large proportion of high value payouts. Fees also seem to have quite a few high value payouts although this is balanced by the greater number of low value payments (the box plot gives an indication of the spread, and it is centered on extremely small values, indicating that small values predominate this category)
+
+**Note** : The chart does not include Others or Dividends category since they were too few in number to visualize meaningfully.
+```{r, message=FALSE, fig.show='hold',fig.align='center', fig.width=12, fig.height=12}
+thresholdVal <- 50000000
+projectPayLims <- quantile(allProject$projectPayment[abs(allProject$projectPayment) < thresholdVal], c(0.25, 0.5, 0.75))
+
+allProject %>% 
+    filter(abs(projectPayment) < thresholdVal) %>% 
+    filter(!paymentType %in% c("Dividends", "Other")) %>% 
+    group_by(paymentType) %>% 
+    mutate(paySize = case_when(
+        projectPayment < projectPayLims[1] ~ "Small Payments",
+        projectPayment >= projectPayLims[1] & projectPayment < projectPayLims[2] ~ "Medium Small Payments",
+        projectPayment >= projectPayLims[2] & projectPayment < projectPayLims[3] ~ "Medium High Payments",
+        projectPayment > projectPayLims[3] ~ "High Payments"
+    )) %>% 
+    ungroup() %>%
+    ggplot(aes(y = projectPayment, x = paymentType)) +
+    geom_jitter(aes(color = factor(paySize))) +
+    geom_boxplot(alpha = 0.3, colour = "orange", outlier.colour =  NA) +
+    scale_x_discrete(labels = function (paymentType) str_wrap(paymentType, width = 12)) +
+    scale_color_viridis(discrete = T, alpha = 0.5) +
+    labs(y = "Payments (in USD)", title = paste("Spread of payments below ", thresholdVal/1000000, " mill. USD"), sep = "") +
+    theme_tufte() +
+    theme(legend.title = element_blank(), 
+          legend.position = "top",
+          axis.title.x = element_blank(),
+          title = element_text(size = 16),
+          legend.text = element_text(size = 12)
+          )
+```
+The [kernel density plot](https://en.wikipedia.org/wiki/Kernel_density_estimation) below further illustrates the nature of payment values for each type of payment same point. The light blue line indicates the median while the orange line indicates the mean. The charts where these are separated more indicate greater spread. So, for instance, you would notice that the payments are most spread out for production entitlements and the least spread out for Fees. 
+
+**Note** : The data for this chart does not contain outliers (to avoid long tails). Additionally the scales for this chart are set independently for each payment type, this makes comparisons between the different types a bit trickier than the previous chart which used the same scales.
+```{r, fig.height=8, fig.width=12, fig.show='hold',fig.align='center'}
+noOutProject %>% 
+    filter(!paymentType %in% c("Dividends", "Other")) %>% 
+    group_by(paymentType) %>% 
+    mutate(meanPay = mean(projectPayment),
+           midPay = median(projectPayment)) %>% 
+    ungroup() %>% 
+    ggplot(., aes(x = projectPayment)) +
+    geom_density() +
+    geom_vline(aes(xintercept = midPay), colour = "lightblue") +
+    geom_vline(aes(xintercept = meanPay), colour = "orange") +
+    facet_wrap(~paymentType, nrow = 2, scales = "free", labeller = label_wrap_gen(width = 32, multi_line = TRUE)) +
+    theme_tufte() +
+    labs(title = "Project payments density by type (no outliers)") +
+    theme(
+                axis.text.x = element_text(size = 8),
+                axis.title.x = element_blank(),
+                axis.title.y = element_blank(),
+                strip.text.x = element_text(size = 12),
+                title = element_text(size = 16)
+        )
+
+```
+<div style="background-color:#FFD701">
+**Section Summary**
+
+1. Taxes are the predominant category both in terms of number of payouts and total amounts
+2. The average payout from production entitlements is much higher than other categories
+3. While Fees has an extremely high number of payments, however the total value is pretty low, indicating very low average payouts.
+</div>
+
+
+###Explore top countries
+Next lets look at some of the top countries in terms of payment totals. There are 9 countries that have received more than 5 billion USD in project payment.
+
+**Note** : All values are in millions USD
+```{r, message=FALSE, error=FALSE}
+topCountries <- allProject %>% 
+    group_by(projectCountry) %>% 
+    mutate(totalPay = sum(projectPayment)) %>% 
+    filter(totalPay > 5000000000) %>% 
+    ungroup()
+
+topCountries %>% 
+    group_by(projectCountry) %>% 
+    summarise(nProjects = n_distinct(projectName), nCompanies = n_distinct(reportingCompany), nPayments = n(), meanPayment = mean(projectPayment)/1000000, totalPayment = sum(projectPayment)/1000000, maxPayment = max(projectPayment)/1000000) %>% 
+    arrange(desc(totalPayment)) %>% 
+    kable(., digits = 2) %>% 
+    kable_styling(bootstrap_options = c("striped", "hover"))
+```
+
+The table illustrates a high degree of heterogeneity in project payment characteristics. Most of this variation is driven by the number of companies that operate in a country. Canada for instance, has the lowest value for total payment in this list, however, it has the highest number of companies that are active (211), while UAE is the opposite (high payout but just three companies - Total, BP and Abu Dhabi Marine). There are a few caveats however, some of the variation in the number of reporting companies might be caused by incomplete reporting (for instance, ESTMA disclosures probably introduce a positive bias that boosts the number of reporting companies in Canada), and second our company data does not account for corporate groupings yet, so several of the companies in Canada that are listed separately might actually belong to a smaller subset of large corporate groups.That being said, a smaller number of extractives sector companies has effects on competition, political economy and revenue volatility of a country. 
+
+In general, a lack of competition has implications for firm entry, efficiency and innovation, albeit the first effect - firm entry - might not be that big a concern given the higher barriers to entry in the extractive sector in general (because of greater technological and fixed asset costs). However, a lack of competition can definitely have greater impacts on efficiency, since firms have lower incentives to innovate or improve performance.  Reliance on a smaller set of companies for resource revenue also raises political economy challenges. Without adequate safegaurds these companies can wield a great deal of influence over decision making in these countries that could have negative social consequences. Finally, there are economic risks from having a large part of a governments revenues tied to a few corporate entities, since a single firms financial problems can have a far greater impact on goverments budget.
+
+The figure below shows the same using a bar chart.
+
+**Note** : The numbers on top of the bars indicate the number of payments made in the data.
+```{r, fig.show='hold', fig.align='center', fig.width=12}
+topCountries  %>% 
+    group_by(projectCountry, paymentType) %>% 
+    summarise(totalPay = sum(projectPayment), nPayments = n()) %>% 
+    ungroup() %>% 
+    ggplot(., aes(x = projectCountry, y = totalPay, fill = paymentType)) +
+    geom_bar(stat = "identity", position = "dodge") +
+    geom_text(aes(label = nPayments), vjust = -0.8, position = position_dodge(width = 0.95), size = 3) +
+    theme_tufte() +
+    scale_x_discrete(labels = function (paymentType) str_wrap(paymentType, width = 12)) +
+    scale_fill_viridis(discrete = T) +
+    labs(y = "Total Payments (in USD)", title = "Payments by type for top 9 countries in terms of payout") +
+    theme(
+            axis.text.x = element_text(size = 12),
+            axis.title.x = element_blank(),
+            axis.title.y = element_text(size = 12),
+            legend.position = "top",
+            legend.title = element_blank(),
+            title = element_text(size = 16),
+            legend.text = element_text(size = 12)
+        )
+```
+
+<div style="background-color:#FFD701">
+**Section Summary**
+
+1. Several countries rely on just a few firms for resource payments increasing the political economy and revenue risks.
+</div>
+
+
+###Priority Countries
+Now, lets explore the priority countries in our data. The table below shows the payment characteristics for priority countries. In terms of total payment values, Indonesia clearly dominates, with extremely high payout values (most of these are production entitlements).
+
+**Note** : All values are in millions USD
+```{r, message=FALSE, error=FALSE}
+allCounts <- allProject %>% 
+    mutate(country = "All Countries", nProject = n_distinct(projectName), nCompanies = n_distinct(reportingCompany), nPayments = n(), avgPayment = mean(projectPayment)/1000000, totalPayment = sum(projectPayment)/1000000, maxPayment = max(projectPayment)/1000000) %>% 
+    select(9:15) %>% 
+    filter(row_number() == 1)
+priorityCounts <- allProject %>% 
+    filter(projectCountry %in% priorityCountries) %>% 
+    group_by(projectCountry) %>% 
+    summarise(nProject = n_distinct(projectName), nCompanies = n_distinct(reportingCompany), nPayments = n(), avgPayment = mean(projectPayment)/1000000, totalPayment = sum(projectPayment)/1000000, maxPayment = max(projectPayment)/1000000) %>% 
+    select(country = projectCountry, 2:7)
+
+bind_rows(allCounts, priorityCounts) %>% 
+    arrange(desc(totalPayment)) %>% 
+    kable(., digits = 2) %>% 
+    kable_styling(bootstrap_options = c("striped", "hover"))
+
+```
+
+The chart below splits the payments for each of the priority countries. Indonesia clearly dominates, with extremely high production entitlement payouts.
+
+**Note** : The numbers on top of the bars indicate the number of payments made in the data.
+```{r, fig.show='hold', fig.align='center', fig.width=12}
+allProject %>% 
+    filter(projectCountry %in% priorityCountries) %>% 
+    group_by(projectCountry, paymentType) %>% 
+    summarise(totalPay = sum(projectPayment), nPayments = n()) %>% 
+    ungroup() %>% 
+    ggplot(., aes(x = projectCountry, y = totalPay, fill = paymentType)) +
+    geom_bar(stat = "identity", position = "dodge") +
+    geom_text(aes(label = nPayments), vjust = -0.8, position = position_dodge(width = 0.95), size = 3) +
+    theme_tufte() +
+    scale_x_discrete(labels = function (paymentType) str_wrap(paymentType, width = 12)) +
+    scale_fill_viridis(discrete = T) +
+    labs(y = "Total Payments (in USD)", title = "Payments by type (priority countries with outliers)") +
+    theme(
+            axis.text.x = element_text(size = 12),
+            axis.title.x = element_blank(),
+            axis.title.y = element_text(size = 12),
+            legend.position = "top",
+            legend.title = element_blank(),
+            title = element_text(size = 16),
+            legend.text = element_text(size = 12)
+        )
+```
+
+
+<div style="background-color:#FFD701">
+**Section Summary**
+
+1. Indonesia dominates payments amongst priority countries with very high production entitlement payouts.
+2. 
+</div>
+###Companies
+Lets now look at some of the top companies in terms number of payouts and payment amounts. First lets look at the companies with some of the highest number of payment rows. The table below shows the companies that have made more than 1 billion USD in payments in our data. The table is sorted by total payouts.
+
+**Note** : All values are in millions USD
+```{r, message=FALSE, error=FALSE}
+companyData <- allProject %>% 
+    group_by(reportingCompany) %>% 
+    filter(sum(projectPayment) > 1000000000) %>% 
+    ungroup()
+
+companyData %>% 
+    group_by(reportingCompany) %>% 
+    summarise(nObs = n(), nCountries = n_distinct(projectCountry), nProjects = n_distinct(projectName), meanPayment = mean(projectPayment)/1000000, totalPayment = sum(projectPayment)/1000000, maxPayout = max(projectPayment)/1000000) %>% 
+    ungroup() %>% 
+    arrange(desc(totalPayment)) %>% 
+    kable(., digits = 2) %>% 
+    kable_styling(bootstrap_options = c("striped", "hover"))
+    
+```
+
+The chart below reemphasizes the fact that most of the large payouts are happening as production entitlements, followed by taxes.
+
+**Note** :  Only includes the companies that have a presence in more than 10 countries. The numbers at the top of the bar indicate the number of payments.
+```{r, fig.show='hold', fig.align='center', fig.width=12}
+companyData %>% 
+    group_by(reportingCompany) %>% 
+    filter(n_distinct(projectCountry) > 10) %>% 
+    group_by(reportingCompany, paymentType) %>% 
+    summarise(totalPayment = sum(projectPayment)/1000000, maxPayout = max(projectPayment)/1000000, nPayments = n()) %>% 
+    ungroup() %>%
+    ggplot(., aes(x = reportingCompany, y = totalPayment, fill = paymentType)) +
+    geom_bar(stat = "identity", position = "dodge") +
+    geom_text(aes(label = nPayments), vjust = -0.8, position = position_dodge(width = 0.95), size = 3) +
+    theme_tufte() +
+    scale_x_discrete(labels = function (paymentType) str_wrap(paymentType, width = 12)) +
+    scale_fill_viridis(discrete = T) +
+    labs(y = "Total Payments (in USD)", title = "Payments by type for companies with high payouts") +
+    theme(
+            axis.text.x = element_text(size = 12),
+            axis.title.x = element_blank(),
+            axis.title.y = element_text(size = 12),
+            legend.position = "top",
+            legend.title = element_blank(),
+            title = element_text(size = 16),
+            legend.text = element_text(size = 12)
+        )
+    
+```
+
+<div style="background-color:#FFD701">
+**Section Summary**
+
+1. Large companies pay significant proportion of their revenues as taxes or production entitlements
+
+</div>

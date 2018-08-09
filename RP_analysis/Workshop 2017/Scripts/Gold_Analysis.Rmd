@@ -1,0 +1,329 @@
+---
+title: "Gold Mines Primer : Exploratory analysis of Gold Mine data"
+output: 
+  html_notebook:
+    code_folding: hide
+    highlight: kate
+    number_sections: yes
+    theme: cosmo
+    toc: yes
+    toc_float: yes
+date: '`r Sys.Date()`'
+---
+##tl;dr
+
+1. The average mandatory disclosure payments are in line with the development stages i.e. operating mines have payments values and types that are different (and higher) from non-operating mines.
+2. Average payments seem to be higher for projects that face higher levels of risk (political, operation, security and terror). These trends are magnified for security and terror risks.
+3. There are differences in average payout patterns across different global regions.
+4. There are differences in average payout patterns across different income classifications.
+5. Countries with lower RGI scores seem to have higher payouts for gold projects
+
+**Caveats :** All the charts are purely exploratory and should not be used for causal inference. In general, average payouts from gold mines seems to be higher for low income countries with poor RGI scores, this could however, be influenced by potentially larger mine sizes in these countries. Additional analysis of mine characteristics for different income levels would help us understand this better.
+
+**Note :** This is a living document, so it will be updated with new charts over time.
+
+##Data Setup
+This analysis combines project payments data from mandatory disclosures with snl data. The data is specific to gold mines (identified as the primary commodity). In addition, I have added some world bank data on country classifications (region and income) and RGI scores.
+
+First lets load all the relevant datasets and do some basic cleaning.  
+
+1. The snl data uses long and unweildy names these are renamed in camelCase. 
+2. The age of a mine is calculated as the difference between variable `Actual Startup Year` and 2018.
+3. The `Development Stages` variable is reordered based on the lifecycle i.e. from pre-production to closed.
+4. Finally the payment data for projects is summarised to the project + payment type level. So every country has a list of unique projects with total payments recorded for each payment type. This data is used to create charts that are at the level of projects. I also remove one project payment value that was negative and 12 payment types that could not be reliably identified.
+
+```{r, error=FALSE, message=FALSE, results='hide'}
+rm(list = setdiff(ls(), c("rgiScores", "wbCountryData")))
+library(tidyverse); library(ggthemes); library(viridis); library(readxl); library(stringr); library(tidyverse); library(wbstats)
+source("../../Functions/Cleaning Functions/Reconcile Values Using Lookups.R")
+source("../../Functions/Cleaning Functions/Clean Chars.R")
+source("../../Functions/Pipeline Functions/Add Raw Vals to Reconcile Sheet.R")
+source("../../Functions/Pipeline Functions/Update Lookup using Reconcile Sheet.R")
+
+##priority project
+prioproj <- c(36661, 29533, 30456, 32409, 26514, 29025, 28797, 27434, 29638, 26559, 29640, 29496, 31481, 31952, 28530, 25680, 29578, 27160, 30452, 28450)
+
+##load the gold data and remove variables not relevant for this analysis
+goldData <- read_xlsx("Workshop Data/Gold Data/gold as primary commodity.xlsx", sheet = "goldProjects") 
+
+# %>% 
+#     select(-commodity, -lat, -lon, -locationType, -`Country Name`, -`Operator Common Name`, -`Owner Common Name`, -`Operator HQ`, -`Operator State`, -`Operator Location`, -`Operator Zip Code`, -`Operator Postal Code`, -`Operator Ticker (Primary)`, -`Operator Exchange (Primary)`, -`Owner HQ`, -`Owner State`, -`Owner Zip Code`, -`Owner Postal Code`, -`Ticker (Primary)`, -`Exchange (Primary)`) ##removing a few variables that are common between the snl and secondary data collected by Elliot (preference given to SNL)
+
+##rename the variables using camelCase
+# names(goldData) <- c("sourceID", "reportingCompany", "reportYear", "projectCountry", "projectName", "paymentType", "projectPayment",  "devStage", "activityStatus", "sourceDate", "primaryCommodity", "allCommodities", "mineType1", "mineType2", "mineType3", "actStartupYear", "reservesTonnes", "reservesValue", "state", "lat", "lon", "coordAccuracy", "politicalRisk", "operationalRisk", "securityRisk", "terrorRisk", "operator", "operatorValue", "operatorCountry", "owner", "ownerType", "ownerValue", "ownerEquity",  "ownerCountry", "totalFinance", "avgProduction")
+
+##load source data
+goldSources <- read_xlsx("Workshop Data/Gold Data/gold as primary commodity.xlsx", sheet = "goldSources")
+
+##create the age variable and factor the development stage
+goldData <- goldData %>% 
+    mutate(age = (2018 - as.numeric(actualStartUpYear))) %>% 
+    mutate(developmentStage = factor(developmentStage, levels = c("Target Outline", "Grassroots", "Prefeas/Scoping", "Feasibility", "Feasibility Started", "Feasibility Complete", "Exploration", "Advanced Exploration", "Construction Planned", "Construction Started", "Preproduction", "Operating", "Expansion", "Reserves Development", "Satellite", "Limited Production", "Residual Production", "Closed"))) 
+#summary(goldData$devStage)
+#%>% mutate(ageCat = factor(cut(age, breaks = c(0, 2, 5, 10, 20, 30, 1000)), labels = c("0 to 5", "5 to 10", "10 to 15", "15 to 20", "20 to 30", "Greater than 30")))
+
+##convert the data to a by project and payment type level rather than the by payment level
+goldDataProject <- goldData %>% 
+    filter(projectPayment > 0 & paymentType != "Could not be identified") %>%
+    group_by(projectCountry, projectName, paymentType) %>% 
+    summarise(projectPayment = sum(projectPayment, na.rm = T), developmentStage = unique(developmentStage), countryPoliticalRisk = unique(countryPoliticalRisk), countryOperationalRisk = unique(countryOperationalRisk), countrySecurityRisk = unique(countrySecurityRisk), countryTerrorismRisk = unique(countryTerrorismRisk), age = unique(age)) %>% 
+    ungroup()
+
+##load RGI data and clean it
+if(!exists("rgiScores")){
+    rgiScores <- read_csv("../../Data Cleaning/Secondary Data/Countries/Data/RGI Sources/RGI_scores.csv") %>% 
+        filter(levelName %in% c("Component", "Index")) %>% 
+        gather(key = "country", value = "value", 3:91) %>% 
+        filter(!str_detect(country, "mining")) %>% 
+        mutate(level = str_replace_all(level, "1\\) |2\\) |3\\) ", "") %>% 
+                   str_replace_all(., "2017 Resource Governance Index", "Overall RGI Score"),
+               country = str_replace_all(country, "\\(oil and gas\\)|\\(Alberta\\)|\\(Western\\)", "")) %>% ##replace any countries that have two (use oil as default)
+        mutate_at(1:3, cleanCharacters) %>% 
+        mutate(country = cleanValues(country, "Country"),
+               indicatorName = "RGI")
+}
+
+##load some wb data
+if(!exists("wbCountryData")){
+    wbCountryData <- wbcountries(lang = "en") %>% 
+    filter(region != "Aggregates") %>%  ##Aggregates are not countries
+    select(country, iso3Code = iso3c, iso2Code = iso2c, regionID, region, incomeID, incomeClass = income)
+
+    indicatorData <- wb(country = "all", indicator = c("SP.POP.TOTL", "SP.URB.TOTL", "SP.RUR.TOTL"), mrv = 10) %>% 
+        filter(!is.na(value)) %>% 
+        group_by(indicatorID) %>% 
+        filter(date == max(date)) %>% 
+        ungroup() %>% 
+        as_tibble() %>% 
+        select(country, indicatorID, value) %>% 
+        mutate(indicatorID = str_replace(indicatorID, "^.*?\\.", "") %>% 
+                   str_replace_all(., "\\.", "_")) %>% 
+        spread(indicatorID, value)
+    wbCountryData <- left_join(wbCountryData, indicatorData, by = "country") %>% 
+        mutate(country = cleanValues(country, "Country")) %>% 
+        filter(!is.na(country))
+}
+
+```
+
+##Average payment charts
+These charts compare different mine characteristics against the average payment recieved. For instance, does income levels of a country affect the average payment sizes. The analysis yields a few interesting stylized insights.
+
+**Note :** For all charts that use average payment values, averages were calculated only if a threshold of atleast 3 observations was met.
+
+##Development Stage
+The plot below shows the average payments by the development stage of a project. The payment levels are as expected, with the highest average payouts occuring for mines that are currently operational. The payment type values also mirror what would be expected. For instance, mines that are closed seem to only pay fees.
+
+```{r, fig.width=12, message=FALSE}
+devPlot <- goldDataProject %>%
+    group_by(developmentStage, paymentType) %>% 
+    filter(n() > 3) %>% 
+    summarise(avPay = mean(projectPayment, na.rm = T), obs = n()) %>% 
+    ungroup() %>% 
+    ggplot(., aes(x = developmentStage, y = avPay, fill = paymentType)) +
+    geom_bar(stat = "identity", position = "dodge") +
+    # geom_text(aes(label = obs), vjust = -1.75, position = position_dodge(width = 0.9), size = 4) +
+    # geom_text(label = "obs", vjust = -0.75, position = position_dodge(width = 0.9), size = 3) +
+    geom_text(aes(label = if_else(avPay < 1e9, format(round(avPay / 1e6, 0), trim = TRUE), format(round(avPay / 1e9, 1), trim = TRUE))), vjust = -1.25, position = position_dodge(width = 0.9), size = 9) +
+    geom_text(aes(label = if_else(avPay < 1e9, "M", "B")), vjust = -.15, position = position_dodge(width = 0.9), size = 6) +
+    scale_x_discrete(labels = function (paymentType) str_wrap(paymentType, width = 10)) +
+    labs(title = "Fig 3 : Avg. Payments By Development Stage") +
+    theme_tufte() +
+    theme(
+        axis.title = element_blank(),
+        axis.text.y = element_blank(),
+        axis.ticks = element_blank(),
+        title = element_text(size = 32),
+        legend.position = "top",
+        legend.title = element_blank(),
+        axis.text.x = element_text(size = 24),
+        legend.text = element_text(size = 28)
+    )
+devPlot
+```
+
+Next lets look at a smaller section of the data from the previos chart by filtering only those that are operational. The chart below shows the average payments from operational mines across different age categories. It appears that average payouts seem to be higher for younger mines (lesser than 5 years) compared to olders ones.
+```{r, fig.width=12}
+operPlot <- goldDataProject %>% 
+    filter(devStage == "Operating") %>% 
+    mutate(ageCat = factor(cut(age, breaks = c(0, 5, 10, 20, 30, 1000)))) %>% 
+    group_by(ageCat, paymentType) %>% 
+    filter(n() > 3) %>% 
+    summarise(avPay = mean(projectPayment, na.rm = T), obs = n()) %>% 
+    ungroup() %>% 
+    ggplot(., aes(x = ageCat, y = avPay, fill = paymentType)) +
+    geom_bar(stat = "identity", position = "dodge") +
+    geom_text(aes(label = paste(obs, "obs", sep = " ")), vjust = -0.5, position = position_dodge(width = 0.9), size = 5) +
+    scale_x_discrete(labels = function (paymentType) str_wrap(paymentType, width = 12)) +
+    labs(title = "Avg. Mandatory Disclosure Payment by age of the mine for operating mines",
+         y = "Avg. Payment (in USD)",
+         x = "Age of the mine") +
+    theme_tufte() +
+    theme(
+        title = element_text(size = 16),
+        legend.position = "top",
+        legend.title = element_blank(),
+        axis.text.x = element_text(size = 16),
+        legend.text = element_text(size = 14)
+    )
+operPlot    
+```
+
+
+```{r, message=FALSE, results='hide'}
+png(file = "../Plots/Workshop/Gold Projects/avPayVsDevStage.png", height = 1400, width = 2400, res = 100)
+devPlot
+dev.off()
+
+png(file = "../Plots/Workshop/Gold Projects/avPayVsOperations.png", height = 800, width = 1200, res = 100)
+operPlot
+dev.off()
+
+rm(devPlot, operPlot)
+```
+
+
+##Risk Level
+The chart below shows the average payment values across different risk types (political, operational, security and terror). The chart seems to suggest that mines with higher risk levels might have higher average payouts. These trends are magnified for security and terror risks. 
+
+```{r, fig.width = 12}
+riskPlot <- goldDataProject %>%
+    gather(key = "riskType", value = "riskLevel", 6:9) %>% 
+    group_by(riskType, riskLevel, paymentType) %>% 
+    filter(n() > 3) %>% 
+    summarise(avPay = mean(projectPayment, na.rm = T), obs = n()) %>% 
+    ungroup() %>% 
+    mutate(riskLevel = factor(riskLevel, levels = c("Insignificant", "Low", "Medium", "High")), riskType = factor(riskType, levels = c("politicalRisk", "operationalRisk", "securityRisk", "terrorRisk"), labels = c("Political Risk", "Operational Risk", "Security Risk", "Terror Risk"))) %>% 
+    ggplot(., aes(x = riskLevel, y = avPay, fill = paymentType)) +
+    geom_bar(stat = "identity", position = "dodge") +
+    geom_text(aes(label = obs), vjust = -1.25, position = position_dodge(width = 0.9), size = 4) +
+    geom_text(label = "obs", vjust = -0.25, position = position_dodge(width = 0.9), size = 3) +
+    facet_wrap(~riskType, nrow = 1) +
+    scale_x_discrete(labels = function (paymentType) str_wrap(paymentType, width = 12)) +
+    labs(title = "Avg payouts are higher for higher risk",
+         y = "Avg. Payment (in USD)",
+         x = "Risk Level") +
+    theme_tufte() +
+    theme(
+        title = element_text(size = 24),
+        legend.position = "top",
+        legend.title = element_blank(),
+        axis.text.x = element_text(size = 12),
+        legend.text = element_text(size = 14),
+        strip.text.x = element_text(size = 18)
+    )
+
+riskPlot
+```
+
+
+```{r, message=FALSE, results='hide'}
+png(file = "../Plots/Workshop/Gold Projects/avPayVsRisk.png", height = 800, width = 1500, res = 100)
+riskPlot
+dev.off()
+
+rm(riskPlot)
+```
+
+##Region
+There seems to be quite a big deal of variation across different regions. The next step in this analysis should be to compare 
+```{r, fig.width=12}
+regionPlot <- goldDataProject %>% 
+    select(projectCountry, paymentType, projectPayment) %>% 
+    left_join(., wbCountryData %>% select(country, region, incomeClass), by = c("projectCountry" = "country")) %>%
+    group_by(region, paymentType) %>% 
+    filter(n() > 3) %>% 
+    summarise(avPay = mean(projectPayment, na.rm = T), obs = n()) %>% 
+    ggplot(., aes(x = region, y = avPay, fill = paymentType)) +
+    geom_bar(stat = "identity", position = "dodge") +
+    geom_text(aes(label = paste(obs, "obs", sep = " ")), vjust = -0.5, position = position_dodge(width = 0.9), size = 4) +
+    scale_x_discrete(labels = function (paymentType) str_wrap(paymentType, width = 12)) +
+    labs(title = "Avg. Mandatory Disclosure Payment for Gold Mines by Region",
+         y = "Avg. Payment (in USD)",
+         x = "Region") +
+    theme_tufte() +
+    theme(
+        title = element_text(size = 20),
+        legend.position = "top",
+        legend.title = element_blank(),
+        axis.text.x = element_text(size = 16),
+        legend.text = element_text(size = 14)
+    )
+
+regionPlot
+```
+
+```{r, message=FALSE, results='hide'}
+png(file = "../Plots/Workshop/Gold Projects/avPayVsRegion.png", height = 800, width = 1500, res = 100)
+regionPlot
+dev.off()
+rm(regionPlot)
+```
+
+
+##Income
+The plot below shows the average payments by income. The high income payments seems to lower than others. This is potentially because there are a large number smaller Canadian gold mines that are represented in the mandatory disclosure data.
+```{r, fig.width=12}
+incomePlot <- goldDataProject %>% 
+    select(projectCountry, paymentType, projectPayment) %>% 
+    left_join(., wbCountryData %>% select(country, incomeClass), by = c("projectCountry" = "country")) %>%
+    mutate(incomeClass = factor(incomeClass, levels = c("Low income", "Lower middle income", "Upper middle income", "High income"))) %>% 
+    group_by(incomeClass, paymentType) %>% 
+    filter(n() > 3) %>% 
+    summarise(avPay = mean(projectPayment, na.rm = T), obs = n()) %>% 
+    ggplot(., aes(x = incomeClass, y = avPay, fill = paymentType)) +
+    geom_bar(stat = "identity", position = "dodge") +
+    geom_text(aes(label = paste(obs, "obs", sep = " ")), vjust = -0.5, position = position_dodge(width = 0.9), size = 4) +
+    scale_x_discrete(labels = function (paymentType) str_wrap(paymentType, width = 12)) +
+    labs(title = "Higher income countries have lower average payouts from extractive gold projects",
+         y = "Avg. Payment (in USD)",
+         x = "Income Level") +
+    theme_tufte() +
+    theme(
+        title = element_text(size = 18),
+        legend.position = "top",
+        legend.title = element_blank(),
+        axis.text.x = element_text(size = 16),
+        legend.text = element_text(size = 14)
+    )
+incomePlot
+```
+
+```{r, message=FALSE, results='hide'}
+png(file = "../Plots/Workshop/Gold Projects/avPayVsIncome.png", height = 800, width = 1500, res = 100)
+incomePlot
+dev.off()
+rm(incomePlot)
+```
+
+##RGI
+In general it seems that countries with poorer RGI score earn higher average payouts.
+
+```{r, fig.width = 12}
+rgiPlot <- goldDataProject %>% 
+    select(projectCountry, paymentType, projectPayment) %>% 
+    left_join(., rgiScores %>% filter(level == "2017 Resource Governance Index"), by = c("projectCountry" = "country")) %>% 
+    filter(!is.na(value)) %>% 
+    mutate(rgiCat = factor(cut(as.numeric(value), breaks = c(0, 50, 60, 70, 80, 100)))) %>% 
+    group_by(rgiCat, paymentType) %>% 
+    filter(n() > 3) %>% 
+    summarise(avPay = sum(projectPayment, na.rm = T), obs = n()) %>%
+    ggplot(., aes(x = rgiCat, y = avPay, fill = paymentType)) +
+    geom_bar(stat = "identity", position = "dodge") +
+    geom_text(aes(label = paste(obs, "obs", sep = " ")), vjust = -0.5, position = position_dodge(width = 0.9), size = 4) +
+    scale_x_discrete(labels = function (paymentType) str_wrap(paymentType, width = 12)) +
+    labs(title = "RGI Scores vs Average Payments for Gold Mines",
+         y = "Avg. Payment (in USD)",
+         x = "RGI Scores") +
+    theme_tufte() +
+    theme(
+        title = element_text(size = 24),
+        legend.position = "top",
+        legend.title = element_blank(),
+        axis.text.x = element_text(size = 16),
+        legend.text = element_text(size = 14)
+    )
+
+rgiPlot
+```
+

@@ -1,0 +1,552 @@
+projectCountry,reportingCompany,projectName,paymentType,reportYear,projectPayment,projectType,snlPropID,commodity,lat,lon,locationType,totalPay,proportionPay
+Angola,Eni,Block 0,Royalties,2016,79753540.5261,Oil & Gas,NA,"oil, gas",-5.640523,11.377027,Estimated,82364058.63486,0.9683051302712866
+Angola,Eni,Block 0,Taxes,2016,2610518.1087599997,Oil & Gas,NA,"oil, gas",-5.640523,11.377027,Estimated,82364058.63486,0.0316948697287134
+Angola,Total Sa,Block 0,Licensefees,2016,644e3,Oil & Gas,NA,"oil, gas",-5.640523,11.377027,Estimated,82944e3,0.0077642746913580245
+Angola,Total Sa,Block 0,Taxes,2016,823e5,Oil & Gas,NA,"oil, gas",-5.640523,11.377027,Estimated,82944e3,0.992235725308642
+Angola,Eni,Block 14,Taxes,2016,25552105.2171,Oil & Gas,NA,"oil, gas",-5.614082,11.248511,Estimated,25552105.2171,1
+Angola,Total Sa,Block 14,Licensefees,2016,449e3,Oil & Gas,NA,"oil, gas",-5.614082,11.248511,Estimated,115149e3,0.003899295695142815
+Angola,Total Sa,Block 14,Production entitlements,2016,832e5,Oil & Gas,NA,"oil, gas",-5.614082,11.248511,Estimated,115149e3,0.7225420976300272
+Angola,Total Sa,Block 14,Taxes,2016,315e5,Oil & Gas,NA,"oil, gas",-5.614082,11.248511,Estimated,115149e3,0.27355860667483
+Angola,Bp Plc,Block 15,Taxes,2016,111926517,Oil & Gas,NA,"oil, gas",-6.141258,11.609308,Estimated,111926517,1
+Angola,Eni,Block 15,Taxes,2016,70019405.20529999,Oil & Gas,NA,"oil, gas",-6.141258,11.609308,Estimated,70019405.20529999,1
+Angola,Bp Plc,Block 17,Taxes,2015,242187190,Oil & Gas,NA,"oil, gas",-7.633466,12.13176,Estimated,413631781,0.5855139791591595
+Angola,Bp Plc,Block 17,Taxes,2016,171444591,Oil & Gas,NA,"oil, gas",-7.633466,12.13176,Estimated,413631781,0.4144860208408406
+Angola,Total Sa,Block 17,Fees,2015,195e5,Oil & Gas,NA,"oil, gas",-7.633466,12.13176,Estimated,357644e4,0.005452349263513438
+Angola,Total Sa,Block 17,Licensefees,2016,694e4,Oil & Gas,NA,"oil, gas",-7.633466,12.13176,Estimated,357644e4,0.0019404771225017055
+Angola,Total Sa,Block 17,Production entitlements,2015,154e7,Oil & Gas,NA,"oil, gas",-7.633466,12.13176,Estimated,357644e4,0.430595787990292
+Angola,Total Sa,Block 17,Production entitlements,2016,962e6,Oil & Gas,NA,"oil, gas",-7.633466,12.13176,Estimated,357644e4,0.26898256366666295
+Angola,Total Sa,Block 17,Taxes,2015,661e6,Oil & Gas,NA,"oil, gas",-7.633466,12.13176,Estimated,357644e4,0.18482065965037858
+Angola,Total Sa,Block 17,Taxes,2016,387e6,Oil & Gas,NA,"oil, gas",-7.633466,12.13176,Estimated,357644e4,0.10820816230665131
+Angola,Bp Plc,Block 25,Bonuses,2015,2142857,Oil & Gas,NA,"oil, gas",-12.727429,12.34472,Estimated,2142857,1
+Angola,Total Sa,Block 25,Fees,2015,171e3,Oil & Gas,NA,"oil, gas",-12.727429,12.34472,Estimated,5171e3,0.03306903887062464
+Angola,Total Sa,Block 25,Payments for infrastructure improvements,2015,5e6,Oil & Gas,NA,"oil, gas",-12.727429,12.34472,Estimated,5171e3,0.9669309611293754
+Australia,Aurico Metals Inc,Fosterville,Taxes,2016,981848.768198956,Mining,26353,"gold, , ,",-36.718539,144.503075,Exact,981848.768198956,1
+Australia,Kirkland Lake Gold Ltd,Fosterville,Taxes,2016,15e5,Mining,26353,"gold, , ,",-36.718539,144.503075,Exact,15e5,1
+Australia,Bhp Billiton Plc,North West Shelf,Fees,2016,103561,Oil & Gas,NA,"oil, gas",-20.198538,116.53584,Estimated,368176080,2.812811739426418e-4
+Australia,Bhp Billiton Plc,North West Shelf,Royalties,2016,100029891,Oil & Gas,NA,"oil, gas",-20.198538,116.53584,Estimated,368176080,0.2716903580482469
+Australia,Bhp Billiton Plc,North West Shelf,Taxes,2016,268042628,Oil & Gas,NA,"oil, gas",-20.198538,116.53584,Estimated,368176080,0.7280283607778104
+Australia,Bp Plc,North West Shelf,Royalties,2016,107056084,Oil & Gas,NA,"oil, gas",-20.198538,116.53584,Estimated,149003118,0.718482172970367
+Australia,Bp Plc,North West Shelf,Taxes,2016,41947034,Oil & Gas,NA,"oil, gas",-20.198538,116.53584,Estimated,149003118,0.281517827029633
+Australia,Cnooc Limited,North West Shelf,Royalties,2016,10670514.944400001,Oil & Gas,NA,"oil, gas",-20.198538,116.53584,Estimated,34901162.42040001,0.30573523070288916
+Australia,Cnooc Limited,North West Shelf,Taxes,2016,24230647.476000004,Oil & Gas,NA,"oil, gas",-20.198538,116.53584,Estimated,34901162.42040001,0.6942647692971108
+Azerbaijan,Bp Plc,Shah Deniz,Production entitlements,2015,825367758,Oil & Gas,NA,"oil, gas",40.043601,50.539989,Estimated,904205464,0.9128099650590035
+Azerbaijan,Bp Plc,Shah Deniz,Taxes,2015,78837706,Oil & Gas,NA,"oil, gas",40.043601,50.539989,Estimated,904205464,0.08719003494099656
+Azerbaijan,Total Sa,Shah Deniz,Taxes,2015,162e4,Oil & Gas,NA,"oil, gas",40.043601,50.539989,Estimated,162e4,1
+Brazil,Royal Dutch Shell Plc,Barreirinhas,Fees,2016,779034,Oil & Gas,NA,"oil, gas",-1.471258,-42.763989,Estimated,779034,1
+Brazil,Total Sa,Barreirinhas,Licensefees,2016,43e3,Oil & Gas,NA,"oil, gas",-1.471258,-42.763989,Estimated,43e3,1
+Brazil,Anglo American Plc,Chapadao,Fees,2016,1673,Mining,37635,"phosphate, niobium",-18.12463,-47.80913,Exact,1673,1
+Brazil,Yamana Gold Inc,Chapadao,Fees,2016,709220.05292,Mining,37635,"phosphate, niobium",-18.12463,-47.80913,Exact,28097185.926319998,0.02524167561761547
+Brazil,Yamana Gold Inc,Chapadao,Taxes,2016,27387965.8734,Mining,37635,"phosphate, niobium",-18.12463,-47.80913,Exact,28097185.926319998,0.9747583243823845
+Canada,Royal Dutch Shell Plc,Athabasca Oil Sands,Fees,2016,3105582,Oil & Gas,NA,oil,56.727846,-111.382087,Nearest Town,41560141,0.0747250111591296
+Canada,Royal Dutch Shell Plc,Athabasca Oil Sands,Royalties,2016,38454559,Oil & Gas,NA,oil,56.727846,-111.382087,Nearest Town,41560141,0.9252749888408703
+Canada,Shell Canada Energy,Athabasca Oil Sands,Fees,2016,9732913.4922,Oil & Gas,NA,oil,56.727846,-111.382087,Nearest Town,136411686.7744,0.0713495575221239
+Canada,Shell Canada Energy,Athabasca Oil Sands,Royalties,2016,38403511.3762,Oil & Gas,NA,oil,56.727846,-111.382087,Nearest Town,136411686.7744,0.2815265486725664
+Canada,Shell Canada Energy,Athabasca Oil Sands,Taxes,2016,88275261.906,Oil & Gas,NA,oil,56.727846,-111.382087,Nearest Town,136411686.7744,0.6471238938053098
+Canada,Lightstream Resources Ltd,Brazeau,Fees,2016,795183.559249248,Oil & Gas,NA,"oil, , ,",52.469167,-116.077778,Nearest Town,4557762.682151226,0.1744679604234962
+Canada,Lightstream Resources Ltd,Brazeau,Royalties,2016,2063905.0484495822,Oil & Gas,NA,"oil, , ,",52.469167,-116.077778,Nearest Town,4557762.682151226,0.4528329341350077
+Canada,Lightstream Resources Ltd,Brazeau,Taxes,2016,1698674.074452396,Oil & Gas,NA,"oil, , ,",52.469167,-116.077778,Nearest Town,4557762.682151226,0.3726991054414961
+Canada,Questfire Energy Corp,Brazeau,Fees,2016,37724.4709,Oil & Gas,NA,"oil, , ,",52.469167,-116.077778,Nearest Town,45269.36508,0.8333333333333333
+Canada,Questfire Energy Corp,Brazeau,Royalties,2016,7544.89418,Oil & Gas,NA,"oil, , ,",52.469167,-116.077778,Nearest Town,45269.36508,0.16666666666666666
+Canada,Sinopec Daylight Energy Limited,Brazeau,Fees,2016,256526.40212,Oil & Gas,NA,"oil, , ,",52.469167,-116.077778,Nearest Town,1659876.7196000002,0.15454545454545454
+Canada,Sinopec Daylight Energy Limited,Brazeau,Royalties,2016,354610.02646,Oil & Gas,NA,"oil, , ,",52.469167,-116.077778,Nearest Town,1659876.7196000002,0.21363636363636362
+Canada,Sinopec Daylight Energy Limited,Brazeau,Taxes,2016,1048740.2910200001,Oil & Gas,NA,"oil, , ,",52.469167,-116.077778,Nearest Town,1659876.7196000002,0.6318181818181818
+Canada,Westbrick Energy Ltd,Brazeau,Fees,2016,226346.8254,Oil & Gas,NA,"oil, , ,",52.469167,-116.077778,Nearest Town,1101554.55028,0.2054794520547945
+Canada,Westbrick Energy Ltd,Brazeau,Royalties,2016,520597.69842000003,Oil & Gas,NA,"oil, , ,",52.469167,-116.077778,Nearest Town,1101554.55028,0.4726027397260274
+Canada,Westbrick Energy Ltd,Brazeau,Taxes,2016,354610.02646,Oil & Gas,NA,"oil, , ,",52.469167,-116.077778,Nearest Town,1101554.55028,0.3219178082191781
+Canada,Lightstream Resources Ltd,Cardium,Royalties,2016,297994.649512116,Oil & Gas,NA,"oil, , ,",53.074277,-115.232084,Exact,297994.649512116,1
+Canada,Penn West Petroleum Ltd,Cardium,Fees,2016,1991852.06352,Oil & Gas,NA,"oil, , ,",53.074277,-115.232084,Exact,27569043.333720002,0.0722495894909688
+Canada,Penn West Petroleum Ltd,Cardium,Royalties,2016,16523318.2542,Oil & Gas,NA,"oil, , ,",53.074277,-115.232084,Exact,27569043.333720002,0.599343185550082
+Canada,Penn West Petroleum Ltd,Cardium,Taxes,2016,9053873.016,Oil & Gas,NA,"oil, , ,",53.074277,-115.232084,Exact,27569043.333720002,0.3284072249589491
+Canada,Rosneft,Cardium,Royalties,2016,44738.769,Oil & Gas,NA,"oil, , ,",53.074277,-115.232084,Exact,-342997.22900000005,-0.13043478260869562
+Canada,Rosneft,Cardium,Taxes,2016,-387735.998,Oil & Gas,NA,"oil, , ,",53.074277,-115.232084,Exact,-342997.22900000005,1.1304347826086956
+Canada,Rmp Energy Inc,Chip Lake,Fees,2016,338.011259264,Oil & Gas,NA,oil,53.618402,-115.424628,Estimated,338.011259264,1
+Canada,Sinopec Daylight Energy Limited,Chip Lake,Fees,2016,15089.78836,Oil & Gas,NA,oil,53.618402,-115.424628,Estimated,256526.40212,0.058823529411764705
+Canada,Sinopec Daylight Energy Limited,Chip Lake,Royalties,2016,188622.35450000002,Oil & Gas,NA,oil,53.618402,-115.424628,Estimated,256526.40212,0.7352941176470589
+Canada,Sinopec Daylight Energy Limited,Chip Lake,Taxes,2016,52814.25926,Oil & Gas,NA,oil,53.618402,-115.424628,Estimated,256526.40212,0.20588235294117646
+Canada,Cnooc Limited,Crossfield,Fees,2016,17071.469402796003,Oil & Gas,NA,"oil, , ,",51.4302,-114.032,Nearest Town,65475.875008548006,0.26072915254003537
+Canada,Cnooc Limited,Crossfield,Royalties,2016,35750.589590304,Oil & Gas,NA,"oil, , ,",51.4302,-114.032,Nearest Town,65475.875008548006,0.5460116353639671
+Canada,Cnooc Limited,Crossfield,Taxes,2016,12653.816015448001,Oil & Gas,NA,"oil, , ,",51.4302,-114.032,Nearest Town,65475.875008548006,0.1932592120959975
+Canada,Questfire Energy Corp,Crossfield,Fees,2016,22634.68254,Oil & Gas,NA,"oil, , ,",51.4302,-114.032,Nearest Town,22634.68254,1
+Canada,Conocophillips Canada Resources Corp,Deep Basin,Fees,2016,2504904.8677600003,Oil & Gas,NA,"gas, , ,",55.0415,-119.631,Exact,26799464.12736,0.09346846846846847
+Canada,Conocophillips Canada Resources Corp,Deep Basin,Royalties,2016,10034709.2594,Oil & Gas,NA,"gas, , ,",55.0415,-119.631,Exact,26799464.12736,0.37443693693693697
+Canada,Conocophillips Canada Resources Corp,Deep Basin,Taxes,2016,14259850.0002,Oil & Gas,NA,"gas, , ,",55.0415,-119.631,Exact,26799464.12736,0.5320945945945945
+Canada,Peyto Exploration Development Corp,Deep Basin,Bonuses,2016,912932.1957800001,Oil & Gas,NA,"gas, , ,",55.0415,-119.631,Exact,26301501.11148,0.034710269650028686
+Canada,Peyto Exploration Development Corp,Deep Basin,Fees,2016,5266336.13764,Oil & Gas,NA,"gas, , ,",55.0415,-119.631,Exact,26301501.11148,0.2002294893861159
+Canada,Peyto Exploration Development Corp,Deep Basin,Payments for infrastructure improvements,2016,82993.83598,Oil & Gas,NA,"gas, , ,",55.0415,-119.631,Exact,26301501.11148,0.003155479059093517
+Canada,Peyto Exploration Development Corp,Deep Basin,Royalties,2016,12524524.3388,Oil & Gas,NA,"gas, , ,",55.0415,-119.631,Exact,26301501.11148,0.47619047619047616
+Canada,Peyto Exploration Development Corp,Deep Basin,Taxes,2016,7514714.60328,Oil & Gas,NA,"gas, , ,",55.0415,-119.631,Exact,26301501.11148,0.2857142857142857
+Canada,Tourmaline Oil Corp,Deep Basin,Fees,2016,6828129.2329,Oil & Gas,NA,"gas, , ,",55.0415,-119.631,Exact,14508831.50814,0.47061882475299016
+Canada,Tourmaline Oil Corp,Deep Basin,Royalties,2016,875207.72488,Oil & Gas,NA,"gas, , ,",55.0415,-119.631,Exact,14508831.50814,0.06032241289651586
+Canada,Tourmaline Oil Corp,Deep Basin,Taxes,2016,6805494.55036,Oil & Gas,NA,"gas, , ,",55.0415,-119.631,Exact,14508831.50814,0.46905876235049404
+Canada,Black Swan Energy Ltd,Duvernay,Royalties,2016,60359.15344,Oil & Gas,NA,"oil, gas",53.786111,-111.6925,Nearest Town,60359.15344,1
+Canada,Brion Energy Corporation,Duvernay,Royalties,2016,7137469.894280001,Oil & Gas,NA,"oil, gas",53.786111,-111.6925,Nearest Town,7137469.894280001,1
+Canada,Encana Corporation,Duvernay,Fees,2016,109e4,Oil & Gas,NA,"oil, gas",53.786111,-111.6925,Nearest Town,937e4,0.11632870864461047
+Canada,Encana Corporation,Duvernay,Royalties,2016,534e4,Oil & Gas,NA,"oil, gas",53.786111,-111.6925,Nearest Town,937e4,0.5699039487726788
+Canada,Encana Corporation,Duvernay,Taxes,2016,294e4,Oil & Gas,NA,"oil, gas",53.786111,-111.6925,Nearest Town,937e4,0.3137673425827108
+Canada,Repsol,Duvernay,Fees,2016,553075.8705,Oil & Gas,NA,"oil, gas",53.786111,-111.6925,Nearest Town,995536.5669,0.5555555555555556
+Canada,Repsol,Duvernay,Taxes,2016,442460.69639999996,Oil & Gas,NA,"oil, gas",53.786111,-111.6925,Nearest Town,995536.5669,0.4444444444444444
+Canada,Japan Canada Oil Sands Limited,East Central,Royalties,2016,5566.622926004,Oil & Gas,NA,"oil & gas, , ,",53.8887,-1193.114,Nearest Town,5566.622926004,1
+Canada,Questfire Energy Corp,East Central,Fees,2016,173532.56614,Oil & Gas,NA,"oil & gas, , ,",53.8887,-1193.114,Nearest Town,181077.46032,0.9583333333333334
+Canada,Questfire Energy Corp,East Central,Royalties,2016,7544.89418,Oil & Gas,NA,"oil & gas, , ,",53.8887,-1193.114,Nearest Town,181077.46032,0.041666666666666664
+Canada,Perpetual Energy Inc,Eastern,Taxes,2016,1395805.4233000001,Oil & Gas,NA,"oil & gas, , ,",53.544,-113.4909,Regional Capital,1395805.4233000001,1
+Canada,Perpetual Operating Trust,Eastern,Royalties,2016,188622.35450000002,Oil & Gas,NA,"oil & gas, , ,",53.544,-113.4909,Regional Capital,188622.35450000002,1
+Canada,Penn West Petroleum Ltd,Edmonton,Fees,2016,369699.81482,NA,NA,NA,NA,NA,NA,2218198.8889200003,0.16666666666666666
+Canada,Penn West Petroleum Ltd,Edmonton,Taxes,2016,1848499.0741,NA,NA,NA,NA,NA,NA,2218198.8889200003,0.8333333333333333
+Canada,Questfire Energy Corp,Edmonton,Fees,2016,7544.89418,NA,NA,NA,NA,NA,NA,7544.89418,1
+Canada,Exploration Midland Inc,Eleonore,Fees,2016,79832.40731775638,Mining,33345,"gold, , ,",53.873667,-77.783871,Estimated,79832.40731775638,1
+Canada,Goldcorp Inc,Eleonore,Bonuses,2016,155130,Mining,33345,"gold, , ,",53.873667,-77.783871,Estimated,14568903,0.010648022023346576
+Canada,Goldcorp Inc,Eleonore,Fees,2016,175207,Mining,33345,"gold, , ,",53.873667,-77.783871,Estimated,14568903,0.012026094209014914
+Canada,Goldcorp Inc,Eleonore,Payments for infrastructure improvements,2016,679,Mining,33345,"gold, , ,",53.873667,-77.783871,Estimated,14568903,4.6606117152403305e-5
+Canada,Goldcorp Inc,Eleonore,Royalties,2016,37887,Mining,33345,"gold, , ,",53.873667,-77.783871,Estimated,14568903,0.002600538969886751
+Canada,Goldcorp Inc,Eleonore,Taxes,2016,142e5,Mining,33345,"gold, , ,",53.873667,-77.783871,Estimated,14568903,0.9746787386805994
+Canada,Osisko Gold Royalties Ltd,Eleonore,Fees,2016,113173.4127,Mining,33345,"gold, , ,",53.873667,-77.783871,Estimated,113173.4127,1
+Canada,Modern Resources Inc,Elmworth,Fees,2016,15089.78836,Oil & Gas,NA,"oil & gas, , ,",54.9467,-119.8387,Exact,75448.9418,0.2
+Canada,Modern Resources Inc,Elmworth,Royalties,2016,45269.36508,Oil & Gas,NA,"oil & gas, , ,",54.9467,-119.8387,Exact,75448.9418,0.6000000000000001
+Canada,Modern Resources Inc,Elmworth,Taxes,2016,15089.78836,Oil & Gas,NA,"oil & gas, , ,",54.9467,-119.8387,Exact,75448.9418,0.2
+Canada,Rmp Energy Inc,Elmworth,Bonuses,2016,4208367.686548443,Oil & Gas,NA,"oil & gas, , ,",54.9467,-119.8387,Exact,4273781.919089043,0.9846940639978787
+Canada,Rmp Energy Inc,Elmworth,Fees,2016,45495.7119054,Oil & Gas,NA,"oil & gas, , ,",54.9467,-119.8387,Exact,4273781.919089043,0.010645304970333494
+Canada,Rmp Energy Inc,Elmworth,Royalties,2016,19918.520635200002,Oil & Gas,NA,"oil & gas, , ,",54.9467,-119.8387,Exact,4273781.919089043,0.004660631031787798
+Canada,Sinopec Daylight Energy Limited,Elmworth,Fees,2016,15089.78836,Oil & Gas,NA,"oil & gas, , ,",54.9467,-119.8387,Exact,618681.32276,0.024390243902439025
+Canada,Sinopec Daylight Energy Limited,Elmworth,Royalties,2016,173532.56614,Oil & Gas,NA,"oil & gas, , ,",54.9467,-119.8387,Exact,618681.32276,0.2804878048780488
+Canada,Sinopec Daylight Energy Limited,Elmworth,Taxes,2016,430058.96826,Oil & Gas,NA,"oil & gas, , ,",54.9467,-119.8387,Exact,618681.32276,0.6951219512195121
+Canada,Baccalieu Energy Inc,Ferrier,Fees,2016,30179.57672,Oil & Gas,NA,"oil, gas",51.664312,-114.46378,Exact,814848.5714400001,0.037037037037037035
+Canada,Baccalieu Energy Inc,Ferrier,Royalties,2016,611136.4285800001,Oil & Gas,NA,"oil, gas",51.664312,-114.46378,Exact,814848.5714400001,0.75
+Canada,Baccalieu Energy Inc,Ferrier,Taxes,2016,173532.56614,Oil & Gas,NA,"oil, gas",51.664312,-114.46378,Exact,814848.5714400001,0.21296296296296297
+Canada,Orlen Upstream Canada Ltd,Ferrier,Bonuses,2016,117309.2218937088,Oil & Gas,NA,"oil, gas",51.664312,-114.46378,Exact,1178786.0487789668,0.09951697512472457
+Canada,Orlen Upstream Canada Ltd,Ferrier,Fees,2016,186552.4882306588,Oil & Gas,NA,"oil, gas",51.664312,-114.46378,Exact,1178786.0487789668,0.15825814058785076
+Canada,Orlen Upstream Canada Ltd,Ferrier,Royalties,2016,450194.7063986422,Oil & Gas,NA,"oil, gas",51.664312,-114.46378,Exact,1178786.0487789668,0.3819138399754321
+Canada,Orlen Upstream Canada Ltd,Ferrier,Taxes,2016,424729.632255957,Oil & Gas,NA,"oil, gas",51.664312,-114.46378,Exact,1178786.0487789668,0.3603110443119926
+Canada,Petrus Resources Ltd,Ferrier,Fees,2016,105628.51852,Oil & Gas,NA,"oil, gas",51.664312,-114.46378,Exact,935566.87832,0.11290322580645161
+Canada,Petrus Resources Ltd,Ferrier,Royalties,2016,437603.86244,Oil & Gas,NA,"oil, gas",51.664312,-114.46378,Exact,935566.87832,0.46774193548387094
+Canada,Petrus Resources Ltd,Ferrier,Taxes,2016,392334.49736000004,Oil & Gas,NA,"oil, gas",51.664312,-114.46378,Exact,935566.87832,0.41935483870967744
+Canada,Petrus Resources Ltd,Foothills,Fees,2016,98083.62434000001,Oil & Gas,NA,"gas, , ,",52.30441,-114.828727,Nearest Town,671495.5820200001,0.14606741573033707
+Canada,Petrus Resources Ltd,Foothills,Royalties,2016,241436.61376,Oil & Gas,NA,"gas, , ,",52.30441,-114.828727,Nearest Town,671495.5820200001,0.3595505617977528
+Canada,Petrus Resources Ltd,Foothills,Taxes,2016,331975.34392,Oil & Gas,NA,"gas, , ,",52.30441,-114.828727,Nearest Town,671495.5820200001,0.49438202247191004
+Canada,Royal Dutch Shell Plc,Foothills,Fees,2016,2699160,Oil & Gas,NA,"gas, , ,",52.30441,-114.828727,Nearest Town,7695492,0.3507456053492096
+Canada,Royal Dutch Shell Plc,Foothills,Royalties,2016,4796629,Oil & Gas,NA,"gas, , ,",52.30441,-114.828727,Nearest Town,7695492,0.623303747180817
+Canada,Royal Dutch Shell Plc,Foothills,Taxes,2016,199703,Oil & Gas,NA,"gas, , ,",52.30441,-114.828727,Nearest Town,7695492,0.02595064746997333
+Canada,Shell Canada Energy,Foothills,Fees,2016,2557719.12702,Oil & Gas,NA,"gas, , ,",52.30441,-114.828727,Nearest Town,11099924.581351448,0.23042671220641667
+Canada,Shell Canada Energy,Foothills,Royalties,2016,2928804.184411448,Oil & Gas,NA,"gas, , ,",52.30441,-114.828727,Nearest Town,11099924.581351448,0.26385802560604943
+Canada,Shell Canada Energy,Foothills,Taxes,2016,5613401.26992,Oil & Gas,NA,"gas, , ,",52.30441,-114.828727,Nearest Town,11099924.581351448,0.5057152621875339
+Canada,Suncor Energy Inc,Fort Hills,Fees,2016,596046.6402200001,Oil & Gas,NA,"oil, , ,",57.391494,-111.552823,Exact,3546100.2646,0.16808510638297874
+Canada,Suncor Energy Inc,Fort Hills,Taxes,2016,2950053.62438,Oil & Gas,NA,"oil, , ,",57.391494,-111.552823,Exact,3546100.2646,0.8319148936170213
+Canada,Total Sa,Fort Hills,Licensefees,2016,985e3,Oil & Gas,NA,"oil, , ,",57.391494,-111.552823,Exact,985e3,1
+Canada,Athabasca Oil Corporation,Fox Creek,Bonuses,2016,316885.55556,Oil & Gas,NA,"gas, , ,",54.3177,-116.573,Exact,3010412.77782,0.10526315789473685
+Canada,Athabasca Oil Corporation,Fox Creek,Fees,2016,543232.38096,Oil & Gas,NA,"gas, , ,",54.3177,-116.573,Exact,3010412.77782,0.18045112781954886
+Canada,Athabasca Oil Corporation,Fox Creek,Royalties,2016,762034.31218,Oil & Gas,NA,"gas, , ,",54.3177,-116.573,Exact,3010412.77782,0.2531328320802005
+Canada,Athabasca Oil Corporation,Fox Creek,Taxes,2016,1388260.52912,Oil & Gas,NA,"gas, , ,",54.3177,-116.573,Exact,3010412.77782,0.4611528822055138
+Canada,Sinopec Daylight Energy Limited,Fox Creek,Fees,2016,60359.15344,Oil & Gas,NA,"gas, , ,",54.3177,-116.573,Exact,294250.87302,0.20512820512820515
+Canada,Sinopec Daylight Energy Limited,Fox Creek,Royalties,2016,120718.30688,Oil & Gas,NA,"gas, , ,",54.3177,-116.573,Exact,294250.87302,0.4102564102564103
+Canada,Sinopec Daylight Energy Limited,Fox Creek,Taxes,2016,113173.4127,Oil & Gas,NA,"gas, , ,",54.3177,-116.573,Exact,294250.87302,0.38461538461538464
+Canada,Capital Power Corporation,Genesee,Fees,2016,551408.782782866,Mining,54627,"coal, , ,",53.3294,-114.2903,Exact,2049894.93444674,0.26899368036717913
+Canada,Capital Power Corporation,Genesee,Royalties,2016,1178154.842931868,Mining,54627,"coal, , ,",53.3294,-114.2903,Exact,2049894.93444674,0.5747391357156791
+Canada,Capital Power Corporation,Genesee,Taxes,2016,320331.308732006,Mining,54627,"coal, , ,",53.3294,-114.2903,Exact,2049894.93444674,0.15626718391714178
+Canada,Westmoreland Canada Holdings Inc,Genesee,Taxes,2016,188622.35450000002,Mining,54627,"coal, , ,",53.3294,-114.2903,Exact,188622.35450000002,1
+Canada,Chinook Energy Inc,Grande Prairie,Bonuses,2016,37724.4709,Oil & Gas,NA,"oil, gas",55.168263,-118.800158,Nearest Town,1569337.98944,0.02403846153846154
+Canada,Chinook Energy Inc,Grande Prairie,Fees,2016,271616.19048,Oil & Gas,NA,"oil, gas",55.168263,-118.800158,Nearest Town,1569337.98944,0.17307692307692307
+Canada,Chinook Energy Inc,Grande Prairie,Royalties,2016,1259997.32806,Oil & Gas,NA,"oil, gas",55.168263,-118.800158,Nearest Town,1569337.98944,0.8028846153846154
+Canada,Kelt Exploration Ltd,Grande Prairie,Bonuses,2016,746944.52382,Oil & Gas,NA,"oil, gas",55.168263,-118.800158,Nearest Town,11234347.434020001,0.06648757555406312
+Canada,Kelt Exploration Ltd,Grande Prairie,Fees,2016,1041195.3968400001,Oil & Gas,NA,"oil, gas",55.168263,-118.800158,Nearest Town,11234347.434020001,0.09267965077233041
+Canada,Kelt Exploration Ltd,Grande Prairie,Royalties,2016,7846689.9472,Oil & Gas,NA,"oil, gas",55.168263,-118.800158,Nearest Town,11234347.434020001,0.6984553391537944
+Canada,Kelt Exploration Ltd,Grande Prairie,Taxes,2016,1599517.5661600002,Oil & Gas,NA,"oil, gas",55.168263,-118.800158,Nearest Town,11234347.434020001,0.14237743451981194
+Canada,Lehigh Hanson Materials Limited,Grande Prairie,Taxes,2016,122374.7129482772,Oil & Gas,NA,"oil, gas",55.168263,-118.800158,Nearest Town,122374.7129482772,1
+Canada,Paramount Resources Ltd,Grande Prairie,Bonuses,2016,128263.20106,Oil & Gas,NA,"oil, gas",55.168263,-118.800158,Nearest Town,3983704.1270399997,0.0321969696969697
+Canada,Paramount Resources Ltd,Grande Prairie,Fees,2016,814848.57144,Oil & Gas,NA,"oil, gas",55.168263,-118.800158,Nearest Town,3983704.1270399997,0.20454545454545456
+Canada,Paramount Resources Ltd,Grande Prairie,Royalties,2016,2135205.05294,Oil & Gas,NA,"oil, gas",55.168263,-118.800158,Nearest Town,3983704.1270399997,0.5359848484848485
+Canada,Paramount Resources Ltd,Grande Prairie,Taxes,2016,905387.3016,Oil & Gas,NA,"oil, gas",55.168263,-118.800158,Nearest Town,3983704.1270399997,0.2272727272727273
+Canada,Trilogy Energy,Grande Prairie,Fees,2016,75448.9418,Oil & Gas,NA,"oil, gas",55.168263,-118.800158,Nearest Town,724309.84128,0.10416666666666666
+Canada,Trilogy Energy,Grande Prairie,Royalties,2016,482873.22752,Oil & Gas,NA,"oil, gas",55.168263,-118.800158,Nearest Town,724309.84128,0.6666666666666666
+Canada,Trilogy Energy,Grande Prairie,Taxes,2016,165987.67196,Oil & Gas,NA,"oil, gas",55.168263,-118.800158,Nearest Town,724309.84128,0.22916666666666666
+Canada,Royal Dutch Shell Plc,Greater Deep Basin,Fees,2016,4725639,Oil & Gas,NA,"gas, , ,",53.997528,-116.899159,Estimated,4758265,0.9931432990806522
+Canada,Royal Dutch Shell Plc,Greater Deep Basin,Royalties,2016,32626,Oil & Gas,NA,"gas, , ,",53.997528,-116.899159,Estimated,4758265,0.006856700919347703
+Canada,Shell Canada Energy,Greater Deep Basin,Fees,2016,5009809.735520001,Oil & Gas,NA,"gas, , ,",53.997528,-116.899159,Estimated,7424695.369263871,0.6747495333288944
+Canada,Shell Canada Energy,Greater Deep Basin,Royalties,2016,15609.284503869721,Oil & Gas,NA,"gas, , ,",53.997528,-116.899159,Estimated,7424695.369263871,0.002102346793713278
+Canada,Shell Canada Energy,Greater Deep Basin,Taxes,2016,2399276.34924,Oil & Gas,NA,"gas, , ,",53.997528,-116.899159,Estimated,7424695.369263871,0.32314811987739217
+Canada,Brion Energy Corporation,Groundbirch,Royalties,2016,875207.72488,Oil & Gas,NA,"gas, , ,",55.780337,-120.936231,Estimated,1222272.8571600001,0.7160493827160493
+Canada,Brion Energy Corporation,Groundbirch,Taxes,2016,347065.13228,Oil & Gas,NA,"gas, , ,",55.780337,-120.936231,Estimated,1222272.8571600001,0.2839506172839506
+Canada,Repsol,Groundbirch,Fees,2016,110615.17409999999,Oil & Gas,NA,"gas, , ,",55.780337,-120.936231,Estimated,110615.17409999999,1
+Canada,Royal Dutch Shell Plc,Groundbirch,Fees,2016,5519512,Oil & Gas,NA,"gas, , ,",55.780337,-120.936231,Estimated,5739611,0.9616526276780778
+Canada,Royal Dutch Shell Plc,Groundbirch,Royalties,2016,220099,Oil & Gas,NA,"gas, , ,",55.780337,-120.936231,Estimated,5739611,0.03834737232192217
+Canada,Shell Canada Energy,Groundbirch,Fees,2016,7695792.0636,Oil & Gas,NA,"gas, , ,",55.780337,-120.936231,Estimated,13688291.068530608,0.5622171551635566
+Canada,Shell Canada Energy,Groundbirch,Royalties,2016,221819.88889200002,Oil & Gas,NA,"gas, , ,",55.780337,-120.936231,Estimated,13688291.068530608,0.016205082707655458
+Canada,Shell Canada Energy,Groundbirch,Taxes,2016,5770679.116038608,Oil & Gas,NA,"gas, , ,",55.780337,-120.936231,Estimated,13688291.068530608,0.4215777621287879
+Canada,Athabasca Oil Corporation,Hangingstone,Fees,2016,505507.91006,Oil & Gas,NA,oil,56.3132,-111.6362,Exact,3825261.34926,0.13214990138067062
+Canada,Athabasca Oil Corporation,Hangingstone,Royalties,2016,316885.55556,Oil & Gas,NA,oil,56.3132,-111.6362,Exact,3825261.34926,0.08284023668639054
+Canada,Athabasca Oil Corporation,Hangingstone,Taxes,2016,3002867.88364,Oil & Gas,NA,oil,56.3132,-111.6362,Exact,3825261.34926,0.7850098619329389
+Canada,Cnooc Limited,Hangingstone,Fees,2016,38.528234496,Oil & Gas,NA,oil,56.3132,-111.6362,Exact,38.528234496,1
+Canada,Firenze Energy Ltd,Hangingstone,Royalties,2016,6777.578441894,Oil & Gas,NA,oil,56.3132,-111.6362,Exact,6777.578441894,1
+Canada,Japan Canada Oil Sands Limited,Hangingstone,Fees,2016,1895238.9390556822,Oil & Gas,NA,oil,56.3132,-111.6362,Exact,3927502.964782598,0.4825556991426971
+Canada,Japan Canada Oil Sands Limited,Hangingstone,Payments for infrastructure improvements,2016,573092.808656186,Oil & Gas,NA,oil,56.3132,-111.6362,Exact,3927502.964782598,0.14591785513468322
+Canada,Japan Canada Oil Sands Limited,Hangingstone,Royalties,2016,201188.37575679002,Oil & Gas,NA,oil,56.3132,-111.6362,Exact,3927502.964782598,0.051225518493765554
+Canada,Japan Canada Oil Sands Limited,Hangingstone,Taxes,2016,1257982.84131394,Oil & Gas,NA,oil,56.3132,-111.6362,Exact,3927502.964782598,0.32030092722885417
+Canada,Canada Hibernia Holding Corporation,Hibernia,Royalties,2016,39610694.445,Oil & Gas,NA,"oil, gas",46.7504,-48.7829,Exact,39610694.445,1
+Canada,Chevron Canada Limited,Hibernia,Royalties,2016,99592603.176,Oil & Gas,NA,"oil, gas",46.7504,-48.7829,Exact,99592603.176,1
+Canada,Hibernia Management and Development Company Ltd,Hibernia,Fees,2016,3795081.7725400003,Oil & Gas,NA,"oil, gas",46.7504,-48.7829,Exact,3795081.7725400003,1
+Canada,Murphy Oil Company Ltd,Hibernia,Royalties,2016,27463414.8152,Oil & Gas,NA,"oil, gas",46.7504,-48.7829,Exact,31801728.9687,0.8635824436536181
+Canada,Murphy Oil Company Ltd,Hibernia,Taxes,2016,4338314.1535,Oil & Gas,NA,"oil, gas",46.7504,-48.7829,Exact,31801728.9687,0.13641755634638197
+Canada,Suncor Energy Inc,Hibernia,Royalties,2016,80730367.726,Oil & Gas,NA,"oil, gas",46.7504,-48.7829,Exact,80730367.726,1
+Canada,Cnooc Limited,Horn River,Fees,2016,1520059.2516,Oil & Gas,NA,"gas, , ,",58.804743,-122.691551,Nearest Town,2284510.2933102483,0.6653764073863896
+Canada,Cnooc Limited,Horn River,Royalties,2016,126254.766929652,Oil & Gas,NA,"gas, , ,",58.804743,-122.691551,Nearest Town,2284510.2933102483,0.05526557148784357
+Canada,Cnooc Limited,Horn River,Taxes,2016,638196.274780596,Oil & Gas,NA,"gas, , ,",58.804743,-122.691551,Nearest Town,2284510.2933102483,0.2793580211257668
+Canada,Encana Corporation,Horn River,Fees,2016,118e4,Oil & Gas,NA,"gas, , ,",58.804743,-122.691551,Nearest Town,139e4,0.8489208633093526
+Canada,Encana Corporation,Horn River,Payments for infrastructure improvements,2016,19e4,Oil & Gas,NA,"gas, , ,",58.804743,-122.691551,Nearest Town,139e4,0.1366906474820144
+Canada,Encana Corporation,Horn River,Royalties,2016,2e4,Oil & Gas,NA,"gas, , ,",58.804743,-122.691551,Nearest Town,139e4,0.014388489208633094
+Canada,Royal Dutch Shell Plc,Insitu,Fees,2016,2473874,NA,NA,NA,NA,NA,NA,5907071,0.41879875830170316
+Canada,Royal Dutch Shell Plc,Insitu,Royalties,2016,3433197,NA,NA,NA,NA,NA,NA,5907071,0.5812012416982968
+Canada,Shell Canada Energy,Insitu,Fees,2016,1169458.5979,NA,NA,NA,NA,NA,NA,8592778.12553057,0.1360978464491413
+Canada,Shell Canada Energy,Insitu,Royalties,2016,3229214.70904,NA,NA,NA,NA,NA,NA,8592778.12553057,0.3758056663240806
+Canada,Shell Canada Energy,Insitu,Taxes,2016,4194104.8185905702,NA,NA,NA,NA,NA,NA,8592778.12553057,0.48809648722677806
+Canada,Kelt Exploration Ltd,Karr,Bonuses,2016,15089.78836,Oil & Gas,NA,"oil & gas, , ,",54.6415,-118.3874,Exact,648860.89948,0.023255813953488372
+Canada,Kelt Exploration Ltd,Karr,Fees,2016,98083.62434000001,Oil & Gas,NA,"oil & gas, , ,",54.6415,-118.3874,Exact,648860.89948,0.15116279069767444
+Canada,Kelt Exploration Ltd,Karr,Royalties,2016,399879.39154000004,Oil & Gas,NA,"oil & gas, , ,",54.6415,-118.3874,Exact,648860.89948,0.616279069767442
+Canada,Kelt Exploration Ltd,Karr,Taxes,2016,135808.09524,Oil & Gas,NA,"oil & gas, , ,",54.6415,-118.3874,Exact,648860.89948,0.20930232558139533
+Canada,Sinopec Daylight Energy Limited,Karr,Fees,2016,15089.78836,Oil & Gas,NA,"oil & gas, , ,",54.6415,-118.3874,Exact,301795.7672,0.05
+Canada,Sinopec Daylight Energy Limited,Karr,Royalties,2016,233891.71958,Oil & Gas,NA,"oil & gas, , ,",54.6415,-118.3874,Exact,301795.7672,0.775
+Canada,Sinopec Daylight Energy Limited,Karr,Taxes,2016,52814.25926,Oil & Gas,NA,"oil & gas, , ,",54.6415,-118.3874,Exact,301795.7672,0.175
+Canada,Murphy Oil Company Ltd,Kaybob,Fees,2016,370454.304238,Oil & Gas,NA,"oil & gas, , ,",54.3505,-116.7668,Estimated,1532368.007958,0.241752831117676
+Canada,Murphy Oil Company Ltd,Kaybob,Royalties,2016,1161913.70372,Oil & Gas,NA,"oil & gas, , ,",54.3505,-116.7668,Estimated,1532368.007958,0.758247168882324
+Canada,Paramount Resources Ltd,Kaybob,Bonuses,2016,37724.4709,Oil & Gas,NA,"oil & gas, , ,",54.3505,-116.7668,Estimated,7235553.51862,0.005213764337851929
+Canada,Paramount Resources Ltd,Kaybob,Fees,2016,1773050.1323,Oil & Gas,NA,"oil & gas, , ,",54.3505,-116.7668,Estimated,7235553.51862,0.24504692387904065
+Canada,Paramount Resources Ltd,Kaybob,Royalties,2016,2135205.05294,Oil & Gas,NA,"oil & gas, , ,",54.3505,-116.7668,Estimated,7235553.51862,0.29509906152241916
+Canada,Paramount Resources Ltd,Kaybob,Taxes,2016,3289573.86248,Oil & Gas,NA,"oil & gas, , ,",54.3505,-116.7668,Estimated,7235553.51862,0.4546402502606882
+Canada,Rmp Energy Inc,Kaybob,Fees,2016,11317.34127,Oil & Gas,NA,"oil & gas, , ,",54.3505,-116.7668,Estimated,543986.870378,0.020804438280166437
+Canada,Rmp Energy Inc,Kaybob,Royalties,2016,532669.529108,Oil & Gas,NA,"oil & gas, , ,",54.3505,-116.7668,Estimated,543986.870378,0.9791955617198336
+Canada,Trilogy Energy,Kaybob,Bonuses,2016,467783.43916,Oil & Gas,NA,"oil & gas, , ,",54.3505,-116.7668,Estimated,14863441.5346,0.03147208121827411
+Canada,Trilogy Energy,Kaybob,Fees,2016,2580353.80956,Oil & Gas,NA,"oil & gas, , ,",54.3505,-116.7668,Estimated,14863441.5346,0.17360406091370556
+Canada,Trilogy Energy,Kaybob,Royalties,2016,7695792.0636,Oil & Gas,NA,"oil & gas, , ,",54.3505,-116.7668,Estimated,14863441.5346,0.5177664974619289
+Canada,Trilogy Energy,Kaybob,Taxes,2016,4119512.2222800003,Oil & Gas,NA,"oil & gas, , ,",54.3505,-116.7668,Estimated,14863441.5346,0.2771573604060914
+Canada,Altura Energy Inc,Leduc Woodbend 070405126w4,Bonuses,2016,950656.66668,Oil & Gas,NA,"oil, gas",53.3722,-113.7718,Exact,1130225.1481640001,0.8411214953271027
+Canada,Altura Energy Inc,Leduc Woodbend 070405126w4,Fees,2016,179568.48148400002,Oil & Gas,NA,"oil, gas",53.3722,-113.7718,Exact,1130225.1481640001,0.1588785046728972
+Canada,Kelt Exploration Ltd,Leduc Woodbend 070405126w4,Fees,2016,37724.4709,Oil & Gas,NA,"oil, gas",53.3722,-113.7718,Exact,158442.77778,0.23809523809523808
+Canada,Kelt Exploration Ltd,Leduc Woodbend 070405126w4,Royalties,2016,60359.15344,Oil & Gas,NA,"oil, gas",53.3722,-113.7718,Exact,158442.77778,0.38095238095238093
+Canada,Kelt Exploration Ltd,Leduc Woodbend 070405126w4,Taxes,2016,60359.15344,Oil & Gas,NA,"oil, gas",53.3722,-113.7718,Exact,158442.77778,0.38095238095238093
+Canada,Baytex Energy Corp,Lloydminster,Bonuses,2016,241436.61376,Oil & Gas,NA,"oil, , ,",53.3591,-109.5711,Exact,13603444.206540002,0.017748197448696615
+Canada,Baytex Energy Corp,Lloydminster,Fees,2016,2301192.7249000003,Oil & Gas,NA,"oil, , ,",53.3591,-109.5711,Exact,13603444.206540002,0.16916250693288962
+Canada,Baytex Energy Corp,Lloydminster,Payments for infrastructure improvements,2016,128263.20106,Oil & Gas,NA,"oil, , ,",53.3591,-109.5711,Exact,13603444.206540002,0.009428729894620076
+Canada,Baytex Energy Corp,Lloydminster,Royalties,2016,4730648.65086,Oil & Gas,NA,"oil, , ,",53.3591,-109.5711,Exact,13603444.206540002,0.3477537437603993
+Canada,Baytex Energy Corp,Lloydminster,Taxes,2016,6201903.01596,Oil & Gas,NA,"oil, , ,",53.3591,-109.5711,Exact,13603444.206540002,0.4559068219633943
+Canada,Crew Energy Inc,Lloydminster,Fees,2016,554711.182965452,Oil & Gas,NA,"oil, , ,",53.3591,-109.5711,Exact,3691434.543231668,0.15026981420611343
+Canada,Crew Energy Inc,Lloydminster,Royalties,2016,1554049.770363066,Oil & Gas,NA,"oil, , ,",53.3591,-109.5711,Exact,3691434.543231668,0.42098803382886824
+Canada,Crew Energy Inc,Lloydminster,Taxes,2016,1582673.58990315,Oil & Gas,NA,"oil, , ,",53.3591,-109.5711,Exact,3691434.543231668,0.42874215196501836
+Canada,Northern Blizzard Resources Inc,Lloydminster,Fees,2016,341783.706354,Oil & Gas,NA,"oil, , ,",53.3591,-109.5711,Exact,4800816.166734001,0.07119283356907119
+Canada,Northern Blizzard Resources Inc,Lloydminster,Royalties,2016,2014486.74606,Oil & Gas,NA,"oil, , ,",53.3591,-109.5711,Exact,4800816.166734001,0.4196133899104196
+Canada,Northern Blizzard Resources Inc,Lloydminster,Taxes,2016,2444545.7143200003,Oil & Gas,NA,"oil, , ,",53.3591,-109.5711,Exact,4800816.166734001,0.5091937765205091
+Canada,Areva Resources Canada Inc,Mcclean Lake,Fees,2016,1456164.57674,Mining,34628,"Uranium (U3O8), , ,",58.258,-103.834,Exact,2633168.06882,0.5530085959885386
+Canada,Areva Resources Canada Inc,Mcclean Lake,Payments for infrastructure improvements,2016,294250.87302,Mining,34628,"Uranium (U3O8), , ,",58.258,-103.834,Exact,2633168.06882,0.11174785100286533
+Canada,Areva Resources Canada Inc,Mcclean Lake,Taxes,2016,882752.61906,Mining,34628,"Uranium (U3O8), , ,",58.258,-103.834,Exact,2633168.06882,0.335243553008596
+Canada,Denison Mines Corp,Mcclean Lake,Royalties,2016,3657,Mining,34628,"Uranium (U3O8), , ,",58.258,-103.834,Exact,6322,0.5784561847516608
+Canada,Denison Mines Corp,Mcclean Lake,Taxes,2016,2665,Mining,34628,"Uranium (U3O8), , ,",58.258,-103.834,Exact,6322,0.4215438152483391
+Canada,Questfire Energy Corp,Medicine Hat,Fees,2016,165987.67196,Oil & Gas,NA,"oil, , ,",50.0405,-110.6764,Nearest Town,173532.56614,0.9565217391304348
+Canada,Questfire Energy Corp,Medicine Hat,Royalties,2016,7544.89418,Oil & Gas,NA,"oil, , ,",50.0405,-110.6764,Nearest Town,173532.56614,0.043478260869565216
+Canada,Sanling Energy Ltd,Medicine Hat,Taxes,2016,158442.77778,Oil & Gas,NA,"oil, , ,",50.0405,-110.6764,Nearest Town,158442.77778,1
+Canada,Toro Oil Gas Ltd,Medicine Hat,Taxes,2016,75448.9418,Oil & Gas,NA,"oil, , ,",50.0405,-110.6764,Nearest Town,75448.9418,1
+Canada,Black Swan Energy Ltd,Montney,Fees,2016,716764.9471,Oil & Gas,NA,"oil & gas, , ,",56.450729,-120.927321,Nearest Town,3266939.1799399997,0.21939953810623558
+Canada,Black Swan Energy Ltd,Montney,Royalties,2016,2338917.1958,Oil & Gas,NA,"oil & gas, , ,",56.450729,-120.927321,Nearest Town,3266939.1799399997,0.7159353348729792
+Canada,Black Swan Energy Ltd,Montney,Taxes,2016,211257.03704,Oil & Gas,NA,"oil & gas, , ,",56.450729,-120.927321,Nearest Town,3266939.1799399997,0.06466512702078522
+Canada,Encana Corporation,Montney,Fees,2016,103e5,Oil & Gas,NA,"oil & gas, , ,",56.450729,-120.927321,Nearest Town,4149e4,0.2482525909857797
+Canada,Encana Corporation,Montney,Payments for infrastructure improvements,2016,176e4,Oil & Gas,NA,"oil & gas, , ,",56.450729,-120.927321,Nearest Town,4149e4,0.042419860207278864
+Canada,Encana Corporation,Montney,Royalties,2016,221e5,Oil & Gas,NA,"oil & gas, , ,",56.450729,-120.927321,Nearest Town,4149e4,0.5326584719209448
+Canada,Encana Corporation,Montney,Taxes,2016,733e4,Oil & Gas,NA,"oil & gas, , ,",56.450729,-120.927321,Nearest Town,4149e4,0.17666907688599662
+Canada,Murphy Oil Company Ltd,Montney,Fees,2016,1365625.8465800001,Oil & Gas,NA,"oil & gas, , ,",56.450729,-120.927321,Nearest Town,5885017.4604,0.23205128205128206
+Canada,Murphy Oil Company Ltd,Montney,Taxes,2016,4519391.613820001,Oil & Gas,NA,"oil & gas, , ,",56.450729,-120.927321,Nearest Town,5885017.4604,0.767948717948718
+Canada,Dexter Construction Company Ltd,Newfoundland,Royalties,2016,98838.113758,Mining,NA,"gold, , ,",48.818134,-56.544818,Nearest Town,98838.113758,1
+Canada,Torq Resources Inc Formerly Stratton Resources Inc,Newfoundland,Fees,2016,233891.71958,Mining,NA,"gold, , ,",48.818134,-56.544818,Nearest Town,233891.71958,1
+Canada,Painted Pony Petroleum Ltd,Northern Bc,Fees,2016,1727780.76722,Oil & Gas,NA,"oil & gas, , ,",56.6938,-122.1531,Exact,3191490.23814,0.541371158392435
+Canada,Painted Pony Petroleum Ltd,Northern Bc,Royalties,2016,1177003.49208,Oil & Gas,NA,"oil & gas, , ,",56.6938,-122.1531,Exact,3191490.23814,0.36879432624113473
+Canada,Painted Pony Petroleum Ltd,Northern Bc,Taxes,2016,286705.97884,Oil & Gas,NA,"oil & gas, , ,",56.6938,-122.1531,Exact,3191490.23814,0.08983451536643026
+Canada,Ugr Blair Creek Ltd,Northern Bc,Fees,2016,414969.1799,Oil & Gas,NA,"oil & gas, , ,",56.6938,-122.1531,Exact,1169458.5979,0.3548387096774194
+Canada,Ugr Blair Creek Ltd,Northern Bc,Royalties,2016,679040.4762,Oil & Gas,NA,"oil & gas, , ,",56.6938,-122.1531,Exact,1169458.5979,0.5806451612903226
+Canada,Ugr Blair Creek Ltd,Northern Bc,Taxes,2016,75448.9418,Oil & Gas,NA,"oil & gas, , ,",56.6938,-122.1531,Exact,1169458.5979,0.06451612903225806
+Canada,Lafarge Canada Inc,Ontario,Fees,2016,1863588.86246,NA,NA,NA,NA,NA,NA,1863588.86246,1
+Canada,Taqa North,Ontario,Taxes,2016,90538.73016,NA,NA,NA,NA,NA,NA,90538.73016,1
+Canada,Votorantim Cement North America Inc,Ontario,Fees,2016,102e4,NA,NA,NA,NA,NA,NA,703e4,0.14509246088193456
+Canada,Votorantim Cement North America Inc,Ontario,Payments for infrastructure improvements,2016,98e4,NA,NA,NA,NA,NA,NA,703e4,0.13940256045519203
+Canada,Votorantim Cement North America Inc,Ontario,Royalties,2016,115e4,NA,NA,NA,NA,NA,NA,703e4,0.16358463726884778
+Canada,Votorantim Cement North America Inc,Ontario,Taxes,2016,388e4,NA,NA,NA,NA,NA,NA,703e4,0.5519203413940256
+Canada,Exploration Azimut Inc,Opinaca,Fees,2016,12428.976937353777,Mining,33798,"gold, , ,",52.706659,-76.068283,Exact,12428.976937353777,1
+Canada,Hecla Qubec Inc,Opinaca,Fees,2016,21485.595156386,Mining,33798,"gold, , ,",52.706659,-76.068283,Exact,21485.595156386,1
+Canada,Baytex Energy Corp,Peace River,Bonuses,2016,286705.97884,Oil & Gas,NA,"oil, , ,",56.2991,-116.7983,Exact,11822849.18006,0.024250159540523293
+Canada,Baytex Energy Corp,Peace River,Fees,2016,671495.58202,Oil & Gas,NA,"oil, , ,",56.2991,-116.7983,Exact,11822849.18006,0.05679642629227824
+Canada,Baytex Energy Corp,Peace River,Royalties,2016,8223934.6562,Oil & Gas,NA,"oil, , ,",56.2991,-116.7983,Exact,11822849.18006,0.6955966815571155
+Canada,Baytex Energy Corp,Peace River,Taxes,2016,2640712.963,Oil & Gas,NA,"oil, , ,",56.2991,-116.7983,Exact,11822849.18006,0.223356732610083
+Canada,Chinook Energy Inc,Peace River,Bonuses,2016,694130.26456,Oil & Gas,NA,"oil, , ,",56.2991,-116.7983,Exact,4557116.08472,0.15231788079470202
+Canada,Chinook Energy Inc,Peace River,Fees,2016,3395202.381,Oil & Gas,NA,"oil, , ,",56.2991,-116.7983,Exact,4557116.08472,0.7450331125827815
+Canada,Chinook Energy Inc,Peace River,Royalties,2016,467783.43916,Oil & Gas,NA,"oil, , ,",56.2991,-116.7983,Exact,4557116.08472,0.10264900662251657
+Canada,Longshore Resources Ltd,Peace River,Fees,2016,1508978.8360000001,Oil & Gas,NA,"oil, , ,",56.2991,-116.7983,Exact,1961672.4868,0.7692307692307693
+Canada,Longshore Resources Ltd,Peace River,Royalties,2016,452693.6508,Oil & Gas,NA,"oil, , ,",56.2991,-116.7983,Exact,1961672.4868,0.23076923076923075
+Canada,Orlen Upstream Canada Ltd,Peace River,Fees,2016,114292.62984755539,Oil & Gas,NA,"oil, , ,",56.2991,-116.7983,Exact,721110.549621278,0.1584952957734165
+Canada,Orlen Upstream Canada Ltd,Peace River,Royalties,2016,475438.5265194989,Oil & Gas,NA,"oil, , ,",56.2991,-116.7983,Exact,721110.549621278,0.6593143405947892
+Canada,Orlen Upstream Canada Ltd,Peace River,Taxes,2016,131379.3932542236,Oil & Gas,NA,"oil, , ,",56.2991,-116.7983,Exact,721110.549621278,0.1821903636317942
+Canada,Penn West Petroleum Ltd,Peace River,Fees,2016,897842.4074200001,Oil & Gas,NA,"oil, , ,",56.2991,-116.7983,Exact,4625020.13234,0.1941272430668842
+Canada,Penn West Petroleum Ltd,Peace River,Payments for infrastructure improvements,2016,7544.89418,Oil & Gas,NA,"oil, , ,",56.2991,-116.7983,Exact,4625020.13234,0.0016313213703099511
+Canada,Penn West Petroleum Ltd,Peace River,Royalties,2016,2497359.97358,Oil & Gas,NA,"oil, , ,",56.2991,-116.7983,Exact,4625020.13234,0.5399673735725938
+Canada,Penn West Petroleum Ltd,Peace River,Taxes,2016,1222272.8571600001,Oil & Gas,NA,"oil, , ,",56.2991,-116.7983,Exact,4625020.13234,0.2642740619902121
+Canada,Petrus Resources Ltd,Peace River,Royalties,2016,535687.48678,Oil & Gas,NA,"oil, , ,",56.2991,-116.7983,Exact,739399.62964,0.7244897959183674
+Canada,Petrus Resources Ltd,Peace River,Taxes,2016,203712.14286,Oil & Gas,NA,"oil, , ,",56.2991,-116.7983,Exact,739399.62964,0.2755102040816326
+Canada,Rmp Energy Inc,Peace River,Bonuses,2016,88508.7009319292,Oil & Gas,NA,"oil, , ,",56.2991,-116.7983,Exact,121328.99061492921,0.7294934251355952
+Canada,Rmp Energy Inc,Peace River,Fees,2016,32820.289683,Oil & Gas,NA,"oil, , ,",56.2991,-116.7983,Exact,121328.99061492921,0.2705065748644047
+Canada,Tourmaline Oil Corp,Peace River,Fees,2016,663950.68784,Oil & Gas,NA,"oil, , ,",56.2991,-116.7983,Exact,11558777.88376,0.057441253263707574
+Canada,Tourmaline Oil Corp,Peace River,Payments for infrastructure improvements,2016,988381.13758,Oil & Gas,NA,"oil, , ,",56.2991,-116.7983,Exact,11558777.88376,0.08550913838120104
+Canada,Tourmaline Oil Corp,Peace River,Royalties,2016,7620343.1218,Oil & Gas,NA,"oil, , ,",56.2991,-116.7983,Exact,11558777.88376,0.6592689295039165
+Canada,Tourmaline Oil Corp,Peace River,Taxes,2016,2286102.93654,Oil & Gas,NA,"oil, , ,",56.2991,-116.7983,Exact,11558777.88376,0.19778067885117495
+Canada,Arc Resources Ltd,Pembina,Fees,2016,1433529.8942,Oil & Gas,NA,"oil, , ,",53.0399,-115.1374,Exact,12939493.5187,0.11078717201166181
+Canada,Arc Resources Ltd,Pembina,Royalties,2016,7054476.058300001,Oil & Gas,NA,"oil, , ,",53.0399,-115.1374,Exact,12939493.5187,0.5451895043731779
+Canada,Arc Resources Ltd,Pembina,Taxes,2016,4451487.5662,Oil & Gas,NA,"oil, , ,",53.0399,-115.1374,Exact,12939493.5187,0.34402332361516036
+Canada,Baccalieu Energy Inc,Pembina,Bonuses,2016,30179.57672,Oil & Gas,NA,"oil, , ,",53.0399,-115.1374,Exact,2286102.93654,0.013201320132013201
+Canada,Baccalieu Energy Inc,Pembina,Fees,2016,286705.97884,Oil & Gas,NA,"oil, , ,",53.0399,-115.1374,Exact,2286102.93654,0.1254125412541254
+Canada,Baccalieu Energy Inc,Pembina,Royalties,2016,1622152.2487,Oil & Gas,NA,"oil, , ,",53.0399,-115.1374,Exact,2286102.93654,0.7095709570957096
+Canada,Baccalieu Energy Inc,Pembina,Taxes,2016,347065.13228,Oil & Gas,NA,"oil, , ,",53.0399,-115.1374,Exact,2286102.93654,0.15181518151815182
+Canada,Inplay Oil Corp,Pembina,Fees,2016,52814.25926,Oil & Gas,NA,"oil, , ,",53.0399,-115.1374,Exact,414969.1799,0.1272727272727273
+Canada,Inplay Oil Corp,Pembina,Royalties,2016,211257.03704,Oil & Gas,NA,"oil, , ,",53.0399,-115.1374,Exact,414969.1799,0.5090909090909091
+Canada,Inplay Oil Corp,Pembina,Taxes,2016,150897.8836,Oil & Gas,NA,"oil, , ,",53.0399,-115.1374,Exact,414969.1799,0.36363636363636365
+Canada,Rmp Energy Inc,Pine Creek,Fees,2016,3040.59235454,Oil & Gas,NA,"oil & gas, , ,",53.8702,-116.8288,Exact,22808.21510614,0.13331128018524646
+Canada,Rmp Energy Inc,Pine Creek,Royalties,2016,19767.6227516,Oil & Gas,NA,"oil & gas, , ,",53.8702,-116.8288,Exact,22808.21510614,0.8666887198147536
+Canada,Sinopec Daylight Energy Limited,Pine Creek,Fees,2016,22634.68254,Oil & Gas,NA,"oil & gas, , ,",53.8702,-116.8288,Exact,203712.14286,0.11111111111111112
+Canada,Sinopec Daylight Energy Limited,Pine Creek,Royalties,2016,150897.8836,Oil & Gas,NA,"oil & gas, , ,",53.8702,-116.8288,Exact,203712.14286,0.7407407407407408
+Canada,Sinopec Daylight Energy Limited,Pine Creek,Taxes,2016,30179.57672,Oil & Gas,NA,"oil & gas, , ,",53.8702,-116.8288,Exact,203712.14286,0.14814814814814817
+Canada,Inplay Oil Corp,Red Deer,Fees,2016,75448.9418,Oil & Gas,NA,"oil, , ,",52.2681,-113.8112,Nearest Town,135808.09524,0.5555555555555556
+Canada,Inplay Oil Corp,Red Deer,Taxes,2016,60359.15344,Oil & Gas,NA,"oil, , ,",52.2681,-113.8112,Nearest Town,135808.09524,0.4444444444444445
+Canada,Lehigh Hanson Materials Limited,Red Deer,Taxes,2016,81990.06325829281,Oil & Gas,NA,"oil, , ,",52.2681,-113.8112,Nearest Town,81990.06325829281,1
+Canada,Questfire Energy Corp,Red Deer,Fees,2016,196167.24868000002,Oil & Gas,NA,"oil, , ,",52.2681,-113.8112,Nearest Town,218801.93122000003,0.896551724137931
+Canada,Questfire Energy Corp,Red Deer,Royalties,2016,22634.68254,Oil & Gas,NA,"oil, , ,",52.2681,-113.8112,Nearest Town,218801.93122000003,0.10344827586206896
+Canada,Royal Dutch Shell Plc,Sable Offshore Energy Project,Royalties,2016,7665001,Oil & Gas,NA,"gas, , ,",43.933082,-59.922334,Estimated,7665001,1
+Canada,Shell Canada Energy,Sable Offshore Energy Project,Royalties,2016,7846689.9472,Oil & Gas,NA,"gas, , ,",43.933082,-59.922334,Estimated,7846689.9472,1
+Canada,Crescent Point Energy Corp,Se Saskatchewan,Bonuses,2016,14486196.8256,Oil & Gas,NA,"oil, , ,",50.559217,-108.744898,Estimated,94507344.49868,0.1532811751556762
+Canada,Crescent Point Energy Corp,Se Saskatchewan,Fees,2016,4798552.69848,Oil & Gas,NA,"oil, , ,",50.559217,-108.744898,Estimated,94507344.49868,0.05077438927031774
+Canada,Crescent Point Energy Corp,Se Saskatchewan,Royalties,2016,48890914.2864,Oil & Gas,NA,"oil, , ,",50.559217,-108.744898,Estimated,94507344.49868,0.5173239661504071
+Canada,Crescent Point Energy Corp,Se Saskatchewan,Taxes,2016,26331680.6882,Oil & Gas,NA,"oil, , ,",50.559217,-108.744898,Estimated,94507344.49868,0.2786204694235989
+Canada,Omers Energy Inc,Se Saskatchewan,Royalties,2016,2105025.47622,Oil & Gas,NA,"oil, , ,",50.559217,-108.744898,Estimated,2105025.47622,1
+Canada,Arc Resources Ltd,Southeast Saskatchewan,Fees,2016,565867.0635,Oil & Gas,NA,"oil & gas, , ,",49.9148,-102.6477,Exact,13263923.96844,0.042662116040955635
+Canada,Arc Resources Ltd,Southeast Saskatchewan,Royalties,2016,8827526.1906,Oil & Gas,NA,"oil & gas, , ,",49.9148,-102.6477,Exact,13263923.96844,0.6655290102389079
+Canada,Arc Resources Ltd,Southeast Saskatchewan,Taxes,2016,3870530.71434,Oil & Gas,NA,"oil & gas, , ,",49.9148,-102.6477,Exact,13263923.96844,0.29180887372013653
+Canada,Spartan Energy Corp,Southeast Saskatchewan,Bonuses,2016,8450281.4816,Oil & Gas,NA,"oil & gas, , ,",49.9148,-102.6477,Exact,17858764.52406,0.4731727925644275
+Canada,Spartan Energy Corp,Southeast Saskatchewan,Fees,2016,897842.4074200001,Oil & Gas,NA,"oil & gas, , ,",49.9148,-102.6477,Exact,17858764.52406,0.05027460920997043
+Canada,Spartan Energy Corp,Southeast Saskatchewan,Royalties,2016,4987175.05298,Oil & Gas,NA,"oil & gas, , ,",49.9148,-102.6477,Exact,17858764.52406,0.27925644275454165
+Canada,Spartan Energy Corp,Southeast Saskatchewan,Taxes,2016,3523465.58206,Oil & Gas,NA,"oil & gas, , ,",49.9148,-102.6477,Exact,17858764.52406,0.1972961554710604
+Canada,Surge Energy Inc,Southwest Saskatchewan,Fees,2016,113173.4127,Oil & Gas,NA,"oil & gas, , ,",50.012847,-108.730578,Estimated,2406821.24342,0.04702194357366771
+Canada,Surge Energy Inc,Southwest Saskatchewan,Royalties,2016,1441074.78838,Oil & Gas,NA,"oil & gas, , ,",50.012847,-108.730578,Estimated,2406821.24342,0.5987460815047022
+Canada,Surge Energy Inc,Southwest Saskatchewan,Taxes,2016,852573.04234,Oil & Gas,NA,"oil & gas, , ,",50.012847,-108.730578,Estimated,2406821.24342,0.3542319749216301
+Canada,Whitecap Resources Inc,Southwest Saskatchewan,Fees,2016,339520.2381,Oil & Gas,NA,"oil & gas, , ,",50.012847,-108.730578,Estimated,11604047.24884,0.029258777633289986
+Canada,Whitecap Resources Inc,Southwest Saskatchewan,Royalties,2016,6873398.59798,Oil & Gas,NA,"oil & gas, , ,",50.012847,-108.730578,Estimated,11604047.24884,0.5923276983094928
+Canada,Whitecap Resources Inc,Southwest Saskatchewan,Taxes,2016,4391128.41276,Oil & Gas,NA,"oil & gas, , ,",50.012847,-108.730578,Estimated,11604047.24884,0.3784135240572171
+Canada,Conocophillips Canada Resources Corp,Surmont,Fees,2016,2346462.08998,Oil & Gas,NA,"oil, , ,",55.6664,-110.714,Estimated,42334401.24398,0.055426840135448234
+Canada,Conocophillips Canada Resources Corp,Surmont,Royalties,2016,4300589.6826,Oil & Gas,NA,"oil, , ,",55.6664,-110.714,Estimated,42334401.24398,0.10158617002316878
+Canada,Conocophillips Canada Resources Corp,Surmont,Taxes,2016,35687349.4714,Oil & Gas,NA,"oil, , ,",55.6664,-110.714,Estimated,42334401.24398,0.8429869898413831
+Canada,Meg Energy Corp,Surmont,Fees,2016,143352.98942,Oil & Gas,NA,"oil, , ,",55.6664,-110.714,Estimated,196167.24868,0.7307692307692308
+Canada,Meg Energy Corp,Surmont,Taxes,2016,52814.25926,Oil & Gas,NA,"oil, , ,",55.6664,-110.714,Estimated,196167.24868,0.2692307692307692
+Canada,Total Sa,Surmont,Licensefees,2016,19e6,Oil & Gas,NA,"oil, , ,",55.6664,-110.714,Estimated,2116e4,0.8979206049149339
+Canada,Total Sa,Surmont,Royalties,2016,216e4,Oil & Gas,NA,"oil, , ,",55.6664,-110.714,Estimated,2116e4,0.10207939508506617
+Canada,Aspenleaf Energy Limited,Swan Hills,Fees,2016,407424.28572,Oil & Gas,NA,"oil & gas, , ,",54.710556,-115.413333,Nearest Town,7658067.5927,0.053201970443349754
+Canada,Aspenleaf Energy Limited,Swan Hills,Royalties,2016,6126454.07416,Oil & Gas,NA,"oil & gas, , ,",54.710556,-115.413333,Nearest Town,7658067.5927,0.8
+Canada,Aspenleaf Energy Limited,Swan Hills,Taxes,2016,1124189.23282,Oil & Gas,NA,"oil & gas, , ,",54.710556,-115.413333,Nearest Town,7658067.5927,0.14679802955665025
+Canada,Lightstream Resources Ltd,Swan Hills,Fees,2016,259966.119376662,Oil & Gas,NA,"oil & gas, , ,",54.710556,-115.413333,Nearest Town,1515790.366465704,0.1715053249631165
+Canada,Lightstream Resources Ltd,Swan Hills,Royalties,2016,802198.047368394,Oil & Gas,NA,"oil & gas, , ,",54.710556,-115.413333,Nearest Town,1515790.366465704,0.5292275667636289
+Canada,Lightstream Resources Ltd,Swan Hills,Taxes,2016,453626.199720648,Oil & Gas,NA,"oil & gas, , ,",54.710556,-115.413333,Nearest Town,1515790.366465704,0.29926710827325453
+Canada,Pengrowth Energy Corporation,Swan Hills,Fees,2016,1237362.64552,Oil & Gas,NA,"oil & gas, , ,",54.710556,-115.413333,Nearest Town,6073639.8149,0.20372670807453416
+Canada,Pengrowth Energy Corporation,Swan Hills,Taxes,2016,4836277.16938,Oil & Gas,NA,"oil & gas, , ,",54.710556,-115.413333,Nearest Town,6073639.8149,0.7962732919254658
+Canada,Murphy Oil Company Ltd,Syncrude Project,Taxes,2016,13656258.4658,Oil & Gas,NA,"oil, , ,",57.187456,-111.635976,Nearest Town,13656258.4658,1
+Canada,Syncrude Canada Ltd,Syncrude Project,Bonuses,2016,1305266.69314,Oil & Gas,NA,"oil, , ,",57.187456,-111.635976,Nearest Town,379455362.99474,0.0034398425228162966
+Canada,Syncrude Canada Ltd,Syncrude Project,Fees,2016,8450281.4816,Oil & Gas,NA,"oil, , ,",57.187456,-111.635976,Nearest Town,379455362.99474,0.02226950072574712
+Canada,Syncrude Canada Ltd,Syncrude Project,Royalties,2016,270861701.06200004,Oil & Gas,NA,"oil, , ,",57.187456,-111.635976,Nearest Town,379455362.99474,0.7138170321913587
+Canada,Syncrude Canada Ltd,Syncrude Project,Taxes,2016,98838113.758,Oil & Gas,NA,"oil, , ,",57.187456,-111.635976,Nearest Town,379455362.99474,0.26047362456007794
+Canada,Chevron Canada Limited,Terra Nova,Royalties,2016,89687.666096496,Oil & Gas,NA,"oil, , ,",46.475,-48.479444,Exact,89687.666096496,1
+Canada,Murphy Oil Company Ltd,Terra Nova,Royalties,2016,12222728.5716,Oil & Gas,NA,"oil, , ,",46.475,-48.479444,Exact,12984762.883779999,0.9413131900058106
+Canada,Murphy Oil Company Ltd,Terra Nova,Taxes,2016,762034.31218,Oil & Gas,NA,"oil, , ,",46.475,-48.479444,Exact,12984762.883779999,0.05868680999418943
+Canada,Suncor Energy Inc,Terra Nova,Fees,2016,2354006.98416,Oil & Gas,NA,"oil, , ,",46.475,-48.479444,Exact,40153926.82596,0.058624577226606536
+Canada,Suncor Energy Inc,Terra Nova,Royalties,2016,37799919.841800004,Oil & Gas,NA,"oil, , ,",46.475,-48.479444,Exact,40153926.82596,0.9413754227733935
+Canada,Spur Petroleum Ltd,Viking Kinsella,Fees,2016,34027.4727518,Oil & Gas,NA,"Oil, gas, , ,",53.0068,-110.995,Estimated,113248.8616418,0.30046635576282477
+Canada,Spur Petroleum Ltd,Viking Kinsella,Taxes,2016,79221.38889,Oil & Gas,NA,"Oil, gas, , ,",53.0068,-110.995,Estimated,113248.8616418,0.6995336442371752
+Canada,Venturion Oil Limited,Viking Kinsella,Royalties,2016,15139.445761818182,Oil & Gas,NA,"Oil, gas, , ,",53.0068,-110.995,Estimated,15139.445761818182,1
+Canada,Spartan Energy Corp,West Central Saskatchewan,Fees,2016,203712.14286,Oil & Gas,NA,"oil & gas, , ,",51.406501,-108.926761,Estimated,573411.95768,0.35526315789473684
+Canada,Spartan Energy Corp,West Central Saskatchewan,Royalties,2016,113173.4127,Oil & Gas,NA,"oil & gas, , ,",51.406501,-108.926761,Estimated,573411.95768,0.19736842105263158
+Canada,Spartan Energy Corp,West Central Saskatchewan,Taxes,2016,256526.40212,Oil & Gas,NA,"oil & gas, , ,",51.406501,-108.926761,Estimated,573411.95768,0.4473684210526316
+Canada,Whitecap Resources Inc,West Central Saskatchewan,Fees,2016,1856043.9682800001,Oil & Gas,NA,"oil & gas, , ,",51.406501,-108.926761,Estimated,6526333.4657000005,0.28439306358381505
+Canada,Whitecap Resources Inc,West Central Saskatchewan,Royalties,2016,2059756.1111400002,Oil & Gas,NA,"oil & gas, , ,",51.406501,-108.926761,Estimated,6526333.4657000005,0.315606936416185
+Canada,Whitecap Resources Inc,West Central Saskatchewan,Taxes,2016,2610533.38628,Oil & Gas,NA,"oil & gas, , ,",51.406501,-108.926761,Estimated,6526333.4657000005,0.4
+Canada,Nalcor Energy Oil and Gas Inc,White Rose,Royalties,2016,708329.75540676,Oil & Gas,NA,"oil, , ,",46.788611,-48.015,Exact,708329.75540676,1
+Canada,Suncor Energy Inc,White Rose,Royalties,2016,37875368.7836,Oil & Gas,NA,"oil, , ,",46.788611,-48.015,Exact,37875368.7836,1
+Chile,Arena Minerals Inc,El Penon,Taxes,2016,7765.208108013673,Mining,29297,"gold, silver, ,",-24.06667,-69.08333,Exact,7765.208108013673,1
+Chile,Yamana Gold Inc,El Penon,Fees,2016,1637242.03706,Mining,29297,"gold, silver, ,",-24.06667,-69.08333,Exact,46831158.17526,0.034960528435637184
+Chile,Yamana Gold Inc,El Penon,Taxes,2016,45193916.1382,Mining,29297,"gold, silver, ,",-24.06667,-69.08333,Exact,46831158.17526,0.9650394715643628
+Congo,Cnooc Limited,Haute Mer a,Royalties,2016,1826.629617492,Oil & Gas,NA,"oil, , ,",-6.950653,10.247027,Estimated,1826.629617492,1
+Congo,Total Sa,Haute Mer a,Licensebonus,2016,189e5,Oil & Gas,NA,"oil, , ,",-6.950653,10.247027,Estimated,16055e4,0.11772033634381812
+Congo,Total Sa,Haute Mer a,Licensefees,2016,375e4,Oil & Gas,NA,"oil, , ,",-6.950653,10.247027,Estimated,16055e4,0.023357209592027407
+Congo,Total Sa,Haute Mer a,Taxes,2016,1379e5,Oil & Gas,NA,"oil, , ,",-6.950653,10.247027,Estimated,16055e4,0.8589224540641545
+"Congo, the Democratic Republic of the",Glencore Plc,Kamoto,Fees,2016,125e3,Mining,27685,"copper, cobalt",-10.71111,25.41472,Exact,127379660,9.813183674693433e-4
+"Congo, the Democratic Republic of the",Glencore Plc,Kamoto,Payments for infrastructure improvements,2016,66857350,Mining,27685,"copper, cobalt",-10.71111,25.41472,Exact,127379660,0.5248667644426119
+"Congo, the Democratic Republic of the",Glencore Plc,Kamoto,Royalties,2016,20060490,Mining,27685,"copper, cobalt",-10.71111,25.41472,Exact,127379660,0.15748581837948067
+"Congo, the Democratic Republic of the",Glencore Plc,Kamoto,Taxes,2016,40336820,Mining,27685,"copper, cobalt",-10.71111,25.41472,Exact,127379660,0.316666098810438
+"Congo, the Democratic Republic of the",Katanga Mining Limited,Kamoto,Fees,2016,5762143.5772527745,Mining,27685,"copper, cobalt",-10.71111,25.41472,Exact,15374079.218212983,0.3747960118760557
+"Congo, the Democratic Republic of the",Katanga Mining Limited,Kamoto,Payments for infrastructure improvements,2016,5664130.874918066,Mining,27685,"copper, cobalt",-10.71111,25.41472,Exact,15374079.218212983,0.368420820169056
+"Congo, the Democratic Republic of the",Katanga Mining Limited,Kamoto,Taxes,2016,3947804.766042142,Mining,27685,"copper, cobalt",-10.71111,25.41472,Exact,15374079.218212983,0.2567831679548883
+Ecuador,Lumina Gold Corp,Fruta Del Norte,Fees,2016,3546.1002646,Mining,32796,"copper, gold, ,",-3.763,-78.495,Exact,3546.1002646,1
+Ecuador,Lundin Gold Inc,Fruta Del Norte,Fees,2016,604e4,Mining,32796,"copper, gold, ,",-3.763,-78.495,Exact,3446e4,0.17527568195008705
+Ecuador,Lundin Gold Inc,Fruta Del Norte,Payments for infrastructure improvements,2016,86e4,Mining,32796,"copper, gold, ,",-3.763,-78.495,Exact,3446e4,0.024956471271038887
+Ecuador,Lundin Gold Inc,Fruta Del Norte,Production Entitlements Bonuses Dividends,2016,51e4,Mining,32796,"copper, gold, ,",-3.763,-78.495,Exact,3446e4,0.014799767846778875
+Ecuador,Lundin Gold Inc,Fruta Del Norte,Royalties,2016,25e6,Mining,32796,"copper, gold, ,",-3.763,-78.495,Exact,3446e4,0.7254788160185722
+Ecuador,Lundin Gold Inc,Fruta Del Norte,Taxes,2016,205e4,Mining,32796,"copper, gold, ,",-3.763,-78.495,Exact,3446e4,0.059489262913522925
+Egypt,Bp Plc,Baltim,Taxes,2016,12263216,Oil & Gas,NA,gas,31.449655,32.193909,Estimated,12263216,1
+Egypt,Eni,Baltim,Taxes,2016,12499514.6733,Oil & Gas,NA,gas,31.449655,32.193909,Estimated,12499514.6733,1
+Egypt,Bp Plc,North El Hammad Offshore,Bonuses,2016,75e4,Oil & Gas,NA,"oil, gas",31.903907,29.845342,Estimated,75e4,1
+Egypt,Total Sa,North El Hammad Offshore,Licensebonus,2016,5e5,Oil & Gas,NA,"oil, gas",31.903907,29.845342,Estimated,5e5,1
+France,Lundin Petroleum,Paris Basin,Taxes,2016,-687700,Oil & Gas,NA,"Oil, gas, , ,",48.511764,3.161354,Estimated,-687700,1
+France,Vermilion Energy Inc,Paris Basin,Royalties,2016,12207638.78324,Oil & Gas,NA,"Oil, gas, , ,",48.511764,3.161354,Estimated,12207638.78324,1
+Indonesia,Bp Plc,Tangguh,Production entitlements,2016,312569732,Oil & Gas,NA,"gas, , ,",-2.369596,133.593322,Estimated,479314196,0.6521186616388053
+Indonesia,Bp Plc,Tangguh,Taxes,2016,166744464,Oil & Gas,NA,"gas, , ,",-2.369596,133.593322,Estimated,479314196,0.3478813383611947
+Indonesia,Cnooc Limited,Tangguh,Taxes,2016,61103371.896000005,Oil & Gas,NA,"gas, , ,",-2.369596,133.593322,Estimated,61103371.896000005,1
+Indonesia,Repsol,Tangguh,Taxes,2016,11282747.7582,Oil & Gas,NA,"gas, , ,",-2.369596,133.593322,Estimated,11282747.7582,1
+Kazakhstan,Eni,Karachaganak,Taxes,2016,159285850.704,Oil & Gas,NA,"oil, gas",51.353452,53.211079,Estimated,159285850.704,1
+Kazakhstan,Royal Dutch Shell Plc,Karachaganak,Taxes,2016,178635070,Oil & Gas,NA,"oil, gas",51.353452,53.211079,Estimated,178635070,1
+Kazakhstan,Kazmunaigas Exploration Production,Kazgermunai Llp,Bonuses,2016,1230418.389,Corporate,NA,", , ,",44.773026,65.547136,Estimated,91787458.254,0.013405081831497167
+Kazakhstan,Kazmunaigas Exploration Production,Kazgermunai Llp,Other,2016,15256018.98,Corporate,NA,", , ,",44.773026,65.547136,Estimated,91787458.254,0.16621027829077248
+Kazakhstan,Kazmunaigas Exploration Production,Kazgermunai Llp,Payments for infrastructure improvements,2016,2118891.525,Corporate,NA,", , ,",44.773026,65.547136,Estimated,91787458.254,0.0230847608737184
+Kazakhstan,Kazmunaigas Exploration Production,Kazgermunai Llp,Taxes,2016,73182129.36,Corporate,NA,", , ,",44.773026,65.547136,Estimated,91787458.254,0.797299879004012
+Kazakhstan,Petrokazakhstan Inc,Kazgermunai Llp,Taxes,2016,74468105.5566,Corporate,NA,", , ,",44.773026,65.547136,Estimated,74468105.5566,1
+Mexico,Argonaut Gold Inc,La Colorada,Fees,2016,82993.83598,Mining,29165,"silver, gold, lead, zinc",23.36667,-103.75,Exact,1607062.46034,0.051643192488262914
+Mexico,Argonaut Gold Inc,La Colorada,Royalties,2016,1237362.64552,Mining,29165,"silver, gold, lead, zinc",23.36667,-103.75,Exact,1607062.46034,0.7699530516431925
+Mexico,Argonaut Gold Inc,La Colorada,Taxes,2016,286705.97884,Mining,29165,"silver, gold, lead, zinc",23.36667,-103.75,Exact,1607062.46034,0.1784037558685446
+Mexico,Pan American Silver Corporation,La Colorada,Fees,2016,36e4,Mining,29165,"silver, gold, lead, zinc",23.36667,-103.75,Exact,1e7,0.036
+Mexico,Pan American Silver Corporation,La Colorada,Royalties,2016,47e4,Mining,29165,"silver, gold, lead, zinc",23.36667,-103.75,Exact,1e7,0.047
+Mexico,Pan American Silver Corporation,La Colorada,Taxes,2016,917e4,Mining,29165,"silver, gold, lead, zinc",23.36667,-103.75,Exact,1e7,0.917
+Mexico,Premier Gold Mines Limited,Mercedes,Taxes,2016,1705146.08468,Mining,32453,"gold, silver, ,",30.55,-110.8,Exact,1705146.08468,1
+Mexico,Yamana Gold Inc,Mercedes,Fees,2016,309340.66138,Mining,32453,"gold, silver, ,",30.55,-110.8,Exact,2044666.32278,0.15129151291512916
+Mexico,Yamana Gold Inc,Mercedes,Royalties,2016,1342991.16404,Mining,32453,"gold, silver, ,",30.55,-110.8,Exact,2044666.32278,0.6568265682656826
+Mexico,Yamana Gold Inc,Mercedes,Taxes,2016,392334.49736000004,Mining,32453,"gold, silver, ,",30.55,-110.8,Exact,2044666.32278,0.1918819188191882
+Mongolia,Rio Tinto Plc,Oyu Tolgoi,Bonuses,2016,662e4,Mining,31528,"copper, gold, silver",43.013487,106.840961,Exact,122168278,0.054187552680410214
+Mongolia,Rio Tinto Plc,Oyu Tolgoi,Fees,2016,891e4,Mining,31528,"copper, gold, silver",43.013487,106.840961,Exact,122168278,0.07293218948375453
+Mongolia,Rio Tinto Plc,Oyu Tolgoi,Royalties,2016,39375763,Mining,31528,"copper, gold, silver",43.013487,106.840961,Exact,122168278,0.3223075878993727
+Mongolia,Rio Tinto Plc,Oyu Tolgoi,Taxes,2016,67262515,Mining,31528,"copper, gold, silver",43.013487,106.840961,Exact,122168278,0.5505726699364626
+Mongolia,Turquoise Hill Resources Ltd,Oyu Tolgoi,Bonuses,2016,67e5,Mining,31528,"copper, gold, silver",43.013487,106.840961,Exact,12259e4,0.054653723794763034
+Mongolia,Turquoise Hill Resources Ltd,Oyu Tolgoi,Fees,2016,919e4,Mining,31528,"copper, gold, silver",43.013487,106.840961,Exact,12259e4,0.07496533159311526
+Mongolia,Turquoise Hill Resources Ltd,Oyu Tolgoi,Royalties,2016,394e5,Mining,31528,"copper, gold, silver",43.013487,106.840961,Exact,12259e4,0.3213965250020393
+Mongolia,Turquoise Hill Resources Ltd,Oyu Tolgoi,Taxes,2016,673e5,Mining,31528,"copper, gold, silver",43.013487,106.840961,Exact,12259e4,0.5489844196100824
+New Zealand,Omv,Maui,Royalties,2016,179196.582042,Oil & Gas,NA,"oil, gas",-39.302593,173.354244,Estimated,179196.582042,1
+New Zealand,Royal Dutch Shell Plc,Maui,Royalties,2016,226145,Oil & Gas,NA,"oil, gas",-39.302593,173.354244,Estimated,226145,1
+Nigeria,Royal Dutch Shell Plc,Oml 118,Production entitlements,2015,799332160,Oil & Gas,NA,"oil, gas",4.466076,4.646721,Estimated,2320541920,0.34445926320520853
+Nigeria,Royal Dutch Shell Plc,Oml 118,Production entitlements,2016,735106520,Oil & Gas,NA,"oil, gas",4.466076,4.646721,Estimated,2320541920,0.3167822626535443
+Nigeria,Royal Dutch Shell Plc,Oml 118,Royalties,2015,37424320,Oil & Gas,NA,"oil, gas",4.466076,4.646721,Estimated,2320541920,0.01612740527436798
+Nigeria,Royal Dutch Shell Plc,Oml 118,Royalties,2016,32501960,Oil & Gas,NA,"oil, gas",4.466076,4.646721,Estimated,2320541920,0.014006193863543737
+Nigeria,Royal Dutch Shell Plc,Oml 118,Taxes,2015,368870290,Oil & Gas,NA,"oil, gas",4.466076,4.646721,Estimated,2320541920,0.15895868409910044
+Nigeria,Royal Dutch Shell Plc,Oml 118,Taxes,2016,347306670,Oil & Gas,NA,"oil, gas",4.466076,4.646721,Estimated,2320541920,0.149666190904235
+Nigeria,Total Sa,Oml 118,Production entitlements,2015,59e6,Oil & Gas,NA,"oil, gas",4.466076,4.646721,Estimated,2838e5,0.20789288231148698
+Nigeria,Total Sa,Oml 118,Production entitlements,2016,494e5,Oil & Gas,NA,"oil, gas",4.466076,4.646721,Estimated,2838e5,0.17406624383368569
+Nigeria,Total Sa,Oml 118,Taxes,2015,924e5,Oil & Gas,NA,"oil, gas",4.466076,4.646721,Estimated,2838e5,0.32558139534883723
+Nigeria,Total Sa,Oml 118,Taxes,2016,83e6,Oil & Gas,NA,"oil, gas",4.466076,4.646721,Estimated,2838e5,0.29245947850599013
+Nigeria,Cnooc Limited,Oml 130,Fees,2016,44698772.052,Oil & Gas,NA,"oil, gas",3.203833,7.235036,Estimated,49951547.94868895,0.8948425802122352
+Nigeria,Cnooc Limited,Oml 130,Royalties,2016,293.92828894800004,Oil & Gas,NA,"oil, gas",3.203833,7.235036,Estimated,49951547.94868895,5.884267875941062e-6
+Nigeria,Cnooc Limited,Oml 130,Taxes,2016,5252481.968400001,Oil & Gas,NA,"oil, gas",3.203833,7.235036,Estimated,49951547.94868895,0.10515153551988893
+Nigeria,Total Sa,Oml 130,Payments for infrastructure improvements,2016,304e5,Oil & Gas,NA,"oil, gas",3.203833,7.235036,Estimated,496e5,0.6129032258064516
+Nigeria,Total Sa,Oml 130,Taxes,2016,192e5,Oil & Gas,NA,"oil, gas",3.203833,7.235036,Estimated,496e5,0.3870967741935484
+Norway,Exxonmobil Norway,Sleipner Area,Fees,2016,202.3809523,NA,NA,NA,NA,NA,NA,5369.047616899999,0.037694013303769404
+Norway,Exxonmobil Norway,Sleipner Area,Royalties,2016,5166.666664599999,NA,NA,NA,NA,NA,NA,5369.047616899999,0.9623059866962306
+Norway,Total Sa,Sleipner Area,Licensefees,2016,314e3,NA,NA,NA,NA,NA,NA,314e3,1
+Norway,Aker Bp,Ula,Fees,2016,480952.38075999997,Oil & Gas,NA,"oil, gas",57.111431,2.847331,Estimated,8373809.520459999,0.05743531418822861
+Norway,Aker Bp,Ula,Taxes,2016,7892857.139699999,Oil & Gas,NA,"oil, gas",57.111431,2.847331,Estimated,8373809.520459999,0.9425646858117713
+Norway,Bp Plc,Ula,Fees,2016,491670,Oil & Gas,NA,"oil, gas",57.111431,2.847331,Estimated,491670,1
+Norway,Aker Bp,Valhall,Fees,2016,609523.8092799999,Oil & Gas,NA,"oil, gas",57.111431,2.847331,Estimated,1930952.3801799999,0.3156596794081381
+Norway,Aker Bp,Valhall,Taxes,2016,1321428.5709,Oil & Gas,NA,"oil, gas",57.111431,2.847331,Estimated,1930952.3801799999,0.6843403205918619
+Norway,Bp Plc,Valhall,Fees,2016,113e4,Oil & Gas,NA,"oil, gas",57.111431,2.847331,Estimated,113e4,1
+Oman,Royal Dutch Shell Plc,Block 6,Taxes,2015,2089920954,Oil & Gas,NA,oil,20.504378,56.530997,Estimated,3146247785,0.6642582202088066
+Oman,Royal Dutch Shell Plc,Block 6,Taxes,2016,1056326831,Oil & Gas,NA,oil,20.504378,56.530997,Estimated,3146247785,0.3357417797911934
+Oman,Total Sa,Block 6,Taxes,2015,25e7,Oil & Gas,NA,oil,20.504378,56.530997,Estimated,375e6,0.6666666666666666
+Oman,Total Sa,Block 6,Taxes,2016,125e6,Oil & Gas,NA,oil,20.504378,56.530997,Estimated,375e6,0.3333333333333333
+Pakistan,Eni,Kadanwari,Fees,2016,27653.793524999997,Oil & Gas,NA,gas,26.715677,69.416082,Estimated,31110517.715624996,8.888888888888889e-4
+Pakistan,Eni,Kadanwari,Production entitlements,2016,30197942.529299997,Oil & Gas,NA,gas,26.715677,69.416082,Estimated,31110517.715624996,0.9706666666666667
+Pakistan,Eni,Kadanwari,Royalties,2016,884921.3927999999,Oil & Gas,NA,gas,26.715677,69.416082,Estimated,31110517.715624996,0.028444444444444446
+Pakistan,Premier Oil Plc,Kadanwari,Royalties,2016,659e3,Oil & Gas,NA,gas,26.715677,69.416082,Estimated,659e3,1
+Pakistan,Jura Energy Corporation,Zarghun South,Taxes,2016,2349382.718517078,Oil & Gas,NA,gas,30.18817,67.19852,Estimated,2349382.718517078,1
+Pakistan,Premier Oil Plc,Zarghun South,Royalties,2016,118e3,Oil & Gas,NA,gas,30.18817,67.19852,Estimated,118e3,1
+Peru,Auryn Resources Inc,Peru,Fees,2016,256526.40211999998,Mining,NA,"gold, silver, copper,",NA,NA,NA,256526.40211999998,1
+Peru,Pacific Exploration Production Corporation,Peru,Bonuses,2016,255e4,Mining,NA,"gold, silver, copper,",NA,NA,NA,28e5,0.9107142857142857
+Peru,Pacific Exploration Production Corporation,Peru,Fees,2016,25e4,Mining,NA,"gold, silver, copper,",NA,NA,NA,28e5,0.08928571428571429
+Russian Federation,Bp Plc,Rosneft,Taxes,2015,31795751,NA,NA,NA,NA,NA,NA,69038448,0.46055135828082344
+Russian Federation,Bp Plc,Rosneft,Taxes,2016,37242697,NA,NA,NA,NA,NA,NA,69038448,0.5394486417191765
+Russian Federation,Rosneft,Rosneft,Fees,2016,14912.923,NA,NA,NA,NA,NA,NA,7065310442.633,2.1107243794998007e-6
+Russian Federation,Rosneft,Rosneft,Royalties,2016,7158203040,NA,NA,NA,NA,NA,NA,7065310442.633,1.0131477021599042
+Russian Federation,Rosneft,Rosneft,Taxes,2016,-92907510.28999999,NA,NA,NA,NA,NA,NA,7065310442.633,-0.013149812884283756
+Russian Federation,Rosneft Ojsc,Rosneft,Fees,2015,9616016,NA,NA,NA,NA,NA,NA,10161453889,9.463228495687563e-4
+Russian Federation,Rosneft Ojsc,Rosneft,Royalties,2015,10643846406,NA,NA,NA,NA,NA,NA,10161453889,1.0474727851220385
+Russian Federation,Rosneft Ojsc,Rosneft,Taxes,2015,-492008533,NA,NA,NA,NA,NA,NA,10161453889,-0.04841910797160731
+Thailand,Bg Group Ltd,Bongkot,Royalties,2015,103e6,Oil & Gas,NA,"gas, , ,",7.598611,103.358373,Estimated,264e6,0.39015151515151514
+Thailand,Bg Group Ltd,Bongkot,Taxes,2015,161e6,Oil & Gas,NA,"gas, , ,",7.598611,103.358373,Estimated,264e6,0.6098484848484849
+Thailand,Royal Dutch Shell Plc,Bongkot,Royalties,2016,80091814,Oil & Gas,NA,"gas, , ,",7.598611,103.358373,Estimated,178722701,0.44813453216555854
+Thailand,Royal Dutch Shell Plc,Bongkot,Taxes,2016,98630887,Oil & Gas,NA,"gas, , ,",7.598611,103.358373,Estimated,178722701,0.5518654678344415
+Thailand,Total Sa,Bongkot,Bonuses,2015,374e5,Oil & Gas,NA,"gas, , ,",7.598611,103.358373,Estimated,671e6,0.05573770491803279
+Thailand,Total Sa,Bongkot,Licensebonus,2016,306e5,Oil & Gas,NA,"gas, , ,",7.598611,103.358373,Estimated,671e6,0.04560357675111774
+Thailand,Total Sa,Bongkot,Taxes,2015,36e7,Oil & Gas,NA,"gas, , ,",7.598611,103.358373,Estimated,671e6,0.5365126676602087
+Thailand,Total Sa,Bongkot,Taxes,2016,243e6,Oil & Gas,NA,"gas, , ,",7.598611,103.358373,Estimated,671e6,0.3621460506706408
+United Arab Emirates,Abu Dhabi Marine Areas Limited,Umm Shaif,Royalties,2015,122e7,Oil & Gas,NA,"oil, gas",24.65622,54.119745,Estimated,418e7,0.291866028708134
+United Arab Emirates,Abu Dhabi Marine Areas Limited,Umm Shaif,Taxes,2015,296e7,Oil & Gas,NA,"oil, gas",24.65622,54.119745,Estimated,418e7,0.7081339712918661
+United Arab Emirates,Bp Plc,Umm Shaif,Taxes,2015,1059269409,Oil & Gas,NA,"oil, gas",24.65622,54.119745,Estimated,1059269409,1
+United Kingdom of Great Britain and Northern Ireland,Centrica Plc,Alba,Taxes,2015,1741512.296390179,Oil & Gas,NA,oil,57.972902,1.427611,Estimated,1741512.296390179,1
+United Kingdom of Great Britain and Northern Ireland,Chevron North Sea Ltd,Alba,Taxes,2015,-5693295.760638641,Oil & Gas,NA,oil,57.972902,1.427611,Estimated,-5693295.760638641,1
+United Kingdom of Great Britain and Northern Ireland,Enquest Plc,Alba,Taxes,2015,-4539623,Oil & Gas,NA,oil,57.972902,1.427611,Estimated,-4539623,1
+United Kingdom of Great Britain and Northern Ireland,Mitsui Ep Uk Limited,Alba,Taxes,2015,6088149.912631092,Oil & Gas,NA,oil,57.972902,1.427611,Estimated,6088149.912631092,1
+United Kingdom of Great Britain and Northern Ireland,Bp Plc,Bruce,Fees,2015,486862,Oil & Gas,NA,"oil, gas, ,",59.518801,1.050754,Estimated,12060072,0.040369742402864596
+United Kingdom of Great Britain and Northern Ireland,Bp Plc,Bruce,Fees,2016,203e4,Oil & Gas,NA,"oil, gas, ,",59.518801,1.050754,Estimated,12060072,0.16832403653974867
+United Kingdom of Great Britain and Northern Ireland,Bp Plc,Bruce,Taxes,2015,15309463,Oil & Gas,NA,"oil, gas, ,",59.518801,1.050754,Estimated,12060072,1.2694337977418377
+United Kingdom of Great Britain and Northern Ireland,Bp Plc,Bruce,Taxes,2016,-5766253,Oil & Gas,NA,"oil, gas, ,",59.518801,1.050754,Estimated,12060072,-0.478127576684451
+United Kingdom of Great Britain and Northern Ireland,Total Sa,Bruce,Taxes,2015,389e5,Oil & Gas,NA,"oil, gas, ,",59.518801,1.050754,Estimated,258e5,1.5077519379844961
+United Kingdom of Great Britain and Northern Ireland,Total Sa,Bruce,Taxes,2016,-131e5,Oil & Gas,NA,"oil, gas, ,",59.518801,1.050754,Estimated,258e5,-0.5077519379844961
+United Kingdom of Great Britain and Northern Ireland,Cnooc Limited,Buzzard Field,Fees,2016,2227413.5568000004,Oil & Gas,NA,"oil, , ,",57.74096,-0.568808,Estimated,2227413.5568000004,1
+United Kingdom of Great Britain and Northern Ireland,Suncor Energy Inc,Buzzard Field,Taxes,2016,192394801.59,Oil & Gas,NA,"oil, , ,",57.74096,-0.568808,Estimated,192394801.59,1
+United Kingdom of Great Britain and Northern Ireland,Bg Group Ltd,Central North Sea,Fees,2015,339e3,NA,NA,NA,NA,NA,NA,339e3,1
+United Kingdom of Great Britain and Northern Ireland,Chevron North Sea Ltd,Central North Sea,Fees,2015,200141.93700644202,NA,NA,NA,NA,NA,NA,200141.93700644202,1
+United Kingdom of Great Britain and Northern Ireland,Perenco Uk Limited,Gawain,Fees,2015,8822.916338775001,Oil & Gas,NA,"gas, , ,",53.048951,2.503074,Estimated,8822.916338775001,1
+United Kingdom of Great Britain and Northern Ireland,Tullow Oil Plc,Gawain,Fees,2015,10600,Oil & Gas,NA,"gas, , ,",53.048951,2.503074,Estimated,106900,0.09915809167446211
+United Kingdom of Great Britain and Northern Ireland,Tullow Oil Plc,Gawain,Payments for infrastructure improvements,2015,96300,Oil & Gas,NA,"gas, , ,",53.048951,2.503074,Estimated,106900,0.9008419083255379
+United Kingdom of Great Britain and Northern Ireland,Cnooc Limited,Golden Eagle,Fees,2016,753456.799295532,Oil & Gas,NA,"oil, , ,",57.4685,-0.710358,Estimated,753456.799295532,1
+United Kingdom of Great Britain and Northern Ireland,Suncor Energy Inc,Golden Eagle,Taxes,2016,50399893.1224,Oil & Gas,NA,"oil, , ,",57.4685,-0.710358,Estimated,50399893.1224,1
+United Kingdom of Great Britain and Northern Ireland,Centrica Plc,Greater Markham Area,Fees,2015,1630505.49496004,Oil & Gas,NA,"oil, gas",NA,NA,NA,3177615.515374314,0.5131223356227763
+United Kingdom of Great Britain and Northern Ireland,Centrica Plc,Greater Markham Area,Fees,2016,1547110.0204142742,Oil & Gas,NA,"oil, gas",NA,NA,NA,3177615.515374314,0.48687766437722374
+United Kingdom of Great Britain and Northern Ireland,Total Sa,Greater Markham Area,Fees,2015,194e3,Oil & Gas,NA,"oil, gas",NA,NA,NA,341e3,0.5689149560117303
+United Kingdom of Great Britain and Northern Ireland,Total Sa,Greater Markham Area,Licensefees,2016,147e3,Oil & Gas,NA,"oil, gas",NA,NA,NA,341e3,0.4310850439882698
+United Kingdom of Great Britain and Northern Ireland,Cnooc Limited,Scott,Taxes,2015,374346.79164346703,Oil & Gas,NA,"oil, , ,",57.847,0.454477,Estimated,374346.79164346703,1
+United Kingdom of Great Britain and Northern Ireland,Premier Oil Plc,Scott,Taxes,2015,-108e4,Oil & Gas,NA,"oil, , ,",57.847,0.454477,Estimated,-108e4,1
+United Kingdom of Great Britain and Northern Ireland,Bp Plc,Shetland,Fees,2015,4218090,Oil & Gas,NA,"oil, gas",60.233582,-1.232298,Estimated,4218090,1
+United Kingdom of Great Britain and Northern Ireland,Chevron North Sea Ltd,Shetland,Fees,2015,1109941.2087505471,Oil & Gas,NA,"oil, gas",60.233582,-1.232298,Estimated,1109941.2087505471,1
+United Kingdom of Great Britain and Northern Ireland,Conocophillips Uk Limited,Shetland,Fees,2015,100593.46848380301,Oil & Gas,NA,"oil, gas",60.233582,-1.232298,Estimated,100593.46848380301,1
+United Kingdom of Great Britain and Northern Ireland,Royal Dutch Shell Plc,Shetland,Fees,2015,158910,Oil & Gas,NA,"oil, gas",60.233582,-1.232298,Estimated,158910,1
+United Kingdom of Great Britain and Northern Ireland,Perenco Uk Limited,Thames,Fees,2015,675277.752682,Oil & Gas,NA,"oil, gas",53.100856,2.1214750000000002,Estimated,675277.752682,1
+United Kingdom of Great Britain and Northern Ireland,Tullow Oil Plc,Thames,Fees,2015,17100,Oil & Gas,NA,"oil, gas",53.100856,2.1214750000000002,Estimated,17100,1
+United Kingdom of Great Britain and Northern Ireland,Centrica Plc,Victor,Taxes,2015,-5224229.805848616,Oil & Gas,NA,"gas, , ,",53.877068,0.866671,Estimated,-5224229.805848616,1
+United Kingdom of Great Britain and Northern Ireland,Dana Petroleum Limited,Victor,Taxes,2015,-1512325.777129806,Oil & Gas,NA,"gas, , ,",53.877068,0.866671,Estimated,-1512325.777129806,1
+United Kingdom of Great Britain and Northern Ireland,Ithaca Energy Uk Ltd,Wytch Farm,Taxes,2015,5084561.894372517,Oil & Gas,NA,"oil, gas",50.596577,-2.299091,Estimated,5084561.894372517,1
+United Kingdom of Great Britain and Northern Ireland,Perenco Uk Limited,Wytch Farm,Fees,2015,805138.858967,Oil & Gas,NA,"oil, gas",50.596577,-2.299091,Estimated,805138.858967,1
+United Kingdom of Great Britain and Northern Ireland,Premier Oil Plc,Wytch Farm,Taxes,2015,174e5,Oil & Gas,NA,"oil, gas",50.596577,-2.299091,Estimated,174e5,1
+United States of America,Liberty Gold Corp Formerly Pilot Gold Inc,Antelope,Fees,2016,1e4,Mining,56436,"gold, , ,",39.6,-116.4,Exact,1e4,1
+United States of America,Uranium One Inc,Antelope,Fees,2016,301795.7672,Mining,56436,"gold, , ,",39.6,-116.4,Exact,301795.7672,1
+United States of America,Barrick Gold Corporation,Bald Mountain,Fees,2016,75448.9418,Mining,25315,gold,39.942764,-115.613701,Exact,1290176.90478,0.058479532163742694
+United States of America,Barrick Gold Corporation,Bald Mountain,Taxes,2016,1214727.96298,Mining,25315,gold,39.942764,-115.613701,Exact,1290176.90478,0.9415204678362574
+United States of America,Kinross Gold Corporation,Bald Mountain,Fees,2016,162e4,Mining,25315,gold,39.942764,-115.613701,Exact,384e4,0.421875
+United States of America,Kinross Gold Corporation,Bald Mountain,Taxes,2016,222e4,Mining,25315,gold,39.942764,-115.613701,Exact,384e4,0.578125
+United States of America,Agnico Eagle Mines Limited,Delta,Fees,2016,75448.9418,Mining,30902,"gold, silver, zinc, copper, lead",63.24773,-144.09221,Exact,75448.9418,1
+United States of America,Bouyges,Delta,Fees,2016,30972.248747999998,Mining,30902,"gold, silver, zinc, copper, lead",63.24773,-144.09221,Exact,263264.114358,0.11764705882352941
+United States of America,Bouyges,Delta,Taxes,2016,232291.86560999998,Mining,30902,"gold, silver, zinc, copper, lead",63.24773,-144.09221,Exact,263264.114358,0.8823529411764706
+United States of America,Bhp Billiton Plc,Eagle Ford,Fees,2016,3904686,Oil & Gas,NA,"oil, gas",29.42188,-98.497031,Nearest Town,125531759,0.03110516439110839
+United States of America,Bhp Billiton Plc,Eagle Ford,Royalties,2016,32035670,Oil & Gas,NA,"oil, gas",29.42188,-98.497031,Nearest Town,125531759,0.2551997220081971
+United States of America,Bhp Billiton Plc,Eagle Ford,Taxes,2016,89591403,Oil & Gas,NA,"oil, gas",29.42188,-98.497031,Nearest Town,125531759,0.7136951136006945
+United States of America,Encana Corporation,Eagle Ford,Fees,2016,47e4,Oil & Gas,NA,"oil, gas",29.42188,-98.497031,Nearest Town,4332e4,0.01084949215143121
+United States of America,Encana Corporation,Eagle Ford,Royalties,2016,145e4,Oil & Gas,NA,"oil, gas",29.42188,-98.497031,Nearest Town,4332e4,0.03347183748845799
+United States of America,Encana Corporation,Eagle Ford,Taxes,2016,414e5,Oil & Gas,NA,"oil, gas",29.42188,-98.497031,Nearest Town,4332e4,0.9556786703601108
+United States of America,Repsol,Eagle Ford,Taxes,2016,7521831.838799999,Oil & Gas,NA,"oil, gas",29.42188,-98.497031,Nearest Town,7521831.838799999,1
+United States of America,Barrick Gold Corporation,Goldstrike,Fees,2016,671495.58202,Mining,28203,"gold, silver, ,",37.369466,-113.879232,Exact,19231935.264820002,0.03491565319733228
+United States of America,Barrick Gold Corporation,Goldstrike,Taxes,2016,18560439.682800002,Mining,28203,"gold, silver, ,",37.369466,-113.879232,Exact,19231935.264820002,0.9650843468026677
+United States of America,Liberty Gold Corp Formerly Pilot Gold Inc,Goldstrike,Fees,2016,17e4,Mining,28203,"gold, silver, ,",37.369466,-113.879232,Exact,17e4,1
+United States of America,Bhp Billiton Plc,New Mexico,Fees,2016,1000496,NA,NA,NA,NA,NA,NA,27841054,0.035935995813951585
+United States of America,Bhp Billiton Plc,New Mexico,Royalties,2016,9191812,NA,NA,NA,NA,NA,NA,27841054,0.33015316158648306
+United States of America,Bhp Billiton Plc,New Mexico,Taxes,2016,17648746,NA,NA,NA,NA,NA,NA,27841054,0.6339108425995654
+United States of America,Bp Plc,New Mexico,Royalties,2016,2367117,NA,NA,NA,NA,NA,NA,14243748,0.16618638577430603
+United States of America,Bp Plc,New Mexico,Taxes,2016,11876631,NA,NA,NA,NA,NA,NA,14243748,0.833813614225694
+United States of America,Petroshale Inc,North Dakota,Bonuses,2016,5658670.635,Oil & Gas,NA,"oil & gas, , ,",47.973307,-102.667265,Estimated,5847292.9895,0.9677419354838709
+United States of America,Petroshale Inc,North Dakota,Fees,2016,188622.35450000002,Oil & Gas,NA,"oil & gas, , ,",47.973307,-102.667265,Estimated,5847292.9895,0.03225806451612903
+United States of America,Prairie Provident Resources Inc,North Dakota,Royalties,2016,369699.81482,Oil & Gas,NA,"oil & gas, , ,",47.973307,-102.667265,Estimated,369699.81482,1
+United States of America,Coeur Mining Inc,Rochester,Fees,2016,12e4,Mining,24828,"silver, gold",40.286364,-118.155994,Exact,289e4,0.04152249134948097
+United States of America,Coeur Mining Inc,Rochester,Taxes,2016,277e4,Mining,24828,"silver, gold",40.286364,-118.155994,Exact,289e4,0.9584775086505191
+United States of America,Rye Patch Gold Corp,Rochester,Taxes,2016,225592.33598200002,Mining,24828,"silver, gold",40.286364,-118.155994,Exact,225592.33598200002,1
+United States of America,Teck Resources Limited,San Antonio,Fees,2016,128263.20106,Mining,NA,", , ,",29.073,-110.9559,Regional Capital,128263.20106,1
+United States of America,Trimetals Mining Inc,San Antonio,Fees,2016,2e4,Mining,NA,", , ,",29.073,-110.9559,Regional Capital,2e4,1
+United States of America,Cnooc Limited,Wind River,Fees,2016,54636.94953914401,Oil & Gas,NA,"oil & gas, , ,",43.020909,-108.380695,Nearest Town,54636.94953914401,1
+United States of America,Encana Corporation,Wind River,Fees,2016,19e4,Oil & Gas,NA,"oil & gas, , ,",43.020909,-108.380695,Nearest Town,474e4,0.04008438818565401
+United States of America,Encana Corporation,Wind River,Royalties,2016,-47e4,Oil & Gas,NA,"oil & gas, , ,",43.020909,-108.380695,Nearest Town,474e4,-0.09915611814345991
+United States of America,Encana Corporation,Wind River,Taxes,2016,502e4,Oil & Gas,NA,"oil & gas, , ,",43.020909,-108.380695,Nearest Town,474e4,1.0590717299578059

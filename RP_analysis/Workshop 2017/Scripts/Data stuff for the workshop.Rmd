@@ -1,0 +1,148 @@
+---
+title: "Data stuff for the workshop"
+output: 
+  html_notebook:
+    number_sections: yes
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    theme: cosmo
+    highlight: kate
+    smart: true
+    code_folding: hide
+date: '`r Sys.Date()`'
+---
+
+##Data issue questions
+
+1. What is the RP converage by commodity
+2. How many companies pay taxes to countries that are not the project country or reporting country?
+3. Proportion of payments by joint ventures
+4. Compare ownership on SNL against whether they are filing on RP
+5. Single asset companies list
+
+##Summary
+Lets load the latest data and functions.
+
+```{r, error=FALSE, message=FALSE, results='hide'}
+rm(list = setdiff(ls(), c("sourceData", "projectData", "entityData", "currentLookup", "currentSecondary", "snlData")))
+library(tidyverse); library(ggthemes); library(kableExtra); library(knitr); library(viridis); library(readxl); library(stringr); library(googlesheets)
+
+if(!exists("sourceData")){ ##so that we only run on first load
+    sourceData <- read_excel("../../Data Cleaning/Payment Data Pipeline/data/Current website data/allDataNew.xlsx", sheet = "sources")
+    projectData <- read_excel("../../Data Cleaning/Payment Data Pipeline/data/Current website data/allDataNew.xlsx", sheet = "projects")
+    entityData <- read_excel("../../Data Cleaning/Payment Data Pipeline/data/Current website data/allDataNew.xlsx", sheet = "entities")
+}
+
+```
+
+Load and process SNL data.
+```{r, error=FALSE, message=FALSE, results='hide'}
+if(!exists("snlData")){
+    snlCmdtyLocData <- read_excel("../../Data Cleaning/Secondary Data/Projects/Data/Secondary data sources/snl_all_comdty_location.xls", sheet = 1) %>% 
+    mutate_at(16:17, as.character) %>% 
+    bind_rows(., read_excel("../../Data Cleaning/Secondary Data/Projects/Data/Secondary data sources/snl_all_comdty_location_inactive.xls", sheet = 1)) %>% 
+    select(-(`Property Name`))
+
+    snlOwnership <- read_excel("../../Data Cleaning/Secondary Data/Projects/Data/Secondary data sources/snl_ownership.xls", sheet = 1) %>% 
+        bind_rows(., read_excel("../../Data Cleaning/Secondary Data/Projects/Data/Secondary data sources/snl_ownership_inactive.xls", sheet = 1)) %>% 
+        select(-(`Property Name`))
+    
+    snlFinancing <- read_excel("../../Data Cleaning/Secondary Data/Projects/Data/Secondary data sources/snl_financing.xls", sheet = 1) %>% 
+        bind_rows(., read_excel("../../Data Cleaning/Secondary Data/Projects/Data/Secondary data sources/snl_financing_inactive.xls", sheet = 1)) %>% 
+        gather(key = "round", value = "amt", -(1:2)) %>% 
+        mutate(amt = as.numeric(amt)) %>% 
+        group_by(`Property ID`) %>% 
+        summarise(totalFinance = sum(amt, na.rm = T)) %>% 
+        mutate(totalFinance = ifelse(totalFinance == 0, NA, totalFinance))
+    
+    snlProduction <- read_excel("../../Data Cleaning/Secondary Data/Projects/Data/Secondary data sources/snl_production.xls", sheet = 1) %>% 
+        bind_rows(., read_excel("../../Data Cleaning/Secondary Data/Projects/Data/Secondary data sources/snl_production_inactive.xls", sheet = 1)) %>% 
+        gather(key = "name", value = "value", -(1:2)) %>%
+        mutate(value = as.numeric(value)) %>% 
+        filter(!is.na(value)) %>%
+        arrange(`Property ID`, desc(value)) %>% 
+        group_by(`Property ID`) %>% 
+        filter(row_number() < 3) %>% 
+        summarise(avgProduction = mean(value, na.rm = T))
+    
+    snlData <- left_join(snlCmdtyLocData, snlOwnership, by = "Property ID") %>% 
+        left_join(., snlFinancing, by = "Property ID") %>% 
+        left_join(., snlProduction, by = "Property ID")
+    
+    rm(snlCmdtyLocData, snlOwnership, snlFinancing, snlProduction)
+}
+
+```
+
+Load the lookup tables and secondary data
+```{r, error=FALSE, message=FALSE, results='hide'}
+if(!exists("currentLookup")){
+    gs_auth("/Users/hsubhash/Documents/GitHub/resource-project-data/token.rds")
+    currentLookup <- gs_title("Current Lookup") %>% 
+        gs_read(ws = "Current Matched Lookup", verbose = F)
+    currentSecondary <- gs_title("Current Secondary") %>% 
+        gs_read(ws = "Secondary Data", verbose = F)
+
+    currentSecondary <- currentSecondary %>% 
+        mutate(projectType = case_when(
+        str_detect(str_to_lower(projectType), "corporate") ~ "Corporate",
+        str_detect(str_to_lower(projectType), "oil") ~ "Oil & Gas",
+        str_detect(str_to_lower(projectType), "mining") ~ "Mining",
+        str_detect(str_to_lower(projectType), "other") ~ "Other"
+        )) %>% 
+        mutate(locationType = case_when(
+        str_detect(str_to_lower(locationType), "exact") ~ "Exact",
+        str_detect(str_to_lower(locationType), "capital") ~ "Regional Capital",
+        str_detect(str_to_lower(locationType), "nearest town") ~ "Nearest Town",
+        str_detect(str_to_lower(locationType), "estimated") ~ "Estimated"
+        )) %>% 
+        mutate(commodity = ifelse(commodity == ",,,", NA, commodity)) %>% 
+        filter(paste0(projectCountry, finalName) %in% paste0(currentLookup$projectCountry, currentLookup$finalName)) %>% 
+        select(-sources, -notes, -duplicates)
+}
+
+```
+
+
+## Joint Ventures
+These are projects that are reported by multiple companies
+```{r}
+jvProjects <- projectData %>% 
+    mutate(projectPayment = as.numeric(projectPayment)) %>% 
+    filter(!is.na(projectPayment) & projectPayment != 0) %>% 
+    left_join(., currentLookup %>% 
+                  select(1:4), by = c("projectCountry", "reportingCompany", "projectName" = "rawName")) %>% 
+    mutate(projectName = ifelse(is.na(finalName), projectName, finalName)) %>% 
+    group_by(projectCountry, reportingCompany, projectName, paymentType, reportYear) %>% 
+    summarise(projectPayment = sum(projectPayment, na.rm = T)) %>% 
+    group_by(projectCountry, projectName, reportYear) %>% 
+    filter(n_distinct(reportingCompany) > 1) %>% 
+    filter(projectName != "Corporate") %>% 
+    ungroup() %>% 
+    left_join(., currentSecondary, by = c("projectCountry", "projectName" = "finalName")) %>% 
+    filter(!is.na(projectCountry) | projectCountry != "x") %>% 
+    filter(!str_detect(str_to_lower(projectName), "alberta|columbia|other|general|gulf of mexico|attribu|operated|entity|exploration|united states of")) %>% 
+    filter(projectName != "x" & projectName != "Bc") %>% 
+    arrange(projectCountry, projectName, reportingCompany, paymentType)
+    
+
+
+```
+
+```{r}
+jvProjects <- jvProjects %>% 
+    group_by(projectCountry, reportingCompany, projectName) %>% 
+    mutate(totalPay = sum((projectPayment), na.rm = T)) %>% 
+    ungroup() %>% 
+    mutate(proportionPay = projectPayment/totalPay) %>% 
+    write_csv(., "Temp Data/JV Data/jv.csv")
+```
+
+
+
+
+
+
+
+

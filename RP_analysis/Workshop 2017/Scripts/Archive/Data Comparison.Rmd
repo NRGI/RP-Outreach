@@ -1,0 +1,143 @@
+---
+title: "Data comparison for presentation"
+output: 
+  html_notebook:
+    number_sections: yes
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    theme: cosmo
+    highlight: kate
+    smart: true
+    code_folding: hide
+date: '`r Sys.Date()`'
+---
+
+##Load data
+```{r}
+rm(list = ls())
+library(tidyverse)
+
+oldRPCompanies <- read_csv("../Data/Old RP Data/oldRP-Companies.csv")
+oldRPSource <- read_csv("../Data/Old RP Data/oldRP - Sources.csv")
+projectData <- read_csv("../Data/Old RP Data/projectTransfers.csv")
+entityData <- read_csv("../Data/Old RP Data/entityTransfers.csv")
+```
+
+
+
+
+```{r, message=FALSE}
+gs_auth("token.RDS", new_user = TRUE, cache = F)
+allSource <- gs_title("All data 2.0") %>% 
+    gs_read(ws = "Source")
+allProject <- gs_title("All data 2.0") %>% 
+    gs_read(ws = "Project")
+allEntity <- gs_title("All data 2.0") %>% 
+    gs_read(ws = "Entity")
+
+masterPath <- paste("../../Data/Payment Data Pipeline/Data/Pipeline/Review Files/Variable Review Files/master-", Sys.time(), ".xlsx", sep = "")
+lookupPath <- paste("../../Data/Payment Data Pipeline/Data/Pipeline/Review Files/Variable Review Files/lookUp-", Sys.time(), ".xlsx", sep = "")
+gs_title("Master Lists") %>% 
+        gs_download(to = masterPath, overwrite = T)
+
+gs_title("Lookup Tables") %>% 
+        gs_download(to = lookupPath, overwrite = T)
+
+cleanValues <- function(rawVector, lookupPath, variable){
+    lookupTable <- read_xlsx(lookupPath, sheet = variable) %>% 
+        filter(rawValue != "x")
+    
+    lapply(rawVector, function (x) {
+        if(x %in% lookupTable$rawValue){
+            lookupTable[lookupTable$rawValue == x, ]$matchedValue
+            } else {
+                x
+                }
+        }) %>% 
+        unlist()
+}
+masterCountry <- read_xlsx(masterPath, sheet = "Country")
+masterPayment <- read_xlsx(masterPath, sheet = "Payment Types")
+
+exchangeRates <- read_csv("../../Data/Payment Data Pipeline/Data/Misc/Exchange Rate/cleanExchangeRates.csv") %>% 
+    distinct(currCode, year, rate) %>% 
+    arrange(currCode, year)
+
+```
+```{r}
+# source("../../Data/Payment Data Pipeline/Scripts Data Pipeline/Functions/convertToUSD.R")
+# source("../../Data/Payment Data Pipeline/Scripts Data Pipeline/Functions/cleanDates.R")
+# 
+# 
+
+# 
+# sourceRates <- allSource %>% 
+#     filter(sourceID != "x") %>% 
+#     select(sourceID, reportStartDate, reportEndDate, reportCurrency) %>% 
+#     mutate(reportStartDate = ifelse(cleanDates(reportStartDate, c("mdy")) == "NA-NA-NA", cleanDates(reportStartDate, c("ymd")), cleanDates(reportStartDate, c("mdy"))), 
+#            reportEndDate = ifelse(cleanDates(reportEndDate, c("mdy")) == "NA-NA-NA", cleanDates(reportEndDate, c("ymd")), cleanDates(reportEndDate, c("mdy")))) %>% 
+#     rowwise() %>% 
+#     mutate(finalRate = generateExchangeRate(reportStartDate, reportEndDate, reportCurrency))
+#            
+    #        ,
+    #        exchangeRateNotes = ifelse(finalRate == 1, "Payments were reported in USD", paste("Final exchange rate used to convert to USD from ", reportCurrency, " : ",round(finalRate, 2), sep = ""))) %>% 
+    # select(sourceID, reportCurrency, finalRate, exchangeRateNotes) %>% 
+    # mutate(finalRate = ifelse(is.na(finalRate), 0.75448942, finalRate))
+```
+
+
+##Companies
+```{r}
+n_distinct(c(projectData$Company, entityData$Company))
+n_distinct(c(allSource$reportingCompany))
+```
+
+```{r}
+sum(projectData$Value, na.rm = T)/1000000000
+```
+
+```{r}
+n_distinct(projectData$`Project ID`)
+
+n_distinct(paste0(allProject$projectCountry, allProject$projectName))
+```
+```{r}
+n_distinct(paste0(entityData$Country, entityData$`Government entity`))
+
+n_distinct(paste0(allEntity$entityCountry, allEntity$entityName))
+```
+```{r}
+n_distinct(oldRPSource$`Access source`)
+
+n_distinct(allSource$sourceURL)
+```
+
+
+
+##Chart
+
+```{r}
+compareData <- tibble(variableVals = c("Company Reports", "No. Companies", "Total payment value", "No. Projects", "No. Govt. Entities"),
+                      may = c(rep_len(1, 5)),
+                      sept = c(9.73, 2.48, 3.65, 4.78, 4.70)) %>% 
+    gather(type, value, -variableVals) %>% 
+    mutate(type = factor(type, levels = c("may", "sept"), labels = c("2016", "2017")),
+           variableVals = factor(variableVals, levels = c("Company Reports", "No. Companies", "Total payment value", "No. Projects", "No. Govt. Entities")))
+png(file = "../Plots/dataCompare.png", height = 1000, width = 1200, res = 100)
+ggplot(compareData, aes(x = variableVals, y = value, fill = type)) +
+    geom_bar(stat = "identity", position = "dodge") +
+    theme_tufte() +
+    labs(y = "Normalized values (before was scaled to 1)", title = "Comparing primary data metrics") +
+    theme(
+            axis.text = element_text(size = 18),
+            axis.title.x = element_blank(),
+            axis.title.y = element_text(size = 20),
+            legend.position = c(0.95, 0.9),
+            legend.title = element_blank(),
+            title = element_text(size = 24),
+            legend.text = element_text(size = 18)
+        )
+dev.off()
+```
+

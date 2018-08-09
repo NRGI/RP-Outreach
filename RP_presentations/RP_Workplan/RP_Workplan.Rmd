@@ -1,0 +1,93 @@
+---
+title: "Resource Projects Workplan"
+date: '`r Sys.Date()`'
+output:
+  revealjs::revealjs_presentation:
+    incremental: true
+    includes:
+       in_header: header.html
+    css: RP_Workplan_files/workplanStyles.css
+    theme: "night"
+    highlight: "haddock"
+    self_contained: false
+    reveal_plugins: ["notes", "zoom"]
+---
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+# Create the external file
+img <- htmltools::img(src = knitr::image_uri(file.path("/Users/hsubhash/Documents/GitHub/RP Outreach/assets/images/RP_logo.png")), 
+               alt = 'logo', 
+               style = 'position:absolute; top:20px; right:1%; padding:10px;z-index:200; width:100px')
+
+htmlhead <- paste0('<link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto" rel="stylesheet">', '
+<script>
+    document.write(\'<div class="logos">',img,'</div>\')
+    
+</script>
+')
+
+readr::write_lines(htmlhead, path = "header.html")
+
+```
+
+#👇Work Completed (June - 2017 to June 2018)👇🏾
+
+##Data Pipeline
+
+*Moved from a manual data entry process to a semi-automated scalable pipeline that is 10 X faster, easier to maintain and less error prone*
+
+- [PDF Scraper](http://shiny.resourcedata.org/ptg-scraper/) that allows users to upload and scrape PDF tables easily.
+- API scripts to access data from online repositories like [Company House](https://www.gov.uk/government/organisations/companies-house)
+- Automated cleaning pipeline that converts payments to USD, cleans and consolidates all data values (projects, govt. agencies, companies etc.)
+
+👇🏾👇
+
+##Lookup tables for cleaning data values
+
+*Lookup tables map raw data values to clean publicly identifiable names. Values that are mapped once are remembered forever thereby avoiding the need to repeat work*
+
+- Cleaning script adds new data values for countries, payment types, currency codes, projects, government agencies, and companies are added to a lookup pipeline.
+- New data values that have not been mapped yet are manually mapped to publicly recognizable values
+
+👇🏾👇
+
+##Secondary Data
+
+*Contextual information on projects, company names govt. agencies etc., allow us to extract insight from payment data in disclosure reports*
+
+- Once a new data value is identified in the lookup we collect additional information for that data value.
+- For instance, we identify the location of projects and the commodities that it produces, and the government agencies are classified as national, local or regional.
+
+👇🏾👇
+
+##Website
+
+*A modern user friendly website that provides both data and analysis*
+
+- Users can access cleaned and consolidated data, filter records of interest and download all tables
+- Data visualizations provide an overall summary view of payment data from disclosure reports
+- Country pages summarise payment data relevant for each country and allow comparisons within and across countries
+
+👉👉👉👉👉👉👉👉👉
+
+#👇Work Plan (June - 2018 to Dec 2018)👇🏾
+
+##Data Pipeline
+
+- scrape everything
+- Backup all incoming reports to S3 before scrape and generate hash ids
+- Aggregate data to company owners
+- Data quality reports
+
+##Website
+- An integrated data use/analysis section for RP
+- Source management on RP
+- Company Pages
+- Data viz for RP
+
+#👇Pies in the sky (June - 2018 to July 2019)👇🏾
+
+##
+- Machine learning algoithm for lookups
+- Companies report directly on RP
+

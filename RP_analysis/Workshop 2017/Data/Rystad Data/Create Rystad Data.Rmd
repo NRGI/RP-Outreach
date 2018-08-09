@@ -1,0 +1,62 @@
+---
+title: "Generate Rystad Data"
+output: 
+  html_notebook:
+    number_sections: yes
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    theme: cosmo
+    highlight: kate
+    smart: true
+    code_folding: hide
+date: '`r Sys.Date()`'
+---
+
+##Summary
+This file generates Rystad data from the data that was downloaded from Rystad (UCube). There are a few version of this data and it seems that the `rystad_data_dump.csv` and `rystadRaw.csv` (both are the same) are the correct versions (according to Elliot).
+
+The Rystad data is recorded at the different levels of aggregation, the lowest being `asset`, followed by `project` and `location`. Each asset can be owned by multiple companies, in which case values like reserves, production etc. are split by the ownership percentages. This file generates, the following different datasets from the downloaded data.
+
+1. Data at the different aggregation levels : These would summarise the data at the level of the asset, project and location. Primary keys would be generated to tag these values.
+2. Ownership data : For each company there would be a list of assets and their corresponding primary keys
+
+```{r, message=FALSE}
+rm(list = ls())
+library(tidyverse); library(readxl)
+
+rystadAll <- read_csv("Downloads/rystad_data_dump.csv") %>% 
+    select(-X1)
+
+unique(rystadAll$fieldTypeCat)
+```
+
+Lets generate the asset level data first. This data contains all the data however, it summarises at the level of each asset. We make the assumption that assets are distinct within each location. There seem to be a few errors in the data i.e. there are different data reported for the same assets, to avoid losing this data, I use a sumFunc that pastes non-unique values for assets together. For instance, if the same asset has two different start up years, these are pasted together.
+
+```{r}
+
+sumFunc <- function(vec){
+    
+    if(n_distinct(vec) > 1) {
+        paste(as.character(vec[!is.na(vec)]), collapse = "; ")
+    } else {
+        as.character(unique(vec))
+    }
+}
+
+rystadAsset <- rystadAll %>% 
+    group_by(Country, Location, Project, Asset) %>% ##there seem to be a few rows that seem to be errors (same asset different start years)
+    summarise(Operator = sumFunc(Operator), companies = sumFunc(Company), approvalYear = sumFunc((approvalYear)), startUpYear = sumFunc(startUpYear), assetType = sumFunc(assetType), fieldTypeCat = sumFunc(fieldTypeCat), fieldTypeDet = sumFunc(fieldTypeDet), unconCat = sumFunc(unconCat), unconDet = sumFunc(unconDet), breakevenGasPriceCat = sumFunc(breakevenGasPriceCat), breakevenOilPriceCat = sumFunc(breakevenOilPriceCat), production = sum(production, na.rm = T), resources = sum(resources, na.rm = T))
+    
+rystadProject <- rystadAll %>% 
+    group_by(Country, Location, Project, fieldTypeCat) %>% ##there seem to be a few rows that seem to be errors (same asset different start years)
+    summarise(Operator = sumFunc(Operator), companies = sumFunc(Company), approvalYear = sumFunc((approvalYear)), startUpYear = sumFunc(startUpYear), assetType = sumFunc(assetType), fieldTypeCat = sumFunc(fieldTypeCat), fieldTypeDet = sumFunc(fieldTypeDet), unconCat = sumFunc(unconCat), unconDet = sumFunc(unconDet), breakevenGasPriceCat = sumFunc(breakevenGasPriceCat), breakevenOilPriceCat = sumFunc(breakevenOilPriceCat), production = sum(production, na.rm = T), resources = sum(resources, na.rm = T))
+
+rystadLocation <- rystadAll %>% 
+    group_by(Country, Location, fieldTypeCat) %>% ##there seem to be a few rows that seem to be errors (same asset different start years)
+    summarise(Operator = sumFunc(Operator), companies = sumFunc(Company), approvalYear = sumFunc((approvalYear)), startUpYear = sumFunc(startUpYear), assetType = sumFunc(assetType), fieldTypeDet = sumFunc(fieldTypeDet), unconCat = sumFunc(unconCat), unconDet = sumFunc(unconDet), breakevenGasPriceCat = sumFunc(breakevenGasPriceCat), breakevenOilPriceCat = sumFunc(breakevenOilPriceCat), production = sum(production, na.rm = T), resources = sum(resources, na.rm = T))
+```
+
+
+
+

@@ -1,0 +1,76 @@
+---
+title: "Checks on the current project data"
+output: 
+  html_notebook:
+    number_sections: yes
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    theme: cosmo
+    highlight: kate
+    smart: true
+    code_folding: hide
+date: '`r Sys.Date()`'
+---
+processed
+```{r, message=FALSE}
+rm(list = ls())
+library(tidyverse)
+sourceData <- read_csv("../Data/Sourcelist files/Final Sourcelist - Clean Sources.csv")
+
+sourceSummary <- sourceData %>% 
+    mutate(sourceAddType = case_when(
+        sourceAddType %in% c("T Morrison", "UK Manual Scrape") ~ "Manual",
+        sourceAddType %in% c("ESTMA scraper", "ESTMA Scraper", "CoHo Api") ~ "API/PDF",
+        TRUE ~ sourceAddType
+    )) %>% 
+    group_by(sourceAddType) %>% 
+    summarise(totals = n()) %>% 
+    mutate(scrape = "Scraped reports") %>% 
+    bind_rows(., tibble(sourceAddType = c("API/PDF", "Manual"), totals = c(100, 40), scrape = c("Unscraped reports (estim.)", "Unscraped reports (estim.)"))) %>% 
+    mutate(scrape = factor(scrape, levels = c("Unscraped reports (estim.)", "Scraped reports"))) %>% 
+    mutate(textPosition = c(305, 25, 655, 75))
+
+png(file = "../Plots/reportsProcessed.png", height = 1000, width = 1000, res = 100)
+ggplot(sourceSummary, aes(x = sourceAddType, fill = scrape)) + 
+    geom_bar(stat = "identity", width = 0.4, aes(y = totals)) +
+    geom_text(aes(y = textPosition, label = totals), size = 6) +
+    theme_tufte() +
+    labs(y = "Count of company reports", title = "Reports processed") +
+    theme(
+            axis.text = element_text(size = 18),
+            axis.title.x = element_blank(),
+            axis.title.y = element_text(size = 20),
+            legend.position = c(0.75, 0.6),
+            legend.title = element_blank(),
+            title = element_text(size = 24),
+            legend.text = element_text(size = 18)
+        )
+dev.off()
+
+```
+money chart
+```{r}
+moneyTibble <- tibble(x = factor(c(1, 1, 2, 2)), type = c("Unscraped Amount (estim.)", "Scraped Amount", "Unscraped Amount (estim.)", "Scraped Amount"), amount = c(70, 180, 0, 0)) %>% 
+    mutate(type = factor(type, levels = c("Unscraped Amount (estim.)", "Scraped Amount")))
+
+png(file = "../Plots/moneyPlot.png", height = 1000, width = 1000, res = 100)
+ggplot(moneyTibble, aes(x = x, y = amount, fill = type)) + 
+    geom_bar(stat = "identity", width = 0.2) +
+    theme_tufte() +
+    labs(y = "Amount of payments (in billion USD)", title = "Payments processed") +
+    theme(
+            axis.text.y = element_text(size = 18),
+            axis.text.x = element_blank(),
+            axis.ticks.x = element_blank(),
+            axis.title.x = element_blank(),
+            axis.title.y = element_text(size = 20),
+            legend.position = c(0.6, 0.5),
+            legend.title = element_blank(),
+            title = element_text(size = 24),
+            legend.text = element_text(size = 18)
+        )
+dev.off()
+
+```
+
