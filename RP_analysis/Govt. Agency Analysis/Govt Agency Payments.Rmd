@@ -17,6 +17,15 @@ date: '`r Sys.Date()`'
 
 
 ```{r}
+rm(list = ls())
+library(tidyverse); library(googlesheets)
+source("../../../resource-project-data/Functions/Clean and backup.R")
 eitiData <- read_csv(url("https://www.resourcedata.org/dataset/7dd3c8b6-9256-4e34-9360-1519efd87407/resource/4e4462a5-6029-4ae3-a4cc-66ad6ccc6d70/download/revenues-received-by-government-agencies.csv"))
+```
+
+
+```{r, message=FALSE, warning=FALSE}
+countryClean <- cleanAdd(eitiData$country, "Country")$cleanVals
+agencyClean <- cleanAdd(eitiData$government_agency_name, "Entity", countryClean)$cleanVals
 ```
 

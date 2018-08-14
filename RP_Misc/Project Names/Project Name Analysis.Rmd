@@ -20,7 +20,7 @@ date: '`r Sys.Date()`'
 rm(list = ls())
 library(tidyverse); library(googlesheets); library(stringdist); library(ggthemes); library(scales)
 
-cleanProjects <- read_csv("../../RP_data/allProject.csv")
+cleanProjects <- read_csv("../../../resource-project-data/Data Pipeline/All Data Backups/Current website data/allProject.csv")
 
 nonReconciledProjects <- gs_title("Project Cleaning") %>% 
     gs_read(ws = "Cannot be reconciled", verbose = F) %>% 
