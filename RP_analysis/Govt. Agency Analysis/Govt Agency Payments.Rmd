@@ -16,16 +16,40 @@ date: '`r Sys.Date()`'
 
 
 
-```{r}
+```{r, message=FALSE}
 rm(list = ls())
-library(tidyverse); library(googlesheets)
+library(tidyverse); library(googlesheets); library(lubridate)
 source("../../../resource-project-data/Functions/Clean and backup.R")
 eitiData <- read_csv(url("https://www.resourcedata.org/dataset/7dd3c8b6-9256-4e34-9360-1519efd87407/resource/4e4462a5-6029-4ae3-a4cc-66ad6ccc6d70/download/revenues-received-by-government-agencies.csv"))
+
+secondaryData <- gs_title("Final Secondary - Govt. Entities") %>% 
+    gs_read(ws = "Data", verbose = F) %>% 
+    select(1:9)
+
+ptMap <- gs_title("EITI Payment Types to Mandatory") %>%
+    gs_read(ws = "mapping", verbose = F) %>% 
+    select(gfs_code, mandatory_category)
+
 ```
 
 
+
 ```{r, message=FALSE, warning=FALSE}
-countryClean <- cleanAdd(eitiData$country, "Country")$cleanVals
-agencyClean <- cleanAdd(eitiData$government_agency_name, "Entity", countryClean)$cleanVals
+countryClean <- cleanAdd(eitiData$country, "Country")
+agencyClean <- cleanAdd(rawVals = eitiData$government_agency_name, sheetName = "Entity", groupVals = countryClean$cleanVals)
+```
+
+
+```{r}
+eitiDataCleaned <- eitiData %>% 
+    mutate(country = countryClean$cleanVals, entityName = agencyClean$cleanVals, 
+           startDate = mdy(start_date), endDate = mdy(end_date), 
+           eitiPT = gfs_description, payment = value_reported_as_USD) %>% 
+    filter(!is.na(value_reported)) %>% 
+    left_join(., ptMap, by = "gfs_code") %>% 
+    select(country, entityName, startDate, endDate, eitiPT, mandatoryPT = mandatory_category, payment) %>% 
+    left_join(., secondaryData, by = c("country" = "entityCountry", "entityName")) %>% 
+    filter(!is.na(entityType))
+
 ```
 
