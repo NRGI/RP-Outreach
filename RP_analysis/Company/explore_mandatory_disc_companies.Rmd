@@ -1,0 +1,49 @@
+---
+title: "An exploration of company ownership"
+author: |
+    | Hari Subhash
+    | Data Scientist @NRGI
+output:
+  html_notebook:
+    code_folding: hide
+    highlight: kate
+    smart: yes
+    theme: cosmo
+  html_document:
+    df_print: paged
+date: '`r Sys.Date()`'
+---
+
+
+```{r, message=FALSE, warning=FALSE}
+rm(list = ls())
+library(tidyverse); library(googlesheets)
+
+source("../../../resource-project-data/Functions/Clean and backup.R")
+rpSource <- read_csv("../../../resource-project-data/Data Pipeline/All Data Backups/Current website data/allSource.csv")
+rpProject <- read_csv("../../../resource-project-data/Data Pipeline/All Data Backups/Current website data/allProject.csv")
+rpEntity <- read_csv("../../../resource-project-data/Data Pipeline/All Data Backups/Current website data/allEntity.csv")
+
+ownershipData <- gs_title("Company - Owner") %>% 
+    gs_read(ws = "Data", verbose = F) 
+```
+
+clean up the ownership data
+```{r, message=FALSE, warning=FALSE}
+ownershipData <- ownershipData %>% 
+    mutate(company = cleanAdd(Company, "Company")$cleanVals) %>% 
+    select(reportingCompany = company, parentCompany = Parent, share = Share) %>% 
+    distinct()
+```
+
+
+```{r}
+n_distinct(ownershipData$parentCompany)
+```
+
+
+```{r}
+ownershipData %>% 
+    filter(!company %in% rpSource$reportingCompany)
+```
+
