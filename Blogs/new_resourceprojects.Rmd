@@ -1,0 +1,63 @@
+---
+title: "The new resourceprojects.org"
+author: |
+  | Hari Subhash
+  | Data Scientist @NRGI
+date: "Date created: `r Sys.Date()`"
+output:
+  html_notebook:
+    highlight: kate
+    smart: yes
+    theme: cosmo
+    code_folding: hide
+  html_document:
+    df_print: paged
+    includes: /Users/hsubhash/Documents/GitHub/Common Assets/header.html
+css: /Users/hsubhash/Documents/GitHub/Common Assets/custom.css
+---
+
+
+```{r, message=FALSE, warning=FALSE}
+rm(list = ls())
+library(tidyverse); library(googlesheets)
+
+suppressMessages(
+    rawSources <- gs_title("Raw Data Dump") %>% 
+        gs_read(ws = "Source", verbose = F)
+    
+)
+
+sourceData <- read_csv("/Users/hsubhash/Documents/GitHub/resource-project-data/Data Pipeline/All Data Backups/Current website data/allSource.csv")
+projectData <- read_csv("/Users/hsubhash/Documents/GitHub/resource-project-data/Data Pipeline/All Data Backups/Current website data/allProject.csv")
+entityData <- read_csv("/Users/hsubhash/Documents/GitHub/resource-project-data/Data Pipeline/All Data Backups/Current website data/allEntity.csv")
+```
+
+
+[resourceprojects.org](https://resourceprojects.org/) is the most comprehensive source of project level payments made by extractive sectory companies in the world. The website contains data on more than 535 billion USD in payments made by extractive sector companies that have reported under the mandatory disclosure laws in European Union, Norway and Canada. Since its launch we have scraped data from tables scattered across 1516 documents released in 21 different reporting jurisdictions. The payments from these reports have been cleaned, converted to USD, translated into english and compiled into a standard template that makes it easy to use and compare. We have also removed duplicate reports so that you don't have to worry about inflated figures in cases where companies disclose in different jurisdictions.
+
+In addition to tables with payment data, the latest version of the website provides additional company and country profiles to explore the data. We have also added an option to subscribe
+
+##Company profiles
+
+##Country profiles
+
+##Subscribe to alerts
+
+##Data tables
+
+##COntribute Sources
+
+##Provenance for all data
+Can trace back to original document. Backups to Amazon. All changes to the payments recorded
+
+##Secondary data
+Zoom into a project location
+
+
+##How easy it is to scrape
+Speed with which new data is added
+
+
+
+
+
