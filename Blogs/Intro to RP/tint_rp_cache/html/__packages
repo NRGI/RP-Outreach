@@ -1,0 +1,14 @@
+base
+tint
+ggplot2
+tidyverse
+tibble
+tidyr
+readr
+purrr
+dplyr
+stringr
+forcats
+googlesheets
+lubridate
+ggthemes

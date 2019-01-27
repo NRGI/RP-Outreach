@@ -1,0 +1,35 @@
+body {
+  /* font-size: 0.5em; */
+}
+.highlight {
+  background-color: rgb(17, 17, 16);
+  color: white;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 400;
+  /* text-transform: uppercase; */
+  padding: 2px 1px 0px 1px;
+}
+
+.newthought {
+  background-color: rgba(253, 100, 100, 0.3);
+  padding: 2px 2px 1px 2px;
+  /* color: white; */
+  /* opacity: 0.6; */
+}
+
+a {
+  outline: none !important;
+  text-decoration: none !important;
+  padding: 2px 1px 0;
+  /* border-bottom: 1px solid #ff0b3a; */
+}
+a:hover {
+  font-weight: 600;
+  /* color: darkblue; */
+  /* background-color: lightblue; */
+}
+
+/* 
+a:active {
+  background: lightgray;
+} */

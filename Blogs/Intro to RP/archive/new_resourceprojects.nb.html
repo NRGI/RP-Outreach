@@ -26,55 +26,6 @@
 <script src="data:application/x-javascript;base64,CndpbmRvdy5pbml0aWFsaXplU291cmNlRW1iZWQgPSBmdW5jdGlvbihmaWxlbmFtZSkgewogICQoIiNybWQtZG93bmxvYWQtc291cmNlIikuY2xpY2soZnVuY3Rpb24oKSB7CiAgICB2YXIgc3JjID0gJCgiI3JtZC1zb3VyY2UtY29kZSIpLmh0bWwoKTsKICAgIHZhciBhID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudCgnYScpOwogICAgYS5ocmVmID0gImRhdGE6dGV4dC94LXItbWFya2Rvd247YmFzZTY0LCIgKyBzcmM7CiAgICBhLmRvd25sb2FkID0gZmlsZW5hbWU7CiAgICBkb2N1bWVudC5ib2R5LmFwcGVuZENoaWxkKGEpOwogICAgYS5jbGljaygpOwogICAgZG9jdW1lbnQuYm9keS5yZW1vdmVDaGlsZChhKTsKICB9KTsKfTsK"></script>
 
 
-<style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; background-color: #ffffff; color: #1f1c1b; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; background-color: #ffffff; color: #a0a0a0; border-right: 1px solid #a0a0a0; }
-td.sourceCode { padding-left: 5px; }
-pre, code { color: #1f1c1b; background-color: #ffffff; }
-code > span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
-code > span.dt { color: #0057ae; } /* DataType */
-code > span.dv { color: #b08000; } /* DecVal */
-code > span.bn { color: #b08000; } /* BaseN */
-code > span.fl { color: #b08000; } /* Float */
-code > span.cn { color: #aa5500; } /* Constant */
-code > span.ch { color: #924c9d; } /* Char */
-code > span.sc { color: #3daee9; } /* SpecialChar */
-code > span.st { color: #bf0303; } /* String */
-code > span.vs { color: #bf0303; } /* VerbatimString */
-code > span.ss { color: #ff5500; } /* SpecialString */
-code > span.im { color: #ff5500; } /* Import */
-code > span.co { color: #898887; } /* Comment */
-code > span.do { color: #607880; } /* Documentation */
-code > span.an { color: #ca60ca; } /* Annotation */
-code > span.cv { color: #0095ff; } /* CommentVar */
-code > span.ot { color: #006e28; } /* Other */
-code > span.fu { color: #644a9b; } /* Function */
-code > span.va { color: #0057ae; } /* Variable */
-code > span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #1f1c1b; } /* Operator */
-code > span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
-code > span.ex { color: #0095ff; font-weight: bold; } /* Extension */
-code > span.pp { color: #006e28; } /* Preprocessor */
-code > span.at { color: #0057ae; } /* Attribute */
-code > span.re { color: #0057ae; } /* RegionMarker */
-code > span.in { color: #b08000; } /* Information */
-code > span.wa { color: #bf0303; } /* Warning */
-code > span.al { color: #bf0303; font-weight: bold; } /* Alert */
-code > span.er { color: #bf0303; text-decoration: underline; } /* Error */
-code > span. { color: #1f1c1b; } /* Normal */
-div.sourceCode {
-  overflow-x: visible;
-}
-</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 
 
 <style type="text/css">
@@ -107,7 +58,7 @@ h6 {
 }
 </style>
 
-<link href="data:text/css;charset=utf-8,body%20%7B%0A%0Aline%2Dheight%3A%201%2E7em%3B%0A%7D%0Ah1%2C%0Ah2%2C%0Ah3%2C%0Ah4%2C%0Ah5%2C%0Ah6%20%7B%0Afont%2Dfamily%3A%20%22PT%20Sans%20Narrow%22%2C%20sans%2Dserif%3B%0A%7D%0Acode%2C%0Apre%20%7B%0Afont%2Dfamily%3A%20Menlo%2C%20Monaco%2C%20%22Courier%20New%22%2C%20monospace%3B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0A%2EsourceCode%20%7B%0A%0A%7D%0Ap%2C%0Ali%20%7B%0Afont%2Dsize%3A%201em%3B%0Afont%2Dfamily%3A%20%22Roboto%22%2C%20sans%2Dserif%3B%0A%7D%0Ap%2C%0Ap%20img%2C%0Aol%2C%0Aul%20%7B%0Amargin%2Dbottom%3A%2015px%3B%0A%7D%0Asvg%20%7B%0Apadding%2Dleft%3A%202px%3B%0Apadding%2Dright%3A%204px%3B%0A%7D%0A%0A%2Edate%20%7B%0Afont%2Dsize%3A%200%2E9em%3B%0Afont%2Dweight%3A%20300%3B%0Amargin%2Dbottom%3A%2020px%3B%0A%7D%0Ah3%2C%0Ah4%20%7B%0Amargin%2Dtop%3A%2020px%3B%0A%7D%0A%2Efootnotes%20li%20%7B%0Afont%2Dsize%3A%200%2E8em%3B%0Aline%2Dheight%3A%201%2E3em%3B%0A%7D%0Ablockquote%20%7B%0Afont%2Dsize%3A%200%2E9em%3B%0A%7D%0A%2Ehighlight%20%7B%0A%0Abackground%2Dcolor%3A%20rgba%28233%2C%20140%2C%2094%2C%200%2E8%29%3B%0Apadding%3A%202px%204px%202px%204px%3B%0Aborder%2Dradius%3A%2015px%3B%0A%7D%0A%2Evariable%20%7B%0Acolor%3A%20antiquewhite%3B%0Afont%2Dsize%3A%200%2E9em%3B%0Afont%2Dfamily%3A%20Menlo%2C%20Monaco%2C%20%22Courier%20New%22%3B%0Abackground%2Dcolor%3A%20rgba%2890%2C%2090%2C%2090%2C%200%2E8%29%3B%0Apadding%3A%201px%201%2E5px%201px%201%2E5px%3B%0A%7D%0A%2Eemphasize%20%7B%0Abackground%2Dcolor%3A%20rgba%2834%2C%2034%2C%2051%2C%200%2E8%29%3B%0Acolor%3A%20rgb%28107%2C%20165%2C%20252%29%3B%0Apadding%3A%202%25%3B%0Amargin%2Dbottom%3A%208px%3B%0Amargin%2Dtop%3A%201px%3B%0Aborder%2Dradius%3A%204px%3B%0A%7D%0A%2EkeyMessage%20%7B%0Abackground%2Dcolor%3A%20rgb%28234%2C%20234%2C%20234%29%3B%0A%7D%0A%2Esolution%20%7B%0Amargin%3A%202%25%2010%25%202%25%2010%25%3B%0A%7D%0A%2Efull%2Dwidth%20%7B%0Awidth%3A%20100%25%3B%0A%0A%7D%0A%0A%2Ecenter%2Dcontainer%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%2Eleft%2Dcontainer%2C%0A%2Eright%2Dcontainer%20%7B%0Aposition%3A%20relative%3B%0Atop%3A%2010px%3B%0Amargin%2Dbottom%3A%200px%3B%0Apadding%2Dbottom%3A%200px%3B%0A%7D%0A%2Eleft%2Dcontainer%20%7B%0Apadding%2Dright%3A%206px%3B%0Afloat%3A%20left%3B%0A%7D%0A%2Eright%2Dcontainer%20%7B%0Apadding%2Dleft%3A%206px%3B%0Afloat%3A%20right%3B%0A%7D%0A%2Eleft%2Dcontainer%20img%2C%0A%2Eright%2Dcontainer%20img%20%7B%0Aborder%2Dradius%3A%202%25%3B%0A%7D%0A" rel="stylesheet" type="text/css" />
+<link href="data:text/css;charset=utf-8,%2Ehighlight%20%7B%0Abackground%2Dcolor%3A%20rgb%2817%2C%2017%2C%2016%29%3B%0Acolor%3A%20white%3B%0Afont%2Dfamily%3A%20%22Courier%20New%22%2C%20Courier%2C%20monospace%3B%0Afont%2Dweight%3A%20400%3B%0A%0Apadding%3A%202px%201px%200px%201px%3B%0A%7D%0A%2Enewthought%20%7B%0Abackground%2Dcolor%3A%20rgb%28201%2C%2098%2C%2014%29%3B%0Acolor%3A%20white%3B%0A%7D%0Aa%20%7B%0Aoutline%3A%20none%20%21important%3B%0Atext%2Ddecoration%3A%20none%20%21important%3B%0Apadding%3A%202px%201px%200%3B%0Aborder%2Dbottom%3A%201px%20solid%20%23ff0b3a%3B%0A%7D%0A%0A" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -206,7 +157,7 @@ $(document).ready(function () {
 <h1 class="title toc-ignore">The new resourceprojects.org</h1>
 <h4 class="author"><em><div style="white-space: pre-line;">Hari Subhash
 Data Scientist <span class="citation">@NRGI</span></div></em></h4>
-<h4 class="date"><em>Date created: 2019-01-15</em></h4>
+<h4 class="date"><em>Date created: 2019-01-17</em></h4>
 
 </div>
 
@@ -214,52 +165,33 @@ Data Scientist <span class="citation">@NRGI</span></div></em></h4>
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucm0obGlzdCA9IGxzKCkpXG5saWJyYXJ5KHRpZHl2ZXJzZSk7IGxpYnJhcnkoZ29vZ2xlc2hlZXRzKVxuc3VwcHJlc3NNZXNzYWdlcyhcbiAgICByYXdTb3VyY2VzIDwtIGdzX3RpdGxlKFwiUmF3IERhdGEgRHVtcFwiKSAlPiUgXG4gICAgICAgIGdzX3JlYWQod3MgPSBcIlNvdXJjZVwiLCB2ZXJib3NlID0gRilcbiAgICBcbilcbnNvdXJjZURhdGEgPC0gcmVhZF9jc3YoXCIvVXNlcnMvaHN1Ymhhc2gvRG9jdW1lbnRzL0dpdEh1Yi9yZXNvdXJjZS1wcm9qZWN0LWRhdGEvRGF0YSBQaXBlbGluZS9BbGwgRGF0YSBCYWNrdXBzL0N1cnJlbnQgd2Vic2l0ZSBkYXRhL2FsbFNvdXJjZS5jc3ZcIilcbnByb2plY3REYXRhIDwtIHJlYWRfY3N2KFwiL1VzZXJzL2hzdWJoYXNoL0RvY3VtZW50cy9HaXRIdWIvcmVzb3VyY2UtcHJvamVjdC1kYXRhL0RhdGEgUGlwZWxpbmUvQWxsIERhdGEgQmFja3Vwcy9DdXJyZW50IHdlYnNpdGUgZGF0YS9hbGxQcm9qZWN0LmNzdlwiKVxuZW50aXR5RGF0YSA8LSByZWFkX2NzdihcIi9Vc2Vycy9oc3ViaGFzaC9Eb2N1bWVudHMvR2l0SHViL3Jlc291cmNlLXByb2plY3QtZGF0YS9EYXRhIFBpcGVsaW5lL0FsbCBEYXRhIEJhY2t1cHMvQ3VycmVudCB3ZWJzaXRlIGRhdGEvYWxsRW50aXR5LmNzdlwiKVxuYGBgIn0= -->
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>(<span class="dt">list =</span> <span class="kw">ls</span>())
-<span class="kw">library</span>(tidyverse); <span class="kw">library</span>(googlesheets)
-<span class="kw">suppressMessages</span>(
-    rawSources &lt;-<span class="st"> </span><span class="kw">gs_title</span>(<span class="st">&quot;Raw Data Dump&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">        </span><span class="kw">gs_read</span>(<span class="dt">ws =</span> <span class="st">&quot;Source&quot;</span>, <span class="dt">verbose =</span> F)
-    
-)
-sourceData &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;/Users/hsubhash/Documents/GitHub/resource-project-data/Data Pipeline/All Data Backups/Current website data/allSource.csv&quot;</span>)
-projectData &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;/Users/hsubhash/Documents/GitHub/resource-project-data/Data Pipeline/All Data Backups/Current website data/allProject.csv&quot;</span>)
-entityData &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;/Users/hsubhash/Documents/GitHub/resource-project-data/Data Pipeline/All Data Backups/Current website data/allEntity.csv&quot;</span>)</code></pre></div>
-<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p><a href="https://resourceprojects.org/">resourceprojects.org</a> is the most comprehensive source of project level payments made by extractive sectory companies in the world. The website contains data on more than 535 billion USD in payments made by extractive sector companies that have reported under the mandatory disclosure laws in European Union, Norway and Canada. Since its launch we have scraped data from tables scattered across 1516 documents released in 21 different reporting jurisdictions. The payments from these reports have been cleaned, converted to USD, translated into english and compiled into a standard template that makes it easy to use and compare. We have also removed duplicate reports so that you don’t have to worry about inflated figures in cases where companies disclose in different jurisdictions.</p>
-<p>In addition to tables with payment data, the latest version of the website provides additional company and country profiles to explore the data. We have also added an option to subscribe</p>
-<div id="company-profiles" class="section level2">
-<h2>Company profiles</h2>
-</div>
-<div id="country-profiles" class="section level2">
-<h2>Country profiles</h2>
-</div>
-<div id="subscribe-to-alerts" class="section level2">
-<h2>Subscribe to alerts</h2>
-</div>
-<div id="data-tables" class="section level2">
-<h2>Data tables</h2>
-</div>
-<div id="contribute-sources" class="section level2">
-<h2>COntribute Sources</h2>
-</div>
-<div id="provenance-for-all-data" class="section level2">
-<h2>Provenance for all data</h2>
-<p>Can trace back to original document. Backups to Amazon. All changes to the payments recorded</p>
-</div>
-<div id="secondary-data" class="section level2">
-<h2>Secondary data</h2>
-<p>Zoom into a project location</p>
-</div>
-<div id="how-easy-it-is-to-scrape" class="section level2">
-<h2>How easy it is to scrape</h2>
-<p>Speed with which new data is added</p>
 <!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<div class="col-md-8">
+<p>A new version of <a href="https://resourceprojects.org/" target="_blank">resourceprojects.org</a> is available with exciting new features!</p>
+<p><span class="highlight">Comprehensive, clean and easy</span> Our greatest asset is our data. Since 2016, we have scraped over 1516 documents released in 21 different reporting jurisdictions with varying formats, reporting templates and languages. These reports were translated into english (when necessary), and cleaned and compiled into a standard template. The automated cleaning process involves reconciling different names used for the same projects, countries, and government agencies, checking for filing errors, removing duplicates and converting everything to US Dollars. All this makes project level data super easy to access, use and analyze.</p>
+<p>As a result, <a href="https://resourceprojects.org/" target="_blank">resourceprojects.org</a> is today the most comprehensive and clean source of project level payment data in the world. It contains information on 537.1 billion USD in payments made by extractive sector companies that have reported under the mandatory disclosure laws in European Union, Norway and Canada since 2014. Users can use the <a href="https://resourceprojects.org/" target="_blank">payment tables</a> to access clean and standarized payment data. The payment tables also have extensive filtering features that can be used to narrow down to the specific parts of the data that you may be most interested in.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>In addition to the payment data, the latest version of the website also provides separate profile pages for companies and countries. Users who are interested in specific companies or countries can visit these profile pages to access customized information and data on these. We have also added options to subscribe to regular updates. <a href>Sign up</a> and we will notify you whenever there is new data relevant to a country or company you are interested in tracking. Finally, users can now add any new sources with mandatory disclosure data that we have missed out on through the website. This will sent to us for scraping and adding to the website.</p>
+<h2 id="company-profiles">Company profiles</h2>
+<h2 id="country-profiles">Country profiles</h2>
+<h2 id="subscribe-to-alerts">Subscribe to alerts</h2>
+<h2 id="data-tables">Data tables</h2>
+<h2 id="contribute-sources">COntribute Sources</h2>
 </div>
+<div class="col-md-4">
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiVGhlIG5ldyByZXNvdXJjZXByb2plY3RzLm9yZyIKYXV0aG9yOiB8CiAgfCBIYXJpIFN1Ymhhc2gKICB8IERhdGEgU2NpZW50aXN0IEBOUkdJCmRhdGU6ICJEYXRlIGNyZWF0ZWQ6IGByIFN5cy5EYXRlKClgIgpvdXRwdXQ6CiAgaHRtbF9ub3RlYm9vazoKICAgIGhpZ2hsaWdodDoga2F0ZQogICAgc21hcnQ6IHllcwogICAgdGhlbWU6IGNvc21vCiAgICBjb2RlX2ZvbGRpbmc6IGhpZGUKICBodG1sX2RvY3VtZW50OgogICAgZGZfcHJpbnQ6IHBhZ2VkCiAgICBpbmNsdWRlczogL1VzZXJzL2hzdWJoYXNoL0RvY3VtZW50cy9HaXRIdWIvQ29tbW9uIEFzc2V0cy9oZWFkZXIuaHRtbApjc3M6IC9Vc2Vycy9oc3ViaGFzaC9Eb2N1bWVudHMvR2l0SHViL0NvbW1vbiBBc3NldHMvY3VzdG9tLmNzcwotLS0KCgpgYGB7ciwgbWVzc2FnZT1GQUxTRSwgd2FybmluZz1GQUxTRX0Kcm0obGlzdCA9IGxzKCkpCmxpYnJhcnkodGlkeXZlcnNlKTsgbGlicmFyeShnb29nbGVzaGVldHMpCgpzdXBwcmVzc01lc3NhZ2VzKAogICAgcmF3U291cmNlcyA8LSBnc190aXRsZSgiUmF3IERhdGEgRHVtcCIpICU+JSAKICAgICAgICBnc19yZWFkKHdzID0gIlNvdXJjZSIsIHZlcmJvc2UgPSBGKQogICAgCikKCnNvdXJjZURhdGEgPC0gcmVhZF9jc3YoIi9Vc2Vycy9oc3ViaGFzaC9Eb2N1bWVudHMvR2l0SHViL3Jlc291cmNlLXByb2plY3QtZGF0YS9EYXRhIFBpcGVsaW5lL0FsbCBEYXRhIEJhY2t1cHMvQ3VycmVudCB3ZWJzaXRlIGRhdGEvYWxsU291cmNlLmNzdiIpCnByb2plY3REYXRhIDwtIHJlYWRfY3N2KCIvVXNlcnMvaHN1Ymhhc2gvRG9jdW1lbnRzL0dpdEh1Yi9yZXNvdXJjZS1wcm9qZWN0LWRhdGEvRGF0YSBQaXBlbGluZS9BbGwgRGF0YSBCYWNrdXBzL0N1cnJlbnQgd2Vic2l0ZSBkYXRhL2FsbFByb2plY3QuY3N2IikKZW50aXR5RGF0YSA8LSByZWFkX2NzdigiL1VzZXJzL2hzdWJoYXNoL0RvY3VtZW50cy9HaXRIdWIvcmVzb3VyY2UtcHJvamVjdC1kYXRhL0RhdGEgUGlwZWxpbmUvQWxsIERhdGEgQmFja3Vwcy9DdXJyZW50IHdlYnNpdGUgZGF0YS9hbGxFbnRpdHkuY3N2IikKYGBgCgoKW3Jlc291cmNlcHJvamVjdHMub3JnXShodHRwczovL3Jlc291cmNlcHJvamVjdHMub3JnLykgaXMgdGhlIG1vc3QgY29tcHJlaGVuc2l2ZSBzb3VyY2Ugb2YgcHJvamVjdCBsZXZlbCBwYXltZW50cyBtYWRlIGJ5IGV4dHJhY3RpdmUgc2VjdG9yeSBjb21wYW5pZXMgaW4gdGhlIHdvcmxkLiBUaGUgd2Vic2l0ZSBjb250YWlucyBkYXRhIG9uIG1vcmUgdGhhbiA1MzUgYmlsbGlvbiBVU0QgaW4gcGF5bWVudHMgbWFkZSBieSBleHRyYWN0aXZlIHNlY3RvciBjb21wYW5pZXMgdGhhdCBoYXZlIHJlcG9ydGVkIHVuZGVyIHRoZSBtYW5kYXRvcnkgZGlzY2xvc3VyZSBsYXdzIGluIEV1cm9wZWFuIFVuaW9uLCBOb3J3YXkgYW5kIENhbmFkYS4gU2luY2UgaXRzIGxhdW5jaCB3ZSBoYXZlIHNjcmFwZWQgZGF0YSBmcm9tIHRhYmxlcyBzY2F0dGVyZWQgYWNyb3NzIDE1MTYgZG9jdW1lbnRzIHJlbGVhc2VkIGluIDIxIGRpZmZlcmVudCByZXBvcnRpbmcganVyaXNkaWN0aW9ucy4gVGhlIHBheW1lbnRzIGZyb20gdGhlc2UgcmVwb3J0cyBoYXZlIGJlZW4gY2xlYW5lZCwgY29udmVydGVkIHRvIFVTRCwgdHJhbnNsYXRlZCBpbnRvIGVuZ2xpc2ggYW5kIGNvbXBpbGVkIGludG8gYSBzdGFuZGFyZCB0ZW1wbGF0ZSB0aGF0IG1ha2VzIGl0IGVhc3kgdG8gdXNlIGFuZCBjb21wYXJlLiBXZSBoYXZlIGFsc28gcmVtb3ZlZCBkdXBsaWNhdGUgcmVwb3J0cyBzbyB0aGF0IHlvdSBkb24ndCBoYXZlIHRvIHdvcnJ5IGFib3V0IGluZmxhdGVkIGZpZ3VyZXMgaW4gY2FzZXMgd2hlcmUgY29tcGFuaWVzIGRpc2Nsb3NlIGluIGRpZmZlcmVudCBqdXJpc2RpY3Rpb25zLgoKSW4gYWRkaXRpb24gdG8gdGFibGVzIHdpdGggcGF5bWVudCBkYXRhLCB0aGUgbGF0ZXN0IHZlcnNpb24gb2YgdGhlIHdlYnNpdGUgcHJvdmlkZXMgYWRkaXRpb25hbCBjb21wYW55IGFuZCBjb3VudHJ5IHByb2ZpbGVzIHRvIGV4cGxvcmUgdGhlIGRhdGEuIFdlIGhhdmUgYWxzbyBhZGRlZCBhbiBvcHRpb24gdG8gc3Vic2NyaWJlCgojI0NvbXBhbnkgcHJvZmlsZXMKCiMjQ291bnRyeSBwcm9maWxlcwoKIyNTdWJzY3JpYmUgdG8gYWxlcnRzCgojI0RhdGEgdGFibGVzCgojI0NPbnRyaWJ1dGUgU291cmNlcwoKIyNQcm92ZW5hbmNlIGZvciBhbGwgZGF0YQpDYW4gdHJhY2UgYmFjayB0byBvcmlnaW5hbCBkb2N1bWVudC4gQmFja3VwcyB0byBBbWF6b24uIEFsbCBjaGFuZ2VzIHRvIHRoZSBwYXltZW50cyByZWNvcmRlZAoKIyNTZWNvbmRhcnkgZGF0YQpab29tIGludG8gYSBwcm9qZWN0IGxvY2F0aW9uCgoKIyNIb3cgZWFzeSBpdCBpcyB0byBzY3JhcGUKU3BlZWQgd2l0aCB3aGljaCBuZXcgZGF0YSBpcyBhZGRlZAoKCgoKCg==</div>
+</div>
+<!-- rnb-text-end -->
+
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiVGhlIG5ldyByZXNvdXJjZXByb2plY3RzLm9yZyIKYXV0aG9yOiB8CiAgfCBIYXJpIFN1Ymhhc2gKICB8IERhdGEgU2NpZW50aXN0IEBOUkdJCmRhdGU6ICJEYXRlIGNyZWF0ZWQ6IGByIFN5cy5EYXRlKClgIgpvdXRwdXQ6CiAgaHRtbF9ub3RlYm9vazoKICAgIGhpZ2hsaWdodDoga2F0ZQogICAgc21hcnQ6IHllcwogICAgdGhlbWU6IGNvc21vCiAgICBjb2RlX2ZvbGRpbmc6IGhpZGUKICBodG1sX2RvY3VtZW50OgogICAgZGZfcHJpbnQ6IHBhZ2VkCiAgICBpbmNsdWRlczogL1VzZXJzL2hzdWJoYXNoL0RvY3VtZW50cy9HaXRIdWIvQ29tbW9uIEFzc2V0cy9oZWFkZXIuaHRtbApjc3M6IC9Vc2Vycy9oc3ViaGFzaC9Eb2N1bWVudHMvR2l0SHViL0NvbW1vbiBBc3NldHMvY3VzdG9tMi5jc3MKLS0tCgoKCmBgYHtyLCBtZXNzYWdlPUZBTFNFLCB3YXJuaW5nPUZBTFNFLCBlY2hvPUZBTFNFfQpybShsaXN0ID0gbHMoKSkKbGlicmFyeSh0aWR5dmVyc2UpOyBsaWJyYXJ5KGdvb2dsZXNoZWV0cykKCnN1cHByZXNzTWVzc2FnZXMoCiAgICByYXdTb3VyY2VzIDwtIGdzX3RpdGxlKCJSYXcgRGF0YSBEdW1wIikgJT4lIAogICAgICAgIGdzX3JlYWQod3MgPSAiU291cmNlIiwgdmVyYm9zZSA9IEYpCiAgICAKKQoKc291cmNlRGF0YSA8LSByZWFkX2NzdigiL1VzZXJzL2hzdWJoYXNoL0RvY3VtZW50cy9HaXRIdWIvcmVzb3VyY2UtcHJvamVjdC1kYXRhL0RhdGEgUGlwZWxpbmUvQWxsIERhdGEgQmFja3Vwcy9DdXJyZW50IHdlYnNpdGUgZGF0YS9hbGxTb3VyY2UuY3N2IikKcHJvamVjdERhdGEgPC0gcmVhZF9jc3YoIi9Vc2Vycy9oc3ViaGFzaC9Eb2N1bWVudHMvR2l0SHViL3Jlc291cmNlLXByb2plY3QtZGF0YS9EYXRhIFBpcGVsaW5lL0FsbCBEYXRhIEJhY2t1cHMvQ3VycmVudCB3ZWJzaXRlIGRhdGEvYWxsUHJvamVjdC5jc3YiKQplbnRpdHlEYXRhIDwtIHJlYWRfY3N2KCIvVXNlcnMvaHN1Ymhhc2gvRG9jdW1lbnRzL0dpdEh1Yi9yZXNvdXJjZS1wcm9qZWN0LWRhdGEvRGF0YSBQaXBlbGluZS9BbGwgRGF0YSBCYWNrdXBzL0N1cnJlbnQgd2Vic2l0ZSBkYXRhL2FsbEVudGl0eS5jc3YiKQpgYGAKCgoKCmBgYHtyLCBlY2hvPUZBTFNFfQojI2FkZCBhIGxlZnQganVzdGlmaWVkIGNoYXJ0IGhlcmUgYnkgcGF5bWVudCB0eXBlCmBgYAoKCjxkaXYgY2xhc3M9ImNvbC1tZC04Ij4KQSBuZXcgdmVyc2lvbiBvZiA8YSBocmVmPSJodHRwczovL3Jlc291cmNlcHJvamVjdHMub3JnLyIgdGFyZ2V0PSJfYmxhbmsiPnJlc291cmNlcHJvamVjdHMub3JnPC9hPiBpcyBhdmFpbGFibGUgd2l0aCBleGNpdGluZyBuZXcgZmVhdHVyZXMhCgo8c3BhbiBjbGFzcz0iaGlnaGxpZ2h0Ij5Db21wcmVoZW5zaXZlLCBjbGVhbiBhbmQgZWFzeTwvc3Bhbj4gT3VyIGdyZWF0ZXN0IGFzc2V0IGlzIG91ciBkYXRhLiBTaW5jZSAyMDE2LCB3ZSBoYXZlIHNjcmFwZWQgb3ZlciBgciBucm93KHJhd1NvdXJjZXMpYCBkb2N1bWVudHMgcmVsZWFzZWQgaW4gMjEgZGlmZmVyZW50IHJlcG9ydGluZyBqdXJpc2RpY3Rpb25zIHdpdGggdmFyeWluZyBmb3JtYXRzLCByZXBvcnRpbmcgdGVtcGxhdGVzIGFuZCBsYW5ndWFnZXMuIFRoZXNlIHJlcG9ydHMgd2VyZSB0cmFuc2xhdGVkIGludG8gZW5nbGlzaCAod2hlbiBuZWNlc3NhcnkpLCBhbmQgY2xlYW5lZCBhbmQgY29tcGlsZWQgaW50byBhIHN0YW5kYXJkIHRlbXBsYXRlLiBUaGUgYXV0b21hdGVkIGNsZWFuaW5nIHByb2Nlc3MgaW52b2x2ZXMgcmVjb25jaWxpbmcgZGlmZmVyZW50IG5hbWVzIHVzZWQgZm9yIHRoZSBzYW1lIHByb2plY3RzLCBjb3VudHJpZXMsIGFuZCBnb3Zlcm5tZW50IGFnZW5jaWVzLCBjaGVja2luZyBmb3IgZmlsaW5nIGVycm9ycywgcmVtb3ZpbmcgZHVwbGljYXRlcyBhbmQgY29udmVydGluZyBldmVyeXRoaW5nIHRvIFVTIERvbGxhcnMuIEFsbCB0aGlzIG1ha2VzIHByb2plY3QgbGV2ZWwgZGF0YSBzdXBlciBlYXN5IHRvIGFjY2VzcywgdXNlIGFuZCBhbmFseXplLiAKCkFzIGEgcmVzdWx0LCA8YSBocmVmPSJodHRwczovL3Jlc291cmNlcHJvamVjdHMub3JnLyIgdGFyZ2V0PSJfYmxhbmsiPnJlc291cmNlcHJvamVjdHMub3JnPC9hPiBpcyB0b2RheSB0aGUgbW9zdCBjb21wcmVoZW5zaXZlIGFuZCBjbGVhbiBzb3VyY2Ugb2YgcHJvamVjdCBsZXZlbCBwYXltZW50IGRhdGEgaW4gdGhlIHdvcmxkLiBJdCBjb250YWlucyBpbmZvcm1hdGlvbiBvbiBgciByb3VuZChtYXgoYyhzdW0ocHJvamVjdERhdGEkcHJvamVjdFBheW1lbnQsIG5hLnJtID0gVCksIHN1bShlbnRpdHlEYXRhJGVudGl0eVBheW1lbnQsIG5hLnJtID0gVCkpKS8xZTksIDEpYCBiaWxsaW9uIFVTRCBpbiBwYXltZW50cyBtYWRlIGJ5IGV4dHJhY3RpdmUgc2VjdG9yIGNvbXBhbmllcyB0aGF0IGhhdmUgcmVwb3J0ZWQgdW5kZXIgdGhlIG1hbmRhdG9yeSBkaXNjbG9zdXJlIGxhd3MgaW4gRXVyb3BlYW4gVW5pb24sIE5vcndheSBhbmQgQ2FuYWRhIHNpbmNlIDIwMTQuIFVzZXJzIGNhbiB1c2UgdGhlIDxhIGhyZWY9Imh0dHBzOi8vcmVzb3VyY2Vwcm9qZWN0cy5vcmcvIiB0YXJnZXQ9Il9ibGFuayI+cGF5bWVudCB0YWJsZXM8L2E+IHRvIGFjY2VzcyBjbGVhbiBhbmQgc3RhbmRhcml6ZWQgcGF5bWVudCBkYXRhLiBUaGUgcGF5bWVudCB0YWJsZXMgYWxzbyBoYXZlIGV4dGVuc2l2ZSBmaWx0ZXJpbmcgZmVhdHVyZXMgdGhhdCBjYW4gYmUgdXNlZCB0byBuYXJyb3cgZG93biB0byB0aGUgc3BlY2lmaWMgcGFydHMgb2YgdGhlIGRhdGEgdGhhdCB5b3UgbWF5IGJlIG1vc3QgaW50ZXJlc3RlZCBpbi4KCgpgYGB7ciwgZWNobz1GQUxTRX0KIyNjcmVhdGUgYSBncmlkIHdpdGggY2hhcnQgZm9yIGEgc2luZ2xlIGNvdW50cnkgYW5kIGEgc2luZ2xlIGNvbXBhbnkgYnkgcHJvamVjdCBzZWNvbmRhcnkgYW5kIGVudGl0eSBzZWNvbmRhcnkKYGBgCiAgSW4gYWRkaXRpb24gdG8gdGhlIHBheW1lbnQgZGF0YSwgdGhlIGxhdGVzdCB2ZXJzaW9uIG9mIHRoZSB3ZWJzaXRlIGFsc28gcHJvdmlkZXMgc2VwYXJhdGUgcHJvZmlsZSBwYWdlcyBmb3IgY29tcGFuaWVzIGFuZCBjb3VudHJpZXMuIFVzZXJzIHdobyBhcmUgaW50ZXJlc3RlZCBpbiBzcGVjaWZpYyBjb21wYW5pZXMgb3IgY291bnRyaWVzIGNhbiB2aXNpdCB0aGVzZSBwcm9maWxlIHBhZ2VzIHRvIGFjY2VzcyBjdXN0b21pemVkIGluZm9ybWF0aW9uIGFuZCBkYXRhIG9uIHRoZXNlLiBXZSBoYXZlIGFsc28gYWRkZWQgb3B0aW9ucyB0byBzdWJzY3JpYmUgdG8gcmVndWxhciB1cGRhdGVzLiBbU2lnbiB1cF0oKSBhbmQgd2Ugd2lsbCBub3RpZnkgeW91IHdoZW5ldmVyIHRoZXJlIGlzIG5ldyBkYXRhIHJlbGV2YW50IHRvIGEgY291bnRyeSBvciBjb21wYW55IHlvdSBhcmUgaW50ZXJlc3RlZCBpbiB0cmFja2luZy4gRmluYWxseSwgdXNlcnMgY2FuIG5vdyBhZGQgYW55IG5ldyBzb3VyY2VzIHdpdGggbWFuZGF0b3J5IGRpc2Nsb3N1cmUgZGF0YSB0aGF0IHdlIGhhdmUgbWlzc2VkIG91dCBvbiB0aHJvdWdoIHRoZSB3ZWJzaXRlLiBUaGlzIHdpbGwgc2VudCB0byB1cyBmb3Igc2NyYXBpbmcgYW5kIGFkZGluZyB0byB0aGUgd2Vic2l0ZS4KCiMjQ29tcGFueSBwcm9maWxlcwoKIyNDb3VudHJ5IHByb2ZpbGVzCgojI1N1YnNjcmliZSB0byBhbGVydHMKCiMjRGF0YSB0YWJsZXMKCiMjQ09udHJpYnV0ZSBTb3VyY2VzCgoKCgo8L2Rpdj4KPGRpdiBjbGFzcz0iY29sLW1kLTQiPjwvZGl2PgoKCg==</div>
 
 
 

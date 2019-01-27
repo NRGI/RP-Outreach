@@ -1,0 +1,73 @@
+---
+title: "The new resourceprojects.org"
+author: |
+  | Hari Subhash
+  | Data Scientist @NRGI
+date: "Date created: `r Sys.Date()`"
+output:
+  html_notebook:
+    highlight: kate
+    smart: yes
+    theme: cosmo
+    code_folding: hide
+  html_document:
+    df_print: paged
+    includes: /Users/hsubhash/Documents/GitHub/Common Assets/header.html
+css: /Users/hsubhash/Documents/GitHub/Common Assets/custom2.css
+---
+
+
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+rm(list = ls())
+library(tidyverse); library(googlesheets)
+
+suppressMessages(
+    rawSources <- gs_title("Raw Data Dump") %>% 
+        gs_read(ws = "Source", verbose = F)
+    
+)
+
+sourceData <- read_csv("/Users/hsubhash/Documents/GitHub/resource-project-data/Data Pipeline/All Data Backups/Current website data/allSource.csv")
+projectData <- read_csv("/Users/hsubhash/Documents/GitHub/resource-project-data/Data Pipeline/All Data Backups/Current website data/allProject.csv")
+entityData <- read_csv("/Users/hsubhash/Documents/GitHub/resource-project-data/Data Pipeline/All Data Backups/Current website data/allEntity.csv")
+```
+
+
+
+
+```{r, echo=FALSE}
+##add a left justified chart here by payment type
+```
+
+
+<div class="col-md-8">
+A new version of <a href="https://resourceprojects.org/" target="_blank">resourceprojects.org</a> is available with exciting new features!
+
+<span class="highlight">Comprehensive, clean and easy</span> Our greatest asset is our data. Since 2016, we have scraped over `r nrow(rawSources)` documents released in 21 different reporting jurisdictions with varying formats, reporting templates and languages. These reports were translated into english (when necessary), and cleaned and compiled into a standard template. The automated cleaning process involves reconciling different names used for the same projects, countries, and government agencies, checking for filing errors, removing duplicates and converting everything to US Dollars. All this makes project level data super easy to access, use and analyze. 
+
+As a result, <a href="https://resourceprojects.org/" target="_blank">resourceprojects.org</a> is today the most comprehensive and clean source of project level payment data in the world. It contains information on `r round(max(c(sum(projectData$projectPayment, na.rm = T), sum(entityData$entityPayment, na.rm = T)))/1e9, 1)` billion USD in payments made by extractive sector companies that have reported under the mandatory disclosure laws in European Union, Norway and Canada since 2014. Users can use the <a href="https://resourceprojects.org/" target="_blank">payment tables</a> to access clean and standarized payment data. The payment tables also have extensive filtering features that can be used to narrow down to the specific parts of the data that you may be most interested in.
+
+
+```{r, echo=FALSE}
+##create a grid with chart for a single country and a single company by project secondary and entity secondary
+```
+  In addition to the payment data, the latest version of the website also provides separate profile pages for companies and countries. Users who are interested in specific companies or countries can visit these profile pages to access customized information and data on these. We have also added options to subscribe to regular updates. [Sign up]() and we will notify you whenever there is new data relevant to a country or company you are interested in tracking. Finally, users can now add any new sources with mandatory disclosure data that we have missed out on through the website. This will sent to us for scraping and adding to the website.
+
+##Company profiles
+
+##Country profiles
+
+##Subscribe to alerts
+
+##Data tables
+
+##COntribute Sources
+
+
+
+
+</div>
+<div class="col-md-4"></div>
+
+
