@@ -3,8 +3,10 @@ title: "The new Research Projects"
 subtitle: "With tons exciting new features!!"
 author: "Hari Subhash"
 date: "`r Sys.Date()`"
-output: tint::tintHtml
-includes: assets/header.html
+output: 
+    tint::tintHtml:
+        includes: 
+            in_header: assets/header.html
 css: assets/tint_blog.css
 bibliography: skeleton.bib
 link-citations: yes
