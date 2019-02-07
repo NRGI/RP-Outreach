@@ -1,5 +1,5 @@
 ---
-title: "Research Projects: New and improved"
+title: "Research Projects: New and Improved"
 author: "Hari Subhash"
 date: "`r Sys.Date()`"
 output: 
@@ -11,7 +11,11 @@ bibliography: skeleton.bib
 link-citations: yes
 ---
 
+
 ```{r, include=FALSE, message=FALSE}
+
+#rmarkdown::render(input = "/Users/hsubhash/Documents/GitHub/RP Outreach/Blogs/Intro to RP/intro_rp.Rmd", output_dir = "/Users/hsubhash/Documents/GitHub/nrgi_reports/intro_rp")
+
 rm(list = ls())
 library(tint); library(tidyverse); library(googlesheets); library(lubridate); library(ggthemes)
 # invalidate cache when the package version changes
@@ -62,39 +66,38 @@ projectData %>%
 <!-- ``` -->
 
 
-We are excited to announce the launch of the latest version of <a href="https://resourceprojects.org/" target="_blank">resourceprojects.org</a> with several new features and data! 
+The latest version of <a href="https://resourceprojects.org/" target="_blank">resourceprojects.org</a> is now live, with several new features and data! 
 
-The website contains information on `r round(max(c(sum(projectData$projectPayment, na.rm = T), sum(entityData$entityPayment, na.rm = T)))/1e9, 0)` billion USD in payments made by `r n_distinct(sourceData$reportingCompany)` extractive sector companies that have reported under the mandatory disclosure laws in European Union, Norway and Canada since 2014. In addition to payment data from mandatory disclosure reports, you can now access profile pages for <a href="https://resourceprojects.org/" target="_blank">companies</a> and <a href="https://resourceprojects.org/" target="_blank">countries</a>, subscribe to customized <a href="https://resourceprojects.org/" target="_blank">updates</a>, and submit <a href="https://resourceprojects.org/" target="_blank">new sources</a> to us for scraping.
+<a href="https://resourceprojects.org/" target="_blank">resourceprojects.org</a> is the most complete and clean repository of project-level payments made by extractive sector companies around the world. The website contains information on USD `r round(max(c(sum(projectData$projectPayment, na.rm = T), sum(entityData$entityPayment, na.rm = T)))/1e9, 0)` billion in payments made by `r n_distinct(sourceData$reportingCompany)` extractive sector companies that have reported under mandatory disclosure laws passed in the European Union, Norway, and Canada since 2014. In addition to this payment data, you can now access profile pages for <a href="https://resourceprojects.org/company/BP%20Public%20Limited%20Company" target="_blank">companies</a> and <a href="https://resourceprojects.org/country/Brazil" target="_blank">countries</a>, subscribe to customized <a href="https://resourceprojects.org/subscribe" target="_blank">updates</a>, and submit <a href="https://resourceprojects.org/sources/add-source" target="_blank">new sources</a> to us for scraping.
 
-`r margin_note("During the semi-automated <span class='highlight'>cleaning process</span> we, translate everything into english, reconcile the names used for projects, payment types, countries, and government agencies, convert everything to USD, check for filing or scraping errors, remove duplicates and compile everything into a standard template.")`
+`r margin_note("During the semi-automated <span class='highlight'>cleaning process</span> we translate everything into English, reconcile the names used for projects, payment types, countries, and government agencies, convert everything to USD, check for filing or scraping errors, remove duplicates and compile everything into a standard template.")`
 
-`r newthought("Clean, complete and easy.")` Our greatest asset continues to be our data. Since 2016, we have scraped, <span class='highlight'>cleaned</span> and compiled over `r nrow(rawSources)` documents released in 21 different reporting jurisdictions with varying formats, reporting templates and languages. As a result, <a href="https://resourceprojects.org/" target="_blank">resourceprojects.org</a> is today the most complete and clean source of project level payments in the world. You can access the entire dataset and/or filter a specific cut of the data using the  <a href="https://resourceprojects.org/" target="_blank">payment tables</a> on the website.
+`r newthought("Clean, complete and easy.")` The greatest asset of the website continues to be the data. Since 2016, we have scraped, <span class='highlight'>cleaned</span> and compiled over `r nrow(rawSources)` documents released in 21 different reporting jurisdictions with varying formats, reporting templates and languages. You can access the entire dataset and/or filter a specific cut of the data using the  <a href="https://resourceprojects.org/projects?tab=0&" target="_blank">payment tables</a> on the website.
 
 `r margin_note("We collect <span class='highlight'>secondary data</span> on each extractive sector company that includes its [legal entity identifiers](https://www.gleif.org/en/), headquarters, stock tickers and website. We also show the locations of their projects and the commodity that is being extracted")`
-`r newthought("Company profiles.")` Every company that has disclosed under mandatory disclosure laws now has a profile page. The profiles summarise payment data for each company and provide <span class='highlight'>additional information</span> on their operations. You can access these profiles through the company profile landing page <a href="https://resourceprojects.org/" target="_blank">here</a> or by clicking on a company name anywhere on the website.
+`r newthought("Company profiles.")` Every company that has disclosed under mandatory disclosure laws now has a profile page. The profiles summarise payment data for each company and provide <span class='highlight'>secondary data</span> on their operations. You can access these profiles through the company profile landing page <a href="https://resourceprojects.org/company-profiles" target="_blank">here</a> or by clicking on a company name anywhere on the website.
 
-```{r, echo=FALSE, fig.cap="Fig 2: Table showing the top projects and government agencies (by payment) for Royal Dutch Shell PLC"}
+```{r, echo=FALSE, fig.cap="Fig 2: Screenshot of tables showing the top projects and government agencies (by payment) for Royal Dutch Shell PLC"}
 knitr::include_graphics("images/shellTable.png")
 ```
 
-<!-- ```{r, fig.fullwidth = TRUE, echo=FALSE, fig.cap="Fig 2: Screenshots of the company profile page for Royal Dutch Shell Public Limited Company"} -->
-<!-- knitr::include_graphics("images/montage_text.png") -->
-<!-- ``` -->
+`r newthought("Country profiles.")` We have provided profiles for countries since mid-2017. This year we have made several performance improvements and made them easier to access. Click on a country you are interested in on the <a href="https://resourceprojects.org/country-profiles" target="_blank">landing page</a> map to access its profile.
 
-<!-- ```{r, echo=FALSE, fig.cap="Fig 3: The landing page for country profiles"} -->
-<!-- knitr::include_graphics("images/countryProfileLanding.png") -->
-<!-- ``` -->
+```{r, echo=FALSE, fig.cap="Fig 3: Screenshot of the landing page map showing payments received by countries"}
+knitr::include_graphics("images/countryProfileLanding.png")
+```
 
-```{r, echo=FALSE, fig.margin = TRUE, fig.cap="Fig 3: A map of projects in Mexico, showing the location and type of project"}
+`r margin_note("You will be notified whenever there is new data <span class='highlight'>relevant to your subscription</span>, at which point you can visit the website to explore it further. Click <a href='https://www.resourceprojects.org/admin/email/subscribe?id=5c50900d05ad43002364445f, target='_blank'>here</a> to view a sample newsletter.")`
+
+`r newthought("Customized updates to track payments.")` If you are interested in following a particular country, company or reporting jurisdiction you can do so by <a href="https://resourceprojects.org/subscribe" target="_blank">signing up</a> on the website to receive <span class='highlight'>customized</span> updates based on your interests.
+
+```{r, echo=FALSE, fig.margin = TRUE, fig.cap="Fig 4: Screenshot of a country profile map of projects in Mexico, showing the location and type of project"}
 knitr::include_graphics("images/mexicoCountryMap.png")
 ```
-`r newthought("Country profile pages.")` We have provided profiles for countries since mid-2017. This year we have made several performance improvements and made them easier to access. Click on a country you are interested in on the <a href="https://resourceprojects.org/" target="_blank">landing page</a> map to access its profile.
 
-`r newthought("Customized updates to track payments.")` If you are interested in following a particular country, company or reporting jurisdiction you can do so by <a href="https://resourceprojects.org/" target="_blank">signing up</a> on the website to receive <span class='highlight'>customized</span> updates based on your interests. `r margin_note("You will be notified whenever there is new data <span class='highlight'>relevant to your subscription</span>, at which point you can visit the website to explore it further")`. Click <a href="https://resourceprojects.org/" target="_blank">here</a> to view a sample newsletter. Click here to subscribe.
+`r newthought("Submit new disclosure sources.")` Have we missed a mandatory disclosure report? Now you can tell us about it <a href="https://resourceprojects.org/sources/add-source" target="_blank">here</a>. We will scrape and upload data from it so that you can see it on the website. You can access the submit sources button by going to the table of mandatory disclosure sources <a href="https://resourceprojects.org/sources?tab=0&" target="_blank">here</a>.
 
-`r newthought("Submit new disclosure sources.")` Have we missed a mandatory disclosure report? Now you can tell us about it <a href="https://resourceprojects.org/" target="_blank">here</a>. We will scrape and upload data from it so that you can see it on the website. You can access the submit sources button by going to the table of mandatory disclosure sources <a href="https://resourceprojects.org/" target="_blank">here</a>.
-
-```{r, fig.margin = TRUE, fig.cap = "Fig 4: Why are a high proportion of payments being disclosed through unidentifiable project names in Mexico?", cache=TRUE, echo=FALSE}
+```{r, fig.margin = TRUE, fig.cap = "Fig 5: Why are a high proportion of payments being disclosed through unidentifiable project names in Mexico?", cache=TRUE, echo=FALSE}
 projectData %>% 
     left_join(., projectSecondary, by = c("projectCountry", "projectName")) %>% 
     filter(!is.na(projectType) & projectCountry == "Mexico")%>% 
@@ -116,7 +119,7 @@ projectData %>%
 `r newthought("Secondary data.")` As mentioned earlier, in addition to payment (primary) data, we collect additional (secondary) data on projects, government agencies and companies. You can use this data for more detailed analysis of the payment data and check the quality of disclosures. 
 
 
-```{r, fig.margin = TRUE, fig.cap = "Fig 5: Majority of payments made flow to national level government agencies", cache=TRUE, echo=FALSE}
+```{r, fig.margin = TRUE, fig.cap = "Fig 6: Majority of payments made flow to national level government agencies", cache=TRUE, echo=FALSE}
 left_join(entityData, entitySecondary, by = c("entityCountry", "entityName")) %>% 
     filter(!is.na(entityLevel)) %>% 
     group_by(entityLevel) %>% 
@@ -133,10 +136,10 @@ left_join(entityData, entitySecondary, by = c("entityCountry", "entityName")) %>
     
 ```
 
-In addition to the project and government agency types, which can be used as a filter for the data on the website, we collect several other variables (commodity, location etc.). However, we will not be able to provide this secondary data on the website until the next iteration. In the meantime, please <a href="mailto:admin@resourceprojects.org">email us</a> if you are interested in using this data for your work. 
+In addition to the project and government agency types, which can be used as a filter for the data on the website, we collect several other variables (commodity, location etc.). We are still in the process of finalizing this data and look forward to including it when we launch the next iteration of the website. In the meantime, please <a href="mailto:admin@resourceprojects.org">email us</a> if you are interested in using this data for your work. 
 
-`r newthought("Persistent provenance.")` We noticed that over time some (about 15% every year) urls or APIs that are used to host mandatory disclosure reports become defunct. In order to maintain full traceability between raw and final versions of the data we now provide access to a backup for every report. This way you will always be able to read the original report irrespective of whether it is available online at source. You can access both version of sources through the table of mandatory disclosure sources here.
+`r newthought("Persistent provenance.")` We noticed that over time some (about 15% every year) urls or APIs that are used to host mandatory disclosure reports either disappear or get replaced. In order to maintain full traceability between raw and final versions of the data we now provide access to a backup for every report. This way you will always be able to read the original report irrespective of whether it is available online at source. You can access both version of sources through the table of mandatory disclosure sources <a href="https://resourceprojects.org/sources?tab=0&" target="_blank">here</a>.
 
-`r newthought("Please give us feedback!!")` We are excited for you to try out these new features. The website continues to be in active development and we would love to have your inputs on any additional features you would like or any bugs you notice. Please provide feedback <a href="https://docs.google.com/spreadsheets/d/1fUd3aCEfVzb1zqQo1MF6mpQG4y7R_6Xpkaov8FKaIyw/edit?usp=sharing" target="_blank">here</a>
+`r newthought("Please give us feedback!!!")` We are excited for you to try out these new features. The website continues to be in active development and we would love to have your inputs on any additional features you would like or any bugs you notice. Please provide feedback <a href="https://docs.google.com/spreadsheets/d/1fUd3aCEfVzb1zqQo1MF6mpQG4y7R_6Xpkaov8FKaIyw/edit?usp=sharing" target="_blank">here</a>.
 
-
+`r newthought("A big thanks")` to our developers <a href="http://younginnovations.com.np/" target="_blank">Young Innovations</a> for their work on this project. They are a pleasure to work with and have done an excellent job at translating our vision into an easy to use and intuitive website.

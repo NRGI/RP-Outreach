@@ -13,3 +13,10 @@ googlesheets
 lubridate
 ggthemes
 bindrcpp
+xml2
+rvest
+readxl
+jsonlite
+httr
+aws.s3
+writexl
