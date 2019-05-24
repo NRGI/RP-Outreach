@@ -49,8 +49,8 @@ projectData %>%
     summarise(totalPayments = sum(projectPayment)) %>% 
     ggplot(., aes(x = reportYear, y = (totalPayments/1e9))) +
     geom_line() +
-    annotate(geom = "text", x = 2014, y = 125, label = "Payments (in billions of USD)", angle = "90", vjust = 1.1, size = 2.8) +
-    annotate(geom = "text", x = 2017, y = 0, label = "Financial year", hjust = 0.8, vjust = -0.5, size = 2.8) +
+    annotate(geom = "text", x = 2014, y = 125, label = "Payments (in billions of USD)", angle = "90", vjust = 1.1, size = 5) +
+    annotate(geom = "text", x = 2017, y = 0, label = "Financial year", hjust = 0.8, vjust = -0.5, size = 5) +
     theme_fivethirtyeight()
 # +
 #     labs(y = str_wrap("Total payments", width = 24), 
@@ -59,6 +59,9 @@ projectData %>%
 #     theme(
 #         axis.title = element_text()
 #     )
+
+
+ggsave(filename = "fig1.png", path = "plots")
 ```
 
 <!-- ```{r, fig.margin = TRUE, cache=TRUE, echo=FALSE} -->
@@ -109,11 +112,12 @@ projectData %>%
     theme_fivethirtyeight() +
     labs(y = "Payments (in millions of USD)") +
     theme(
-        axis.title = element_text(size = 11),
+        axis.title = element_text(size = 16),
+        axis.text = element_text(size = 14),
         axis.title.y = element_blank()
     )
     
-    
+ggsave(filename = "fig5.png", path = "plots")
 ```
 
 `r newthought("Secondary data.")` As mentioned earlier, in addition to payment (primary) data, we collect additional (secondary) data on projects, government agencies and companies. You can use this data for more detailed analysis of the payment data and check the quality of disclosures. 
@@ -128,12 +132,13 @@ left_join(entityData, entitySecondary, by = c("entityCountry", "entityName")) %>
     geom_col() +
     coord_flip() +
     theme_fivethirtyeight() +
-        labs(y = "Payments (in billions of USD)") +
+        labs(y = "Payments (in billions of USD)")  +
     theme(
-        axis.title = element_text(size = 11),
+        axis.title = element_text(size = 16),
+        axis.text = element_text(size = 14),
         axis.title.y = element_blank()
     )
-    
+ggsave(filename = "fig6.png", path = "plots")
 ```
 
 In addition to the project and government agency types, which can be used as a filter for the data on the website, we collect several other variables (commodity, location etc.). We are still in the process of finalizing this data and look forward to including it when we launch the next iteration of the website. In the meantime, please <a href="mailto:admin@resourceprojects.org">email us</a> if you are interested in using this data for your work. 
